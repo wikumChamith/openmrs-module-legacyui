@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openmrs.Concept;
+import org.openmrs.GlobalProperty;
 import org.openmrs.Location;
 import org.openmrs.Patient;
 import org.openmrs.PatientIdentifier;
@@ -21,6 +22,7 @@ import org.openmrs.PersonAddress;
 import org.openmrs.PersonName;
 import org.openmrs.api.PatientService;
 import org.openmrs.api.context.Context;
+import org.openmrs.layout.address.AddressSupport;
 import org.openmrs.test.Verifies;
 import org.openmrs.util.OpenmrsConstants;
 import org.openmrs.web.test.jupiter.BaseModuleWebContextSensitiveTest;
@@ -55,6 +57,11 @@ public class ShortPatientFormValidatorTest extends BaseModuleWebContextSensitive
 		ps = Context.getPatientService();
 		Context.getAdministrationService().setGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_ADDRESS_TEMPLATE,
 		    EMPTY_REQUIRED_ELEMENTS_ADDRESS_TEMPLATE);
+		// Force-refresh the AddressSupport singleton: its listener may have been registered against
+		// a stale Spring context (CI test ordering), in which case setGlobalProperty above never
+		// notifies it. Calling globalPropertyChanged directly guarantees the cached template is reset.
+		AddressSupport.getInstance().globalPropertyChanged(new GlobalProperty(
+		        OpenmrsConstants.GLOBAL_PROPERTY_ADDRESS_TEMPLATE, EMPTY_REQUIRED_ELEMENTS_ADDRESS_TEMPLATE));
 	}
 	
 	/**
