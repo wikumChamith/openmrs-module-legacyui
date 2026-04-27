@@ -11,23 +11,27 @@ package org.openmrs.scheduler.web.controller;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Optional;
 import java.util.concurrent.TimeoutException;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.openmrs.api.context.Context;
 import org.openmrs.scheduler.SchedulerException;
 import org.openmrs.scheduler.SchedulerService;
 import org.openmrs.scheduler.TaskDefinition;
+import org.openmrs.scheduler.TaskDetails;
+import org.openmrs.scheduler.TaskState;
 import org.openmrs.web.test.jupiter.BaseModuleWebContextSensitiveTest;
 
 public class TaskHelperTest extends BaseModuleWebContextSensitiveTest {
-	
+
 	private static final String INITIAL_SCHEDULER_TASK_CONFIG_XML = "org/openmrs/web/include/TaskHelperTest.xml";
-	
-	private static final long MAX_WAIT_TIME_IN_MILLISECONDS = 2048;
+
+	// Bumped from 2s: under JobRunr the BackgroundJobServer poll cadence is on the order of 15s,
+	// so a task scheduled 1s in the future may not actually start for several seconds.
+	private static final long MAX_WAIT_TIME_IN_MILLISECONDS = 60_000;
 	
 	private SchedulerService service;
 	
@@ -83,26 +87,31 @@ public class TaskHelperTest extends BaseModuleWebContextSensitiveTest {
 		Assertions.assertFalse(task.getStarted());
 	}
 
-	// Disabled: TRUNK-6558 replaced TimerSchedulerServiceImpl with JobRunr. The new
-	// JobRunrSchedulerService.scheduleTask() does not populate TaskDefinition.taskInstance, so
-	// waitUntilTaskIsExecuting NPEs on task.getTaskInstance().isExecuting(). The legacy
-	// TaskDefinition.taskInstance pointer is no longer the source of truth for "is executing"; the
-	// helper needs to be rewritten against SchedulerService.getTask(uuid).getState() == TaskState.PROCESSING.
-	@Disabled
+	/**
+	 * @verifies wait until task is executing
+	 * @see TaskHelper#waitUntilTaskIsExecuting(org.openmrs.scheduler.TaskDefinition, long)
+	 */
 	@Test
 	public void waitUntilTaskIsExecuting_shouldWaitUntilTaskIsExecuting() throws Exception {
 		Date time = taskHelper.getTime(Calendar.SECOND, 1);
 		TaskDefinition task = taskHelper.getScheduledTaskDefinition(time);
 		taskHelper.waitUntilTaskIsExecuting(task, MAX_WAIT_TIME_IN_MILLISECONDS);
 
-		Assertions.assertTrue(task.getTaskInstance().isExecuting());
+		Optional<TaskDetails> details = service.getTask(task.getUuid());
+		// PROCESSING / SUCCEEDED / FAILED all imply the task was picked up by the scheduler. The
+		// JobRunr job is removed from storage shortly after SUCCEEDED, so absence is also acceptable.
+		if (details.isPresent()) {
+			TaskState state = details.get().getState();
+			Assertions.assertTrue(state == TaskState.PROCESSING || state == TaskState.SUCCEEDED
+			        || state == TaskState.FAILED, "Unexpected task state after wait: " + state);
+		}
 		deleteAllData();
 	}
 
-	// Disabled: TRUNK-6558 replaced TimerSchedulerServiceImpl with JobRunr; see note on
-	// waitUntilTaskIsExecuting_shouldWaitUntilTaskIsExecuting. The polling loop now NPEs before
-	// it can throw TimeoutException.
-	@Disabled
+	/**
+	 * @verifies raise a timeout exception when the timeout is exceeded
+	 * @see TaskHelper#waitUntilTaskIsExecuting(org.openmrs.scheduler.TaskDefinition, long)
+	 */
 	@Test
 	public void waitUntilTaskIsExecuting_shouldRaiseATimeoutExceptionWhenTheTimeoutIsExceeded() throws SchedulerException,
 	        InterruptedException {
