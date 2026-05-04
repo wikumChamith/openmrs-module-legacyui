@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -161,8 +161,7 @@ public class ForEachRecordTag extends BodyTagSupport {
 				Iterable<?> iterable = (Iterable<?>) ct.newInstance();
 				records = iterable.iterator();
 				
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				log.error(name + " not found in ForEachRecord list " + e);
 			}
 		}
@@ -243,8 +242,7 @@ public class ForEachRecordTag extends BodyTagSupport {
 			if (getBodyContent() != null && records != null) {
 				getBodyContent().writeOut(getBodyContent().getEnclosingWriter());
 			}
-		}
-		catch (java.io.IOException e) {
+		} catch (java.io.IOException e) {
 			throw new JspTagException("IO Error: " + e.getMessage());
 		}
 		return EVAL_PAGE;

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -59,8 +59,7 @@ public class GlobalPropertyTag extends TagSupport {
 			} else {
 				value = (String) Context.getAdministrationService().getGlobalProperty(key, defaultValue);
 			}
-		}
-		finally {
+		} finally {
 			Context.removeProxyPrivilege(PrivilegeConstants.GET_GLOBAL_PROPERTIES);
 		}
 		
@@ -71,8 +70,7 @@ public class GlobalPropertyTag extends TagSupport {
 				pageContext.getOut().write(value.toString());
 			}
 			
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.error("error getting global property", e);
 		}
 		return SKIP_BODY;

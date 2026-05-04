@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -65,7 +65,8 @@ public class LocationTagController {
 	 * Add a new LocationTag (quickly, without a dedicated page)
 	 */
 	@RequestMapping("/admin/locations/locationTagAdd.form")
-	public String add(@RequestParam("name") String name, @RequestParam("description") String description, WebRequest request) {
+	public String add(@RequestParam("name") String name, @RequestParam("description") String description,
+	        WebRequest request) {
 		
 		if (!StringUtils.hasText(name)) {
 			request.setAttribute(WebConstants.OPENMRS_ERROR_ATTR,

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -25,7 +25,8 @@ public class LocalizationController {
 	
 	@RequestMapping("/q/message")
 	@ResponseBody
-	public String getMessage(@RequestParam("key") String key, @RequestParam(required = false, value = "locale") Locale locale) {
+	public String getMessage(@RequestParam("key") String key,
+	        @RequestParam(required = false, value = "locale") Locale locale) {
 		String ret;
 		if (locale != null) {
 			ret = Context.getMessageSourceService().getMessage(key);

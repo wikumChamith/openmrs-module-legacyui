@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -43,15 +43,13 @@ public abstract class AbstractGraphServlet extends HttpServlet {
 			// Retrieve custom values
 			try {
 				width = Integer.parseInt(request.getParameter("width"));
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				log.error("Error during width parseInt", e);
 			}
 			
 			try {
 				height = Integer.parseInt(request.getParameter("height"));
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				log.error("Error during height parseInt", e);
 			}
 			
@@ -77,8 +75,7 @@ public abstract class AbstractGraphServlet extends HttpServlet {
 				} else {
 					// Throw exception: unsupported mime type
 				}
-			}
-			catch (IOException e) {
+			} catch (IOException e) {
 				log.error(e);
 			}
 			

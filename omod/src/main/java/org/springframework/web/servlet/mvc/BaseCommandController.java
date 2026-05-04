@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -7,8 +7,6 @@
  * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
  * graphic logo is a trademark of OpenMRS Inc.
  */
-/** NOTE: this class, which has been removed in Spring 4, has been copied over from Spring 3.2.7 to support old style SimpleFormControllers. */
-
 /*
  * Copyright 2002-2012 the original author or authors.
  *
@@ -89,12 +87,12 @@ import org.springframework.web.context.request.ServletWebRequest;
  * {@link AbstractFormController AbstractFormController}, {@link AbstractCommandController
  * AbstractcommandController}, {@link SimpleFormController SimpleFormController} and
  * {@link AbstractWizardFormController AbstractWizardFormController} provide actual functionality
- * and workflow. More information on workflow performed by superclasses can be found <a
- * href="AbstractController.html#workflow">here</a>.
+ * and workflow. More information on workflow performed by superclasses can be found
+ * <a href="AbstractController.html#workflow">here</a>.
  * </p>
  * <p>
- * <b><a name="config">Exposed configuration properties</a> (<a
- * href="AbstractController.html#config">and those defined by superclass</a>):</b><br>
+ * <b><a name="config">Exposed configuration properties</a>
+ * (<a href="AbstractController.html#config">and those defined by superclass</a>):</b><br>
  * <table border="1">
  * <tr>
  * <td><b>name</b></th>
@@ -161,8 +159,8 @@ public abstract class BaseCommandController extends AbstractController {
 	private WebBindingInitializer webBindingInitializer;
 	
 	/**
-	 * Set the name of the command in the model. The command object will be included in the model
-	 * under this name.
+	 * Set the name of the command in the model. The command object will be included in the model under
+	 * this name.
 	 */
 	public final void setCommandName(String commandName) {
 		this.commandName = commandName;
@@ -176,8 +174,8 @@ public abstract class BaseCommandController extends AbstractController {
 	}
 	
 	/**
-	 * Set the command class for this controller. An instance of this class gets populated and
-	 * validated on each request.
+	 * Set the command class for this controller. An instance of this class gets populated and validated
+	 * on each request.
 	 */
 	public final void setCommandClass(Class commandClass) {
 		this.commandClass = commandClass;
@@ -191,10 +189,10 @@ public abstract class BaseCommandController extends AbstractController {
 	}
 	
 	/**
-	 * Set the primary Validator for this controller. The Validator must support the specified
-	 * command class. If there are one or more existing validators set already when this method is
-	 * called, only the specified validator will be kept. Use {@link #setValidators(Validator[])} to
-	 * set multiple validators.
+	 * Set the primary Validator for this controller. The Validator must support the specified command
+	 * class. If there are one or more existing validators set already when this method is called, only
+	 * the specified validator will be kept. Use {@link #setValidators(Validator[])} to set multiple
+	 * validators.
 	 */
 	public final void setValidator(Validator validator) {
 		this.validators = new Validator[] { validator };
@@ -208,8 +206,7 @@ public abstract class BaseCommandController extends AbstractController {
 	}
 	
 	/**
-	 * Set the Validators for this controller. The Validator must support the specified command
-	 * class.
+	 * Set the Validators for this controller. The Validator must support the specified command class.
 	 */
 	public final void setValidators(Validator[] validators) {
 		this.validators = validators;
@@ -237,8 +234,8 @@ public abstract class BaseCommandController extends AbstractController {
 	}
 	
 	/**
-	 * Set the strategy to use for resolving errors into message codes. Applies the given strategy
-	 * to all data binders used by this controller.
+	 * Set the strategy to use for resolving errors into message codes. Applies the given strategy to
+	 * all data binders used by this controller.
 	 * <p>
 	 * Default is {@code null}, i.e. using the default strategy of the data binder.
 	 * 
@@ -277,8 +274,8 @@ public abstract class BaseCommandController extends AbstractController {
 	}
 	
 	/**
-	 * Specify a single PropertyEditorRegistrar to be applied to every DataBinder that this
-	 * controller uses.
+	 * Specify a single PropertyEditorRegistrar to be applied to every DataBinder that this controller
+	 * uses.
 	 * <p>
 	 * Allows for factoring out the registration of PropertyEditors to separate objects, as an
 	 * alternative to {@link #initBinder}.
@@ -290,8 +287,8 @@ public abstract class BaseCommandController extends AbstractController {
 	}
 	
 	/**
-	 * Specify multiple PropertyEditorRegistrars to be applied to every DataBinder that this
-	 * controller uses.
+	 * Specify multiple PropertyEditorRegistrars to be applied to every DataBinder that this controller
+	 * uses.
 	 * <p>
 	 * Allows for factoring out the registration of PropertyEditors to separate objects, as an
 	 * alternative to {@link #initBinder}.
@@ -311,19 +308,19 @@ public abstract class BaseCommandController extends AbstractController {
 	}
 	
 	/**
-	 * Specify a WebBindingInitializer which will apply pre-configured configuration to every
-	 * DataBinder that this controller uses.
+	 * Specify a WebBindingInitializer which will apply pre-configured configuration to every DataBinder
+	 * that this controller uses.
 	 * <p>
-	 * Allows for factoring out the entire binder configuration to separate objects, as an
-	 * alternative to {@link #initBinder}.
+	 * Allows for factoring out the entire binder configuration to separate objects, as an alternative
+	 * to {@link #initBinder}.
 	 */
 	public final void setWebBindingInitializer(WebBindingInitializer webBindingInitializer) {
 		this.webBindingInitializer = webBindingInitializer;
 	}
 	
 	/**
-	 * Return the WebBindingInitializer (if any) which will apply pre-configured configuration to
-	 * every DataBinder that this controller uses.
+	 * Return the WebBindingInitializer (if any) which will apply pre-configured configuration to every
+	 * DataBinder that this controller uses.
 	 */
 	public final WebBindingInitializer getWebBindingInitializer() {
 		return this.webBindingInitializer;
@@ -414,8 +411,8 @@ public abstract class BaseCommandController extends AbstractController {
 	/**
 	 * Return whether to suppress binding for the given request.
 	 * <p>
-	 * The default implementation always returns "false". Can be overridden in subclasses to
-	 * suppress validation, for example, if a special request parameter is set.
+	 * The default implementation always returns "false". Can be overridden in subclasses to suppress
+	 * validation, for example, if a special request parameter is set.
 	 * 
 	 * @param request current HTTP request
 	 * @return whether to suppress binding for the given request
@@ -428,15 +425,14 @@ public abstract class BaseCommandController extends AbstractController {
 	/**
 	 * Create a new binder instance for the given command and request.
 	 * <p>
-	 * Called by {@link #bindAndValidate}. Can be overridden to plug in custom
-	 * ServletRequestDataBinder instances.
+	 * Called by {@link #bindAndValidate}. Can be overridden to plug in custom ServletRequestDataBinder
+	 * instances.
 	 * <p>
 	 * The default implementation creates a standard ServletRequestDataBinder and invokes
 	 * {@link #prepareBinder} and {@link #initBinder}.
 	 * <p>
-	 * Note that neither {@link #prepareBinder} nor {@link #initBinder} will be invoked
-	 * automatically if you override this method! Call those methods at appropriate points of your
-	 * overridden method.
+	 * Note that neither {@link #prepareBinder} nor {@link #initBinder} will be invoked automatically if
+	 * you override this method! Call those methods at appropriate points of your overridden method.
 	 * 
 	 * @param request current HTTP request
 	 * @param command the command to bind onto
@@ -455,8 +451,8 @@ public abstract class BaseCommandController extends AbstractController {
 	}
 	
 	/**
-	 * Prepare the given binder, applying the specified MessageCodesResolver, BindingErrorProcessor
-	 * and PropertyEditorRegistrars (if any). Called by {@link #createBinder}.
+	 * Prepare the given binder, applying the specified MessageCodesResolver, BindingErrorProcessor and
+	 * PropertyEditorRegistrars (if any). Called by {@link #createBinder}.
 	 * 
 	 * @param binder the new binder instance
 	 * @see #createBinder
@@ -499,10 +495,10 @@ public abstract class BaseCommandController extends AbstractController {
 	 * Initialize the given binder instance, for example with custom editors. Called by
 	 * {@link #createBinder}.
 	 * <p>
-	 * This method allows you to register custom editors for certain fields of your command class.
-	 * For instance, you will be able to transform Date objects into a String pattern and back, in
-	 * order to allow your JavaBeans to have Date properties and still be able to set and display
-	 * them in an HTML interface.
+	 * This method allows you to register custom editors for certain fields of your command class. For
+	 * instance, you will be able to transform Date objects into a String pattern and back, in order to
+	 * allow your JavaBeans to have Date properties and still be able to set and display them in an HTML
+	 * interface.
 	 * <p>
 	 * The default implementation is empty.
 	 * 
@@ -520,15 +516,15 @@ public abstract class BaseCommandController extends AbstractController {
 	}
 	
 	/**
-	 * Callback for custom post-processing in terms of binding. Called on each submit, after
-	 * standard binding but before validation.
+	 * Callback for custom post-processing in terms of binding. Called on each submit, after standard
+	 * binding but before validation.
 	 * <p>
 	 * The default implementation delegates to {@link #onBind(HttpServletRequest, Object)}.
 	 * 
 	 * @param request current HTTP request
 	 * @param command the command object to perform further binding on
-	 * @param errors validation errors holder, allowing for additional custom registration of
-	 *            binding errors
+	 * @param errors validation errors holder, allowing for additional custom registration of binding
+	 *            errors
 	 * @throws Exception in case of invalid state or arguments
 	 * @see #bindAndValidate
 	 * @see #onBind(HttpServletRequest, Object)
@@ -557,13 +553,12 @@ public abstract class BaseCommandController extends AbstractController {
 	/**
 	 * Return whether to suppress validation for the given request.
 	 * <p>
-	 * The default implementation delegates to
-	 * {@link #suppressValidation(HttpServletRequest, Object)}.
+	 * The default implementation delegates to {@link #suppressValidation(HttpServletRequest, Object)}.
 	 * 
 	 * @param request current HTTP request
 	 * @param command the command object to validate
-	 * @param errors validation errors holder, allowing for additional custom registration of
-	 *            binding errors
+	 * @param errors validation errors holder, allowing for additional custom registration of binding
+	 *            errors
 	 * @return whether to suppress validation for the given request
 	 */
 	protected boolean suppressValidation(HttpServletRequest request, Object command, BindException errors) {
@@ -606,8 +601,8 @@ public abstract class BaseCommandController extends AbstractController {
 	}
 	
 	/**
-	 * Callback for custom post-processing in terms of binding and validation. Called on each
-	 * submit, after standard binding and validation, but before error evaluation.
+	 * Callback for custom post-processing in terms of binding and validation. Called on each submit,
+	 * after standard binding and validation, but before error evaluation.
 	 * <p>
 	 * The default implementation is empty.
 	 * 

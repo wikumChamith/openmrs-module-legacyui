@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -29,8 +29,8 @@ public class EncounterRoleFormControllerTest extends BaseModuleWebContextSensiti
 	
 	/**
 	 * @verifies save a new encounter role object
-	 * @see EncounterRoleFormController#save(javax.servlet.http.HttpSession,
-	 *      org.openmrs.EncounterRole, org.springframework.validation.BindingResult)
+	 * @see EncounterRoleFormController#save(javax.servlet.http.HttpSession, org.openmrs.EncounterRole,
+	 *      org.springframework.validation.BindingResult)
 	 */
 	@Test
 	public void saveEncounterRole_shouldSaveANewEncounterRoleObject() throws Exception {
@@ -48,8 +48,8 @@ public class EncounterRoleFormControllerTest extends BaseModuleWebContextSensiti
 	
 	/**
 	 * @verifies raise an error if validation of encounter role fails
-	 * @see EncounterRoleFormController#save(javax.servlet.http.HttpSession,
-	 *      org.openmrs.EncounterRole, org.springframework.validation.BindingResult)
+	 * @see EncounterRoleFormController#save(javax.servlet.http.HttpSession, org.openmrs.EncounterRole,
+	 *      org.springframework.validation.BindingResult)
 	 */
 	@Test
 	public void saveEncounterRole_shouldRaiseAnErrorIfValidationOfEncounterRoleFails() throws Exception {
@@ -66,8 +66,8 @@ public class EncounterRoleFormControllerTest extends BaseModuleWebContextSensiti
 	
 	/**
 	 * @verifies edit and save an existing encounter
-	 * @see EncounterRoleFormController#save(javax.servlet.http.HttpSession,
-	 *      org.openmrs.EncounterRole, org.springframework.validation.BindingResult)
+	 * @see EncounterRoleFormController#save(javax.servlet.http.HttpSession, org.openmrs.EncounterRole,
+	 *      org.springframework.validation.BindingResult)
 	 */
 	@Test
 	public void saveEncounterRole_shouldEditAndSaveAnExistingEncounter() throws Exception {
@@ -127,8 +127,8 @@ public class EncounterRoleFormControllerTest extends BaseModuleWebContextSensiti
 	
 	/**
 	 * @verifies purge an existing encounter
-	 * @see EncounterRoleFormController#purge(javax.servlet.http.HttpSession,
-	 *      org.openmrs.EncounterRole, org.springframework.validation.BindingResult)
+	 * @see EncounterRoleFormController#purge(javax.servlet.http.HttpSession, org.openmrs.EncounterRole,
+	 *      org.springframework.validation.BindingResult)
 	 */
 	@Test
 	public void purge_shouldPurgeAnExistingEncounter() throws Exception {

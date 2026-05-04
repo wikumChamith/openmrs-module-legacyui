@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -65,16 +65,16 @@ public class LoginController {
 				
 			}
 			if (webRequest.getAttribute(WebConstants.REQUIRED_PRIVILEGES, WebRequest.SCOPE_SESSION) != null) {
-				String requiredPrivilegesTemp = webRequest.getAttribute(WebConstants.REQUIRED_PRIVILEGES,
-				    WebRequest.SCOPE_SESSION).toString();
+				String requiredPrivilegesTemp = webRequest
+				        .getAttribute(WebConstants.REQUIRED_PRIVILEGES, WebRequest.SCOPE_SESSION).toString();
 				webRequest.removeAttribute(WebConstants.REQUIRED_PRIVILEGES, WebRequest.SCOPE_SESSION);
 				if (StringUtils.isNotBlank(requiredPrivilegesTemp)) {
 					requiredPrivileges = requiredPrivilegesTemp;
 				}
 			}
 			if (webRequest.getAttribute(WebConstants.UNCAUGHT_EXCEPTION_MESSAGE, WebRequest.SCOPE_SESSION) != null) {
-				String exceptionMsgTemp = webRequest.getAttribute(WebConstants.UNCAUGHT_EXCEPTION_MESSAGE,
-				    WebRequest.SCOPE_SESSION).toString();
+				String exceptionMsgTemp = webRequest
+				        .getAttribute(WebConstants.UNCAUGHT_EXCEPTION_MESSAGE, WebRequest.SCOPE_SESSION).toString();
 				webRequest.removeAttribute(WebConstants.UNCAUGHT_EXCEPTION_MESSAGE, WebRequest.SCOPE_SESSION);
 				if (StringUtils.isNotBlank(exceptionMsgTemp)) {
 					exceptionMsg = exceptionMsgTemp;
@@ -124,7 +124,7 @@ public class LoginController {
 			if (alertMessage != null) {
 				model.put("alertMessage", JavaScriptUtils.javaScriptEscape(alertMessage));
 			}
-
+			
 			model.put("reason", reason);
 			model.put("refererUrl", refererUrl);
 		}

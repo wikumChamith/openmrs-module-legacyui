@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -81,9 +81,8 @@ public class GlobalPropertyPortletController extends PortletController {
 	}
 	
 	/**
-	 * Sets propertyPrefix to "${forModule}.", hidePrefix to "true" and excludePrefix to
-	 * excludePrefix + "${forModule}.started;${forModule}.mandatory" if forModule parameter is
-	 * present.
+	 * Sets propertyPrefix to "${forModule}.", hidePrefix to "true" and excludePrefix to excludePrefix +
+	 * "${forModule}.started;${forModule}.mandatory" if forModule parameter is present.
 	 * 
 	 * @should change model if forModule is present
 	 * @should not change mode if forModule is not present

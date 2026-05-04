@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -20,8 +20,8 @@ public class GeneralUtils {
 	}
 	
 	/**
-	 * Get the concept by id, the id can either be 1)an integer id like 5090 or 2)mapping type id
-	 * like "XYZ:HT" or 3)uuid like "a3e12268-74bf-11df-9768-17cfc9833272"
+	 * Get the concept by id, the id can either be 1)an integer id like 5090 or 2)mapping type id like
+	 * "XYZ:HT" or 3)uuid like "a3e12268-74bf-11df-9768-17cfc9833272"
 	 * 
 	 * @param id
 	 * @return the concept if exist, else null
@@ -44,8 +44,7 @@ public class GeneralUtils {
 				if (cpt != null) {
 					return cpt;
 				}
-			}
-			catch (Exception ex) {
+			} catch (Exception ex) {
 				//do nothing
 			}
 			
@@ -83,8 +82,7 @@ public class GeneralUtils {
 			Class.forName("org.openmrs.ConceptReferenceRange");
 			
 			return true;
-		}
-		catch (ClassNotFoundException exception) {
+		} catch (ClassNotFoundException exception) {
 			return false;
 		}
 	}

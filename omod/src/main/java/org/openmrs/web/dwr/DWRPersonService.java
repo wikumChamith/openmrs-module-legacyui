@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -42,11 +42,10 @@ public class DWRPersonService {
 	protected final Log log = LogFactory.getLog(getClass());
 	
 	/**
-	 * Searches for Person records that have a name similar to the given name, a birthdate that is
-	 * null or within a few years of the given birthdate, and a gender that matches. Note: this
-	 * method contains a non-backwards-compatible change between 1.5 and 1.6, since DWR has trouble
-	 * with method overloading. The String personType parameter was removed, since User no longer
-	 * extends Person
+	 * Searches for Person records that have a name similar to the given name, a birthdate that is null
+	 * or within a few years of the given birthdate, and a gender that matches. Note: this method
+	 * contains a non-backwards-compatible change between 1.5 and 1.6, since DWR has trouble with method
+	 * overloading. The String personType parameter was removed, since User no longer extends Person
 	 * 
 	 * @param name
 	 * @param birthdate
@@ -71,8 +70,7 @@ public class DWRPersonService {
 			Date dateObject = null;
 			try {
 				dateObject = format.parse(birthdate);
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				log.error("Error during parse birthdate", e);
 			}
 			
@@ -119,10 +117,10 @@ public class DWRPersonService {
 	 * @param searchPhrase partial name or partial identifier
 	 * @param includeVoided true/false whether to include the voided objects
 	 * @param roles if not null, restricts search to only users and only users with these roles
-	 * @return list of PersonListItem s that match the given searchPhrase. The PersonListItems
-	 *         contain as much information as possible about the matching persons, e.g. considering
-	 *         whether they are patients or users, which for example is useful for displaying
-	 *         patient identifiers in PersonSearch-widgets.
+	 * @return list of PersonListItem s that match the given searchPhrase. The PersonListItems contain
+	 *         as much information as possible about the matching persons, e.g. considering whether they
+	 *         are patients or users, which for example is useful for displaying patient identifiers in
+	 *         PersonSearch-widgets.
 	 * @should match on patient identifiers
 	 * @should allow null roles parameter
 	 */
@@ -175,8 +173,7 @@ public class DWRPersonService {
 		try {
 			Date d = updateAge(birthdate, dateformat, age);
 			p.setBirthdate(d);
-		}
-		catch (java.text.ParseException pe) {
+		} catch (java.text.ParseException pe) {
 			log.error(pe);
 			return new String("Birthdate cannot be parsed.");
 		}
@@ -222,8 +219,7 @@ public class DWRPersonService {
 			}
 			try {
 				cal.add(Calendar.YEAR, -(Integer.parseInt(age)));
-			}
-			catch (NumberFormatException nfe) {
+			} catch (NumberFormatException nfe) {
 				log.error("Error during adding date into calendar", nfe);
 			}
 			return cal.getTime();
@@ -239,10 +235,9 @@ public class DWRPersonService {
 	 * @param searchPhrase partial name or partial identifier
 	 * @param includeRetired true/false whether to include the voided objects
 	 * @param roles if not null, restricts search to only users and only users with these roles
-	 * @param start the beginning index (this is only used for user search i.e of roles are
-	 *            specified)
-	 * @param length the number of matching people to return (this is only used for user search i.e
-	 *            of roles are specified)
+	 * @param start the beginning index (this is only used for user search i.e of roles are specified)
+	 * @param length the number of matching people to return (this is only used for user search i.e of
+	 *            roles are specified)
 	 * @return list of persons that match the given searchPhrase. The PersonListItems
 	 * @since 1.8
 	 */
@@ -292,8 +287,7 @@ public class DWRPersonService {
 				}
 				
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.error("Error while searching for persons", e);
 			personList.clear();
 			personList.add(Context.getMessageSourceService().getMessage("Person.search.error") + " - " + e.getMessage());
@@ -302,10 +296,10 @@ public class DWRPersonService {
 	}
 	
 	/**
-	 * Returns a map of results with the values as count of matches and a partial list of the
-	 * matching people (depending on values of start and length parameters) while the keys are are
-	 * 'count' and 'objectList' respectively, if the length parameter is not specified, then all
-	 * matches will be returned from the start index if specified.
+	 * Returns a map of results with the values as count of matches and a partial list of the matching
+	 * people (depending on values of start and length parameters) while the keys are are 'count' and
+	 * 'objectList' respectively, if the length parameter is not specified, then all matches will be
+	 * returned from the start index if specified.
 	 * 
 	 * @param phrase is the string used to search for people
 	 * @param includeRetired Specifies if retired people should be included or not
@@ -352,8 +346,7 @@ public class DWRPersonService {
 			
 			resultsMap.put("count", personCount);
 			resultsMap.put("objectList", objectList);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.error("Error while searching for persons", e);
 			objectList.clear();
 			objectList.add(Context.getMessageSourceService().getMessage("Person.search.error") + " - " + e.getMessage());

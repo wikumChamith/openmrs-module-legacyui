@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -22,25 +22,17 @@ import org.openmrs.api.context.UserContext;
  * privileges.
  * <p>
  * Example use case 1: Only include the "patientHeader" portlet into the page if the user DOES have
- * ANY of "View Patients", "Edit Patients" privileges.
- * 
- * <pre>
+ * ANY of "View Patients", "Edit Patients" privileges. <pre>
  * &lt;openmrs:hasPrivilege privilege="View Patients,Edit Patients" /&gt;
  *   &lt;openmrs:portlet url="patientHeader" id="patientDashboardHeader" patientId="${patient.patientId}" /&gt;
  * &lt;openmrs:hasPrivilege/&gt;
- * </pre>
- * Example use case 2: Only include the "patientHeader" portlet into the page if the user DOES NOT
- * have ANY of "View Patients", "Edit Patients" privileges.
- * 
- * <pre>
+ * </pre> Example use case 2: Only include the "patientHeader" portlet into the page if the user
+ * DOES NOT have ANY of "View Patients", "Edit Patients" privileges. <pre>
  * &lt;openmrs:hasPrivilege privilege="View Patients,Edit Patients" inverse="true" /&gt;
  *   &lt;openmrs:portlet url="patientHeader" id="patientDashboardHeader" patientId="${patient.patientId}" /&gt;
  * &lt;openmrs:hasPrivilege/&gt;
- * </pre>
- * Example use case 3: Only include the "patientHeader" portlet into the page if the user DOES have
- * ALL of "View Patients", "Edit Patients" privileges.
- * 
- * <pre>
+ * </pre> Example use case 3: Only include the "patientHeader" portlet into the page if the user
+ * DOES have ALL of "View Patients", "Edit Patients" privileges. <pre>
  * &lt;openmrs:hasPrivilege privilege="View Patients,Edit Patients" hasAll="true" /&gt;
  *   &lt;openmrs:portlet url="patientHeader" id="patientDashboardHeader" patientId="${patient.patientId}" /&gt;
  * &lt;openmrs:hasPrivilege/&gt;
@@ -60,14 +52,14 @@ public class PrivilegeTag extends TagSupport {
 	private String hasAll;
 	
 	/**
-	 * Comma separated list in {@code privilege} is checked and the enclosing code is evaluated if
-	 * the user has any of the set privileges.
+	 * Comma separated list in {@code privilege} is checked and the enclosing code is evaluated if the
+	 * user has any of the set privileges.
 	 * <p>
 	 * Returns {@code EVAL_BODY_INCLUDE} if the user satisfies the privilege requirements and
-	 * {@code SKIP_BODY} if the user doesn't. By default (meaning only {@code privilege} is set the
-	 * user needs to have at least one of the set privileges. The comma acts as an OR. The comma
-	 * acts as an AND if {@code hasAll} is set to "true"/"TRUE". The tags behavior on how the list
-	 * of privileges is treated can be inversed by setting {@code inverse} to "true"/"TRUE".
+	 * {@code SKIP_BODY} if the user doesn't. By default (meaning only {@code privilege} is set the user
+	 * needs to have at least one of the set privileges. The comma acts as an OR. The comma acts as an
+	 * AND if {@code hasAll} is set to "true"/"TRUE". The tags behavior on how the list of privileges is
+	 * treated can be inversed by setting {@code inverse} to "true"/"TRUE".
 	 * </p>
 	 * 
 	 * @see jakarta.servlet.jsp.tagext.TagSupport#doStartTag()
@@ -83,8 +75,7 @@ public class PrivilegeTag extends TagSupport {
 	 * @should skip body for user without any of the privileges
 	 * @should include body for user without any of the privileges if inverse is true
 	 * @should skip body for user without any of the privileges if hasAll is true
-	 * @should include body for user without any of the privileges if hasAll is true and inverse is
-	 *         true
+	 * @should include body for user without any of the privileges if hasAll is true and inverse is true
 	 */
 	public int doStartTag() {
 		

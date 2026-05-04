@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -52,8 +52,8 @@ public class DWRProviderService {
 		
 		if (providerList.size() == 0) {
 			MessageSourceService mss = Context.getMessageSourceService();
-			providerListItem.add(mss.getMessage("Provider.noMatchesFound", new Object[] { WebUtil.escapeHTML(name) },
-			    Context.getLocale()));
+			providerListItem.add(
+			    mss.getMessage("Provider.noMatchesFound", new Object[] { WebUtil.escapeHTML(name) }, Context.getLocale()));
 		} else {
 			for (Provider p : providerList) {
 				providerListItem.add(new ProviderListItem(p));
@@ -71,8 +71,8 @@ public class DWRProviderService {
 	 * @param length the number of results to return
 	 * @return a list of matching providers
 	 * @throws APIException on any errors while searching providers
-	 * @should return the count of all providers matching the searched name along with provider list
-	 *         for given length
+	 * @should return the count of all providers matching the searched name along with provider list for
+	 *         given length
 	 */
 	public Map<String, Object> findProviderCountAndProvider(String name, boolean includeRetired, Integer start,
 	        Integer length) throws APIException {
@@ -81,8 +81,7 @@ public class DWRProviderService {
 		try {
 			providerMap.put("count", Context.getProviderService().getCountOfProviders(name, includeRetired));
 			providerMap.put("objectList", objectList);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.error("Error while searching for providers", e);
 			objectList.clear();
 			objectList.add(Context.getMessageSourceService().getMessage("Provider.search.error") + " - " + e.getMessage());

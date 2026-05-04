@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -79,8 +79,7 @@ public class DWRObsService {
 				}
 			}
 			
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.error(e);
 			obsList.add("Error while attempting to find obs - " + e.getMessage());
 		}
@@ -123,8 +122,7 @@ public class DWRObsService {
 			SimpleDateFormat sdf = Context.getDateFormat();
 			try {
 				obsDate = sdf.parse(obsDateStr);
-			}
-			catch (ParseException e) {
+			} catch (ParseException e) {
 				log.error("Error parsing date ... " + obsDate);
 				throw e;
 			}
@@ -169,8 +167,7 @@ public class DWRObsService {
 				SimpleDateFormat sdft = Context.getDateFormat();
 				try {
 					obsDateValue = sdft.parse(valueText);
-				}
-				catch (ParseException e) {
+				} catch (ParseException e) {
 					log.warn("Date value has format error: " + obsDateValue, e);
 					throw e;
 				}
@@ -182,8 +179,7 @@ public class DWRObsService {
 				int conceptIdFromValueTest;
 				try {
 					conceptIdFromValueTest = Integer.parseInt(valueText);
-				}
-				catch (NumberFormatException e) {
+				} catch (NumberFormatException e) {
 					log.error("Unable to parse given value text to integer while resolving concept id" + valueText, e);
 					throw new Exception("Can't resolve concept id. Please specify valid id" + valueText);
 				}
@@ -205,8 +201,7 @@ public class DWRObsService {
 			if (booleanConceptId != null) {
 				try {
 					booleanConcept = Context.getConceptService().getConcept(Integer.parseInt(booleanConceptId));
-				}
-				catch (NumberFormatException e) {
+				} catch (NumberFormatException e) {
 					log.error("Unable to parse concept id string to integer to resolve concept" + booleanConceptId, e);
 					throw new Exception("No boolean concept found in the system");
 				}
@@ -227,7 +222,7 @@ public class DWRObsService {
 		// List to return
 		// Object type gives ability to return error strings
 		Vector<Object> objectList = new Vector<Object>();	
-
+	
 		try {
 			EncounterService es = Context.getEncounterService();
 			Set<Encounter> encs = new HashSet<Encounter>();
@@ -246,7 +241,7 @@ public class DWRObsService {
 			else {
 				encs.addAll(es.getEncountersByPatientIdentifier(phrase));
 			}
-
+	
 			if (encs.size() == 0) {
 				objectList.add("No matches found for <b>" + phrase + "</b>");
 			}
@@ -260,7 +255,7 @@ public class DWRObsService {
 			log.error(e);
 			objectList.add("Error while attempting to find obs - " + e.getMessage());
 		}
-
+	
 		return objectList;
 	}
 	*/
@@ -279,16 +274,14 @@ public class DWRObsService {
 		Integer pId = null;
 		try {
 			pId = Integer.valueOf(personId);
-		}
-		catch (NumberFormatException nfe) {
+		} catch (NumberFormatException nfe) {
 			pId = null;
 		}
 		
 		Integer eId = null;
 		try {
 			eId = Integer.valueOf(encounterId);
-		}
-		catch (NumberFormatException nfe) {
+		} catch (NumberFormatException nfe) {
 			eId = null;
 		}
 		

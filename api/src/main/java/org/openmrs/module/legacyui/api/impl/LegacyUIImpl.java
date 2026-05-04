@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -46,10 +46,9 @@ public class LegacyUIImpl extends BaseOpenmrsService implements LegacyUIService 
 	/**
 	 * Copied from OpenMRS core 1.12.1 and added back #discontinueAllDrugOrders from 1.9.13 See
 	 * https://github.com/openmrs/openmrs-core/blob/1.12.1/api/src/main/java/org/openmrs/api/impl/
-	 * PatientServiceImpl.java#L1191 See
-	 * https://github.com/openmrs/openmrs-core/blob/1.9.13/api/src/
-	 * main/java/org/openmrs/api/impl/PatientServiceImpl.java#L1092 This is the way to establish
-	 * that a patient has left the care center. This API call is responsible for:
+	 * PatientServiceImpl.java#L1191 See https://github.com/openmrs/openmrs-core/blob/1.9.13/api/src/
+	 * main/java/org/openmrs/api/impl/PatientServiceImpl.java#L1092 This is the way to establish that a
+	 * patient has left the care center. This API call is responsible for:
 	 * <ol>
 	 * <li>Closing workflow statuses</li>
 	 * <li>Terminating programs</li>
@@ -89,10 +88,9 @@ public class LegacyUIImpl extends BaseOpenmrsService implements LegacyUIService 
 	}
 	
 	/**
-	 * Copied from OpenMRS core 1.12.1 See
-	 * https://github.com/openmrs/openmrs-core/blob/1.12.1/api/src
-	 * /main/java/org/openmrs/api/impl/PatientServiceImpl.java#L1219 TODO: Patients should actually
-	 * be allowed to exit multiple times
+	 * Copied from OpenMRS core 1.12.1 See https://github.com/openmrs/openmrs-core/blob/1.12.1/api/src
+	 * /main/java/org/openmrs/api/impl/PatientServiceImpl.java#L1219 TODO: Patients should actually be
+	 * allowed to exit multiple times
 	 * 
 	 * @param patient
 	 * @param exitDate
@@ -164,8 +162,7 @@ public class LegacyUIImpl extends BaseOpenmrsService implements LegacyUIService 
 	}
 	
 	/**
-	 * Copied from OpenMRS core 1.12.1 See
-	 * https://github.com/openmrs/openmrs-core/blob/1.12.1/api/src
+	 * Copied from OpenMRS core 1.12.1 See https://github.com/openmrs/openmrs-core/blob/1.12.1/api/src
 	 * /main/java/org/openmrs/api/impl/ProgramWorkflowServiceImpl.java#L450
 	 * 
 	 * @see org.openmrs.api.ProgramWorkflowService#triggerStateConversion(org.openmrs.Patient,
@@ -234,8 +231,7 @@ public class LegacyUIImpl extends BaseOpenmrsService implements LegacyUIService 
 	}
 	
 	/**
-	 * Copied from OpenMRS core 1.9.13 See
-	 * https://github.com/openmrs/openmrs-core/blob/1.9.13/api/src
+	 * Copied from OpenMRS core 1.9.13 See https://github.com/openmrs/openmrs-core/blob/1.9.13/api/src
 	 * /main/java/org/openmrs/order/OrderUtil.java#L52 Discontinues all current orders for the given
 	 * <code>patient</code>
 	 * 
@@ -256,14 +252,13 @@ public class LegacyUIImpl extends BaseOpenmrsService implements LegacyUIService 
 		OrderService orderService = Context.getOrderService();
 		int durgOrderType = 2; //Default OpenMRS core drug order type ID
 		try {
-			durgOrderType = Integer.valueOf(Context.getAdministrationService().getGlobalProperty(
-			    "orderextension.drugOrderType"));
-		}
-		catch (Exception e) {
+			durgOrderType = Integer
+			        .valueOf(Context.getAdministrationService().getGlobalProperty("orderextension.drugOrderType"));
+		} catch (Exception e) {
 			log.error("orderextension.drugOrderType global property value should be an integer");
 		}
-		List<Order> drugOrders = orderService.getOrders(patient, orderService.getCareSetting(2), Context.getOrderService()
-		        .getOrderType(durgOrderType), false);
+		List<Order> drugOrders = orderService.getOrders(patient, orderService.getCareSetting(2),
+		    Context.getOrderService().getOrderType(durgOrderType), false);
 		// loop over all of this patient's drug orders to discontinue each
 		if (drugOrders != null) {
 			for (Order drugOrder : drugOrders) {
@@ -272,12 +267,11 @@ public class LegacyUIImpl extends BaseOpenmrsService implements LegacyUIService 
 				// do the stuff to the database
 				if (drugOrder.isActive() || drugOrder.getEffectiveStopDate() == null) {
 					try {
-						Provider provider = Context.getService(LegacyUIService.class).getProviderForUser(
-						    Context.getAuthenticatedUser());
+						Provider provider = Context.getService(LegacyUIService.class)
+						        .getProviderForUser(Context.getAuthenticatedUser());
 						Context.getOrderService().discontinueOrder(drugOrder, discontinueReason, discontinueDate, provider,
 						    drugOrder.getEncounter());
-					}
-					catch (Exception e) {
+					} catch (Exception e) {
 						e.printStackTrace();
 					}
 				} else {

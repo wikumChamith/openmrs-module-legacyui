@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -60,7 +60,8 @@ public class RequireConfigurationByPrefixTag extends TagSupport {
 		HttpServletResponse response = (HttpServletResponse) pageContext.getResponse();
 		
 		for (GlobalProperty prop : Context.getAdministrationService().getGlobalPropertiesByPrefix(propertyPrefix)) {
-			if (prop != null && StringUtils.isBlank(prop.getPropertyValue()) && !propsToIgnore.contains(prop.getProperty())) {
+			if (prop != null && StringUtils.isBlank(prop.getPropertyValue())
+			        && !propsToIgnore.contains(prop.getProperty())) {
 				
 				pageContext.getSession().setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "error.configurationRequired");
 				try {
@@ -68,11 +69,9 @@ public class RequireConfigurationByPrefixTag extends TagSupport {
 					        + ").  Redirecting to page: " + request.getContextPath() + configurationPage);
 					response.sendRedirect(request.getContextPath() + configurationPage);
 					return SKIP_PAGE;
-				}
-				catch (IllegalStateException ise) {
+				} catch (IllegalStateException ise) {
 					log.warn("Unable to forward request.  It is likely that a response was already committed. ", ise);
-				}
-				catch (IOException e) {
+				} catch (IOException e) {
 					log.error("An error occurred in tag", e);
 					throw new JspException(e);
 				}

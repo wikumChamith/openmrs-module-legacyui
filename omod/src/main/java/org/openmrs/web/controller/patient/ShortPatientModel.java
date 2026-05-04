@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -65,16 +65,16 @@ public class ShortPatientModel {
 			List<PatientIdentifier> activeIdentifiers = patient.getActiveIdentifiers();
 			if (activeIdentifiers.isEmpty()) {
 				final PatientIdentifierType defaultIdentifierType = getDefaultIdentifierType();
-				activeIdentifiers.add(new PatientIdentifier(null, defaultIdentifierType, (LocationUtility
-				        .getUserDefaultLocation() != null) ? LocationUtility.getUserDefaultLocation() : LocationUtility
-				        .getDefaultLocation()));
+				activeIdentifiers.add(new PatientIdentifier(null, defaultIdentifierType,
+				        (LocationUtility.getUserDefaultLocation() != null) ? LocationUtility.getUserDefaultLocation()
+				                : LocationUtility.getDefaultLocation()));
 			}
 			
 			identifiers = ListUtils.lazyList(new ArrayList<PatientIdentifier>(activeIdentifiers),
 			    FactoryUtils.instantiateFactory(PatientIdentifier.class));
 			
-			List<PersonAttributeType> viewableAttributeTypes = Context.getPersonService().getPersonAttributeTypes(
-			    PERSON_TYPE.PATIENT, ATTR_VIEW_TYPE.VIEWING);
+			List<PersonAttributeType> viewableAttributeTypes = Context.getPersonService()
+			        .getPersonAttributeTypes(PERSON_TYPE.PATIENT, ATTR_VIEW_TYPE.VIEWING);
 			
 			personAttributes = new ArrayList<PersonAttribute>();
 			if (!CollectionUtils.isEmpty(viewableAttributeTypes)) {

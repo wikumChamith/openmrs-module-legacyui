@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -71,8 +71,8 @@ public class PersonFormController extends SimpleFormController {
 	private static final Log log = LogFactory.getLog(PersonFormController.class);
 	
 	/**
-	 * Allows for other Objects to be used as values in input tags. Normally, only strings and lists
-	 * are expected
+	 * Allows for other Objects to be used as values in input tags. Normally, only strings and lists are
+	 * expected
 	 * 
 	 * @see org.springframework.web.servlet.mvc.BaseCommandController#initBinder(javax.servlet.http.HttpServletRequest,
 	 *      org.springframework.web.bind.ServletRequestDataBinder)
@@ -100,8 +100,7 @@ public class PersonFormController extends SimpleFormController {
 					if (person == null) {
 						throw new ServletException("There is no person with id: '" + personId + "'");
 					}
-				}
-				catch (NumberFormatException numberError) {
+				} catch (NumberFormatException numberError) {
 					throw new ServletException("Invalid personId supplied: '" + personId + "'", numberError);
 				}
 			}
@@ -261,8 +260,7 @@ public class PersonFormController extends SimpleFormController {
 					
 					return new ModelAndView(new RedirectView("index.htm"));
 				}
-			}
-			catch (DataIntegrityViolationException e) {
+			} catch (DataIntegrityViolationException e) {
 				log.error("Unable to delete person because of database FK errors: " + person, e);
 				httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "Person.cannot.delete");
 				
@@ -350,8 +348,8 @@ public class PersonFormController extends SimpleFormController {
 								obsDeath.setObsDatetime(dateDeath);
 								
 								// check if this is an "other" concept - if so, then we need to add value_text
-								String otherConcept = Context.getAdministrationService().getGlobalProperty(
-								    "concept.otherNonCoded");
+								String otherConcept = Context.getAdministrationService()
+								        .getGlobalProperty("concept.otherNonCoded");
 								Concept conceptOther = Context.getConceptService().getConcept(otherConcept);
 								boolean deathReasonChanged = false;
 								if (conceptOther != null) {
@@ -440,8 +438,7 @@ public class PersonFormController extends SimpleFormController {
 						// TODO change the PersonAttribute.getHydratedObject() to not swallow all errors?
 						throw new APIException();
 					}
-				}
-				catch (APIException e) {
+				} catch (APIException e) {
 					errors.rejectValue("attributes", "Invalid value for " + type.getName() + ": '" + value + "'");
 					log.warn("Got an invalid value: " + value + " while setting personAttributeType id #" + paramName, e);
 					
@@ -709,8 +706,7 @@ public class PersonFormController extends SimpleFormController {
 	}
 	
 	/**
-	 * Setup the person object. Should be called by the
-	 * PersonFormController.formBackingObject(request)
+	 * Setup the person object. Should be called by the PersonFormController.formBackingObject(request)
 	 * 
 	 * @param person
 	 * @return the given person object
@@ -735,8 +731,7 @@ public class PersonFormController extends SimpleFormController {
 	}
 	
 	/**
-	 * Setup the reference map object. Should be called by the
-	 * PersonFormController.referenceData(...)
+	 * Setup the reference map object. Should be called by the PersonFormController.referenceData(...)
 	 * 
 	 * @param person
 	 * @return the given map object
@@ -810,8 +805,7 @@ public class PersonFormController extends SimpleFormController {
 					birthdate = Context.getDateFormat().parse(date);
 					birthdateEstimated = false;
 				}
-			}
-			catch (ParseException e) {
+			} catch (ParseException e) {
 				log.debug("Error getting date from birthdate", e);
 			}
 		} else if (age != null && !"".equals(age)) {
@@ -822,8 +816,7 @@ public class PersonFormController extends SimpleFormController {
 			try {
 				birthdate = DateFormat.getDateInstance(DateFormat.SHORT).parse("01/01/" + d);
 				birthdateEstimated = true;
-			}
-			catch (ParseException e) {
+			} catch (ParseException e) {
 				log.debug("Error getting date from age", e);
 			}
 		}

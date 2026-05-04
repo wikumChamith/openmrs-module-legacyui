@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -85,8 +85,7 @@ public class LongFreeTextFileUploadHandler implements WebDatatypeHandler<LongFre
 			MultipartFile file = ((MultipartRequest) request).getFile(formFieldName);
 			try {
 				return new String(file.getBytes());
-			}
-			catch (IOException e) {
+			} catch (IOException e) {
 				throw new InvalidCustomValueException("Error handling file upload as a String", e);
 			}
 		} else {

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -54,8 +54,7 @@ public class WebComponentRegistrar implements ServletContextAware {
 			 * which is not supported by ServletContext.addListener.
 			*/
 			servletContext.addListener(new EfficientShutdownServletContextAttributeListener());
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			//TODO need a work around for: java.lang.IllegalStateException: Started
 			//Unable to configure mapping for servlet because this servlet context has already been initialized.
 			//This happens on running openmrs after InitializationFilter or UpdateFilter
@@ -66,11 +65,11 @@ public class WebComponentRegistrar implements ServletContextAware {
 	}
 	
 	private void addMappings(ServletRegistration reg, String... mappings) {
-        if (reg != null) {
-            for (String mapping : mappings) {
-                reg.addMapping(mapping);
-            }
-        }
+		if (reg != null) {
+			for (String mapping : mappings) {
+				reg.addMapping(mapping);
+			}
+		}
 	}
 	
 }

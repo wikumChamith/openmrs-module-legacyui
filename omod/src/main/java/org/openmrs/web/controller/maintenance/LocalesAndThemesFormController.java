@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -29,8 +29,8 @@ import org.springframework.web.context.request.WebRequest;
 public class LocalesAndThemesFormController {
 	
 	/**
-	 * Called for GET requests only on the databaseChangesInfo page. POST page requests are invalid
-	 * and ignored.
+	 * Called for GET requests only on the databaseChangesInfo page. POST page requests are invalid and
+	 * ignored.
 	 * 
 	 * @param model the key value pair that will be accessible from the jsp page
 	 * @throws Exception if there is trouble getting the database changes from liquibase
@@ -41,8 +41,8 @@ public class LocalesAndThemesFormController {
 		        .getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_DEFAULT_LOCALE);
 		model.addAttribute("locale", locale);
 		
-		String allowedLocales = Context.getAdministrationService().getGlobalProperty(
-		    OpenmrsConstants.GLOBAL_PROPERTY_LOCALE_ALLOWED_LIST);
+		String allowedLocales = Context.getAdministrationService()
+		        .getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_LOCALE_ALLOWED_LIST);
 		model.addAttribute("allowedLocales", allowedLocales);
 		return "/module/legacyui/admin/maintenance/localesAndThemes";
 	}
@@ -55,20 +55,19 @@ public class LocalesAndThemesFormController {
 	 * @throws Exception
 	 */
 	@RequestMapping(method = RequestMethod.POST, value = "admin/maintenance/localesAndThemes.form")
-	public String saveDefaults(WebRequest request, @RequestParam("locale") String locale)
-	        throws Exception {
+	public String saveDefaults(WebRequest request, @RequestParam("locale") String locale) throws Exception {
 		boolean localeInList = false;
-		String allowedLocales = Context.getAdministrationService().getGlobalProperty(
-		    OpenmrsConstants.GLOBAL_PROPERTY_LOCALE_ALLOWED_LIST);
+		String allowedLocales = Context.getAdministrationService()
+		        .getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_LOCALE_ALLOWED_LIST);
 		String[] allowedLocalesList = allowedLocales.split(",");
-
+		
 		// save the locale
 		for (String loc : allowedLocalesList) {
 			loc = loc.trim();
 			if (loc.equals(locale)) {
 				localeInList = true;
-				GlobalProperty localeGP = Context.getAdministrationService().getGlobalPropertyObject(
-				    OpenmrsConstants.GLOBAL_PROPERTY_DEFAULT_LOCALE);
+				GlobalProperty localeGP = Context.getAdministrationService()
+				        .getGlobalPropertyObject(OpenmrsConstants.GLOBAL_PROPERTY_DEFAULT_LOCALE);
 				localeGP.setPropertyValue(locale);
 				Context.getAdministrationService().saveGlobalProperty(localeGP);
 				break;

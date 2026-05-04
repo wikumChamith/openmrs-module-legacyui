@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -70,8 +70,7 @@ public class BooleanFieldGenDatatypeHandler implements FieldGenDatatypeHandler<B
 		}
 		try {
 			return Boolean.valueOf(result);
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			throw new InvalidCustomValueException("Invalid boolean: " + result);
 		}
 	}

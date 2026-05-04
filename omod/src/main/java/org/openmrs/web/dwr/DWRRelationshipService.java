@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -88,12 +88,11 @@ public class DWRRelationshipService {
 		Context.clearSession();
 		
 		Vector<RelationshipListItem> ret = new Vector<RelationshipListItem>();
-		List<Relationship> rels = Context.getPersonService().getRelationshipsByPerson(
-		    Context.getPersonService().getPerson(personId));
+		List<Relationship> rels = Context.getPersonService()
+		        .getRelationshipsByPerson(Context.getPersonService().getPerson(personId));
 		for (Relationship rel : rels) {
-			if (!rel.isVoided()
-			        && (relationshipTypeId == null || rel.getRelationshipType().getRelationshipTypeId()
-			                .equals(relationshipTypeId))) {
+			if (!rel.isVoided() && (relationshipTypeId == null
+			        || rel.getRelationshipType().getRelationshipTypeId().equals(relationshipTypeId))) {
 				ret.add(new RelationshipListItem(rel));
 			}
 		}

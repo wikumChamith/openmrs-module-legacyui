@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -18,11 +18,11 @@ import org.openmrs.web.test.jupiter.BaseModuleWebContextSensitiveTest;
 public class NameSupportTest extends BaseModuleWebContextSensitiveTest {
 	
 	/**
-	 * Changes made in TRUNK-3849 to move NameSupport from package layout.web.name to layout.name
-	 * broke layout.web.name.NameSupport.getInstance(), because there was no longer a bean of the
-	 * old type being defined. This breaks several other modules that built against older versions
-	 * of core. It is not practical to update all of those modules to have version-specific
-	 * dependencies, so it's necessary to ensure that the old 'getInstance()' continues to work.
+	 * Changes made in TRUNK-3849 to move NameSupport from package layout.web.name to layout.name broke
+	 * layout.web.name.NameSupport.getInstance(), because there was no longer a bean of the old type
+	 * being defined. This breaks several other modules that built against older versions of core. It is
+	 * not practical to update all of those modules to have version-specific dependencies, so it's
+	 * necessary to ensure that the old 'getInstance()' continues to work.
 	 */
 	@Test
 	@Verifies(value = "getInstance() should return a layout.web.name.NameSupport instance", method = "getInstance()")

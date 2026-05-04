@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -49,7 +49,6 @@ public class SearchIndexControllerTest extends BaseModuleWebContextSensitiveTest
 		controller = new SearchIndexController();
 	}
 	
-	
 	/**
 	 * @verifies return the search index view
 	 * @see SearchIndexController#showPage()
@@ -61,8 +60,7 @@ public class SearchIndexControllerTest extends BaseModuleWebContextSensitiveTest
 	}
 	
 	/**
-	 * @verifies return true for success if the update does not fail and authenticated user makes
-	 *           call
+	 * @verifies return true for success if the update does not fail and authenticated user makes call
 	 * @see SearchIndexController#rebuildSearchIndex()
 	 */
 	@Test
@@ -110,50 +108,50 @@ public class SearchIndexControllerTest extends BaseModuleWebContextSensitiveTest
 	 * @see SearchIndexController#getStatus()
 	 */
 	@Test
-    public void getStatus_shouldReturnInProgressForStatusIfRebuildSearchIndexIsInProgress() throws Exception {
-        when(contextDao.updateSearchIndexAsync()).thenAnswer((Answer<Future>) invocationOnMock -> {
-            Future<String> future = mock(FutureTask.class);
-            when(future.isDone()).thenReturn(false);
-            return future;
-        });
-        controller.rebuildSearchIndex();
-        Map<String, String> response = controller.getStatus();
-        assertEquals("inProgress", response.get("status"));
-    }
+	public void getStatus_shouldReturnInProgressForStatusIfRebuildSearchIndexIsInProgress() throws Exception {
+		when(contextDao.updateSearchIndexAsync()).thenAnswer((Answer<Future>) invocationOnMock -> {
+			Future<String> future = mock(FutureTask.class);
+			when(future.isDone()).thenReturn(false);
+			return future;
+		});
+		controller.rebuildSearchIndex();
+		Map<String, String> response = controller.getStatus();
+		assertEquals("inProgress", response.get("status"));
+	}
 	
 	/**
 	 * @verifies return success for status if a rebuildSearchIndex is completed successfully
 	 * @see SearchIndexController#getStatus()
 	 */
 	@Test
-    public void getStatus_shouldReturnSuccessForStatusIfRebuildSearchIndexIsCompletedSuccessfully() throws Exception {
-        when(contextDao.updateSearchIndexAsync()).thenAnswer((Answer<Future>) invocationOnMock -> {
-            Future<String> future = mock(FutureTask.class);
-            when(future.isDone()).thenReturn(true);
-            when(future.isCancelled()).thenReturn(false);
-            return future;
-        });
-        controller.rebuildSearchIndex();
-        Map<String, String> response = controller.getStatus();
-        assertEquals("success", response.get("status"));
-    }
+	public void getStatus_shouldReturnSuccessForStatusIfRebuildSearchIndexIsCompletedSuccessfully() throws Exception {
+		when(contextDao.updateSearchIndexAsync()).thenAnswer((Answer<Future>) invocationOnMock -> {
+			Future<String> future = mock(FutureTask.class);
+			when(future.isDone()).thenReturn(true);
+			when(future.isCancelled()).thenReturn(false);
+			return future;
+		});
+		controller.rebuildSearchIndex();
+		Map<String, String> response = controller.getStatus();
+		assertEquals("success", response.get("status"));
+	}
 	
 	/**
 	 * @verifies return error for status if a rebuildSearchIndex is not completed normally
 	 * @see SearchIndexController#getStatus()
 	 */
 	@Test
-    public void getStatus_shouldReturnErrorForStatusIfRebuildSearchIndexIsCompletedUnsuccessfully() throws Exception {
-        when(contextDao.updateSearchIndexAsync()).thenAnswer((Answer<Future>) invocationOnMock -> {
-            Future<String> future = mock(FutureTask.class);
-            when(future.isDone()).thenReturn(true);
-            when(future.isCancelled()).thenReturn(true);
-            return future;
-        });
-        controller.rebuildSearchIndex();
-        Map<String, String> response = controller.getStatus();
-        assertEquals("error", response.get("status"));
-    }
+	public void getStatus_shouldReturnErrorForStatusIfRebuildSearchIndexIsCompletedUnsuccessfully() throws Exception {
+		when(contextDao.updateSearchIndexAsync()).thenAnswer((Answer<Future>) invocationOnMock -> {
+			Future<String> future = mock(FutureTask.class);
+			when(future.isDone()).thenReturn(true);
+			when(future.isCancelled()).thenReturn(true);
+			return future;
+		});
+		controller.rebuildSearchIndex();
+		Map<String, String> response = controller.getStatus();
+		assertEquals("error", response.get("status"));
+	}
 	
 	/**
 	 * @verifies throws API exception if getStatus called before rebuildSearchIndex
@@ -161,8 +159,7 @@ public class SearchIndexControllerTest extends BaseModuleWebContextSensitiveTest
 	 */
 	@Test
 	public void getStatus_shouldThrowApiExceptionWhenRebuildSearchIndexNotHaveBeenCalledBefore() throws Exception {
-		APIException ex = org.junit.jupiter.api.Assertions.assertThrows(APIException.class,
-			() -> controller.getStatus());
+		APIException ex = org.junit.jupiter.api.Assertions.assertThrows(APIException.class, () -> controller.getStatus());
 		assertTrue(ex.getMessage().contains("There was a problem rebuilding the search index"));
 	}
 }

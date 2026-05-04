@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -75,11 +75,10 @@ public class SettingsController {
 					CustomDatatypeHandler handler = CustomDatatypeUtil.getHandler(property.getGlobalProperty());
 					if (handler != null) {
 						try {
-							Object value = WebAttributeUtil.getValue(request, dt, handler, "settings[" + i
-							        + "].globalProperty.propertyValue");
+							Object value = WebAttributeUtil.getValue(request, dt, handler,
+							    "settings[" + i + "].globalProperty.propertyValue");
 							property.getGlobalProperty().setValue(value);
-						}
-						catch (Exception ex) {
+						} catch (Exception ex) {
 							String originalValue = request.getParameter("originalValue[" + i + "]");
 							property.getGlobalProperty().setPropertyValue(originalValue);
 							errors.rejectValue("settings[" + i + "].globalProperty.propertyValue", "general.invalid");
@@ -88,8 +87,7 @@ public class SettingsController {
 				}
 				toSave.add(property.getGlobalProperty());
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.error("Error saving global property", e);
 			errors.reject("GlobalProperty.not.saved");
 			session.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, e.getMessage());
@@ -104,8 +102,7 @@ public class SettingsController {
 					getService().saveGlobalProperty(gp);
 				}
 				session.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "GlobalProperty.saved");
-			}
-			catch (APIException e) {
+			} catch (APIException e) {
 				errors.reject("GlobalProperty.not.saved");
 				session.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, e.getMessage());
 			}

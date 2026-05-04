@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -110,8 +110,7 @@ public class DWRPatientService implements GlobalPropertyListener {
 		
 		try {
 			patients = ps.getPatients(searchValue, includeVoided, start, length);
-		}
-		catch (APIAuthenticationException e) {
+		} catch (APIAuthenticationException e) {
 			patientList.add(Context.getMessageSourceService().getMessage("Patient.search.error") + " - " + e.getMessage());
 			return patientList;
 		}
@@ -142,19 +141,18 @@ public class DWRPatientService implements GlobalPropertyListener {
 						validCheckDigit = true;
 					}
 					identifierMatchesValidationScheme = true;
-				}
-				catch (UnallowedIdentifierException e) {
+				} catch (UnallowedIdentifierException e) {
 					log.error("Error while validating identifier", e);
 				}
 			}
 			
 			if (identifierMatchesValidationScheme) {
 				if (shouldWarnUser) {
-					patientList
-					        .add("<p style=\"color:red; font-size:big;\"><b>WARNING: Identifier has been typed incorrectly!  Please double check the identifier.</b></p>");
+					patientList.add(
+					    "<p style=\"color:red; font-size:big;\"><b>WARNING: Identifier has been typed incorrectly!  Please double check the identifier.</b></p>");
 				} else if (validCheckDigit) {
-					patientList
-					        .add("<p style=\"color:green; font-size:big;\"><b>This identifier has been entered correctly, but still no patients have been found.</b></p>");
+					patientList.add(
+					    "<p style=\"color:green; font-size:big;\"><b>This identifier has been entered correctly, but still no patients have been found.</b></p>");
 				}
 			}
 		}
@@ -163,10 +161,10 @@ public class DWRPatientService implements GlobalPropertyListener {
 	}
 	
 	/**
-	 * Returns a map of results with the values as count of matches and a partial list of the
-	 * matching patients (depending on values of start and length parameters) while the keys are are
-	 * 'count' and 'objectList' respectively, if the length parameter is not specified, then all
-	 * matches will be returned from the start index if specified.
+	 * Returns a map of results with the values as count of matches and a partial list of the matching
+	 * patients (depending on values of start and length parameters) while the keys are are 'count' and
+	 * 'objectList' respectively, if the length parameter is not specified, then all matches will be
+	 * returned from the start index if specified.
 	 * 
 	 * @param searchValue patient name or identifier
 	 * @param includeVoided true/false whether or not to included voided patients
@@ -213,8 +211,7 @@ public class DWRPatientService implements GlobalPropertyListener {
 						if (newPatientCount > 0) {
 							// Send a signal to the core search widget to search again against newSearch
 							resultsMap.put("searchAgain", newSearchStr);
-							resultsMap.put(
-							    "notification",
+							resultsMap.put("notification",
 							    Context.getMessageSourceService().getMessage("searchWidget.noResultsFoundFor",
 							        new Object[] { searchValue, newSearchStr }, Context.getLocale()));
 						}
@@ -243,8 +240,7 @@ public class DWRPatientService implements GlobalPropertyListener {
 								validCheckDigit = true;
 							}
 							identifierMatchesValidationScheme = true;
-						}
-						catch (UnallowedIdentifierException e) {}
+						} catch (UnallowedIdentifierException e) {}
 					}
 					
 					if (identifierMatchesValidationScheme) {
@@ -253,9 +249,10 @@ public class DWRPatientService implements GlobalPropertyListener {
 							    "<b>" + Context.getMessageSourceService().getMessage("Patient.warning.inValidIdentifier")
 							            + "<b/>");
 						} else if (validCheckDigit) {
-							resultsMap.put("notification", "<b style=\"color:green;\">"
-							        + Context.getMessageSourceService().getMessage("Patient.message.validIdentifier")
-							        + "<b/>");
+							resultsMap.put("notification",
+							    "<b style=\"color:green;\">"
+							            + Context.getMessageSourceService().getMessage("Patient.message.validIdentifier")
+							            + "<b/>");
 						}
 					}
 				} else {
@@ -286,8 +283,7 @@ public class DWRPatientService implements GlobalPropertyListener {
 			
 			resultsMap.put("count", patientCount);
 			resultsMap.put("objectList", objectList);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.error("Error while searching for patients", e);
 			objectList.clear();
 			objectList.add(Context.getMessageSourceService().getMessage("Patient.search.error") + " - " + e.getMessage());
@@ -298,10 +294,10 @@ public class DWRPatientService implements GlobalPropertyListener {
 	}
 	
 	/**
-	 * Returns a map of results with the values as count of matches and a partial list of the
-	 * matching patients (depending on values of start and length parameters) while the keys are are
-	 * 'count' and 'objectList' respectively, if the length parameter is not specified, then all
-	 * matches will be returned from the start index if specified.
+	 * Returns a map of results with the values as count of matches and a partial list of the matching
+	 * patients (depending on values of start and length parameters) while the keys are are 'count' and
+	 * 'objectList' respectively, if the length parameter is not specified, then all matches will be
+	 * returned from the start index if specified.
 	 * 
 	 * @param searchValue patient name or identifier
 	 * @param start the beginning index
@@ -321,8 +317,8 @@ public class DWRPatientService implements GlobalPropertyListener {
 	}
 	
 	/**
-	 * Convenience method for dwr/javascript to convert a patient id into a Patient object (or at
-	 * least into data about the patient)
+	 * Convenience method for dwr/javascript to convert a patient id into a Patient object (or at least
+	 * into data about the patient)
 	 * 
 	 * @param patientId the {@link Patient#getPatientId()} to match on
 	 * @return a truncated Patient object in the form of a PatientListItem
@@ -348,8 +344,9 @@ public class DWRPatientService implements GlobalPropertyListener {
 	public Vector<Object> findPatientsByIdentifier(String[] identifiers) {
 		Vector<Object> patientList = new Vector<>();
 		for (String identifier : identifiers) {
-			List<PatientIdentifier> patientIdentifiers = Context.getPatientService().getPatientIdentifiers(identifier, null, null, null, true);
-			if(patientIdentifiers.size() > 0){
+			List<PatientIdentifier> patientIdentifiers = Context.getPatientService().getPatientIdentifiers(identifier, null,
+			    null, null, true);
+			if (patientIdentifiers.size() > 0) {
 				patientList.add(new PatientListItem(patientIdentifiers.get(0).getPatient()));
 			}
 		}
@@ -380,8 +377,7 @@ public class DWRPatientService implements GlobalPropertyListener {
 			for (Patient p : patients) {
 				patientList.add(new PatientListItem(p));
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.error("Error while attempting to find duplicate patients", e);
 			patientList.add("Error while attempting to find duplicate patients - " + e.getMessage());
 		}
@@ -438,28 +434,22 @@ public class DWRPatientService implements GlobalPropertyListener {
 		
 		try {
 			ps.savePatient(p);
-		}
-		catch (InvalidIdentifierFormatException iife) {
+		} catch (InvalidIdentifierFormatException iife) {
 			log.error(iife);
 			ret = "PatientIdentifier.error.formatInvalid";
-		}
-		catch (InvalidCheckDigitException icde) {
+		} catch (InvalidCheckDigitException icde) {
 			log.error(icde);
 			ret = "PatientIdentifier.error.checkDigit";
-		}
-		catch (IdentifierNotUniqueException inue) {
+		} catch (IdentifierNotUniqueException inue) {
 			log.error(inue);
 			ret = "PatientIdentifier.error.notUnique";
-		}
-		catch (DuplicateIdentifierException die) {
+		} catch (DuplicateIdentifierException die) {
 			log.error(die);
 			ret = "PatientIdentifier.error.duplicate";
-		}
-		catch (InsufficientIdentifiersException iie) {
+		} catch (InsufficientIdentifiersException iie) {
 			log.error(iie);
 			ret = "PatientIdentifier.error.insufficientIdentifiers";
-		}
-		catch (PatientIdentifierException pie) {
+		} catch (PatientIdentifierException pie) {
 			log.error(pie);
 			ret = "PatientIdentifier.error.general";
 		}
@@ -491,8 +481,7 @@ public class DWRPatientService implements GlobalPropertyListener {
 		Patient patient = null;
 		try {
 			patient = ps.getPatient(patientId);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			patient = null;
 		}
 		
@@ -504,8 +493,7 @@ public class DWRPatientService implements GlobalPropertyListener {
 		Concept exitReasonConcept = null;
 		try {
 			exitReasonConcept = cs.getConcept(exitReasonId);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			exitReasonConcept = null;
 		}
 		
@@ -520,8 +508,7 @@ public class DWRPatientService implements GlobalPropertyListener {
 			SimpleDateFormat sdf = Context.getDateFormat();
 			try {
 				exitDate = sdf.parse(exitDateStr);
-			}
-			catch (ParseException e) {
+			} catch (ParseException e) {
 				exitDate = null;
 			}
 		}
@@ -551,8 +538,7 @@ public class DWRPatientService implements GlobalPropertyListener {
 					Concept causeOfDeathConcept = null;
 					try {
 						causeOfDeathConcept = cs.getConcept(causeOfDeathConceptId);
-					}
-					catch (Exception e) {
+					} catch (Exception e) {
 						causeOfDeathConcept = null;
 					}
 					
@@ -560,8 +546,7 @@ public class DWRPatientService implements GlobalPropertyListener {
 					if (causeOfDeathConcept != null) {
 						try {
 							ps.processDeath(patient, exitDate, causeOfDeathConcept, otherReason);
-						}
-						catch (Exception e) {
+						} catch (Exception e) {
 							log.warn("Caught error", e);
 							ret = "Internal error while trying to process patient death - unable to proceed. Cause: "
 							        + e.getMessage();
@@ -569,8 +554,7 @@ public class DWRPatientService implements GlobalPropertyListener {
 						
 						try {
 							Context.getService(LegacyUIService.class).exitFromCare(patient, exitDate, exitReasonConcept);
-						}
-						catch (Exception e) {
+						} catch (Exception e) {
 							log.warn("Caught error", e);
 							ret = "Internal error while trying to exit patient from care - unable to exit patient from care at this time. Cause: "
 							        + e.getMessage();
@@ -587,8 +571,7 @@ public class DWRPatientService implements GlobalPropertyListener {
 				else {
 					try {
 						Context.getService(LegacyUIService.class).exitFromCare(patient, exitDate, exitReasonConcept);
-					}
-					catch (Exception e) {
+					} catch (Exception e) {
 						log.warn("Caught error", e);
 						ret = "Internal error while trying to exit patient from care - unable to exit patient from care at this time. Cause: "
 						        + e.getMessage();
@@ -600,8 +583,7 @@ public class DWRPatientService implements GlobalPropertyListener {
 			else {
 				try {
 					Context.getService(LegacyUIService.class).exitFromCare(patient, exitDate, exitReasonConcept);
-				}
-				catch (Exception e) {
+				} catch (Exception e) {
 					log.warn("Caught error", e);
 					ret = "Internal error while trying to exit patient from care - unable to exit patient from care at this time. Cause: "
 					        + e.getMessage();
@@ -648,8 +630,7 @@ public class DWRPatientService implements GlobalPropertyListener {
 	public void globalPropertyChanged(GlobalProperty newValue) {
 		try {
 			setMaximumResults(Integer.valueOf(newValue.getPropertyValue()));
-		}
-		catch (NumberFormatException e) {
+		} catch (NumberFormatException e) {
 			setMaximumResults(OpenmrsConstants.GLOBAL_PROPERTY_PERSON_SEARCH_MAX_RESULTS_DEFAULT_VALUE);
 		}
 	}
@@ -669,8 +650,7 @@ public class DWRPatientService implements GlobalPropertyListener {
 			return Integer.valueOf(Context.getAdministrationService().getGlobalProperty(
 			    OpenmrsConstants.GLOBAL_PROPERTY_PERSON_SEARCH_MAX_RESULTS,
 			    String.valueOf(OpenmrsConstants.GLOBAL_PROPERTY_PERSON_SEARCH_MAX_RESULTS_DEFAULT_VALUE)));
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.warn("Unable to convert the global property " + OpenmrsConstants.GLOBAL_PROPERTY_PERSON_SEARCH_MAX_RESULTS
 			        + "to a valid integer. Returning the default "
 			        + OpenmrsConstants.GLOBAL_PROPERTY_PERSON_SEARCH_MAX_RESULTS_DEFAULT_VALUE);

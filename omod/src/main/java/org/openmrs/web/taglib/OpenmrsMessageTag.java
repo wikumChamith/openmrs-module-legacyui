@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -157,8 +157,8 @@ public class OpenmrsMessageTag extends OpenmrsHtmlEscapingAwareTag {
 	}
 	
 	/**
-	 * Sets the locale of the supplied message. If no text passed in or given text can not be
-	 * recognized as locale, then default value of locale attribute of this tag will not be changed
+	 * Sets the locale of the supplied message. If no text passed in or given text can not be recognized
+	 * as locale, then default value of locale attribute of this tag will not be changed
 	 * 
 	 * @param locale the locale string to set
 	 */
@@ -205,8 +205,7 @@ public class OpenmrsMessageTag extends OpenmrsHtmlEscapingAwareTag {
 			}
 			
 			return EVAL_PAGE;
-		}
-		catch (NoSuchMessageException ex) {
+		} catch (NoSuchMessageException ex) {
 			throw new JspTagException(getNoSuchMessageExceptionDescription(ex));
 		}
 	}
@@ -257,14 +256,13 @@ public class OpenmrsMessageTag extends OpenmrsHtmlEscapingAwareTag {
 				message = messageSource.getMessage(resolvedCode, argumentsArray, bodyText, getRequestContext().getLocale());
 			} else if (resolvedText != null) {
 				// we have a fallback value of text attribute to consider.
-				message = messageSource.getMessage(resolvedCode, argumentsArray, resolvedText, getRequestContext()
-				        .getLocale());
+				message = messageSource.getMessage(resolvedCode, argumentsArray, resolvedText,
+				    getRequestContext().getLocale());
 			} else {
 				// we have no fallback text to consider.
 				try {
 					message = messageSource.getMessage(resolvedCode, argumentsArray, getRequestContext().getLocale());
-				}
-				catch (NoSuchMessageException e) {
+				} catch (NoSuchMessageException e) {
 					// do nothing, use resolved code as fallback
 				}
 			}
@@ -293,8 +291,8 @@ public class OpenmrsMessageTag extends OpenmrsHtmlEscapingAwareTag {
 	}
 	
 	/**
-	 * Writes the message to the page. Before actual writing occurs, it calls method on static
-	 * instance of tag writer behavior to customize the message which will be written.
+	 * Writes the message to the page. Before actual writing occurs, it calls method on static instance
+	 * of tag writer behavior to customize the message which will be written.
 	 * 
 	 * @param message the message to write
 	 * @throws IOException if writing error occurs

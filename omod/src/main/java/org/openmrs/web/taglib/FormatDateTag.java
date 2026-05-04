@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -31,13 +31,9 @@ import org.springframework.web.servlet.tags.RequestContextAwareTag;
 
 /**
  * Formats a date object in the desired type:<br>
- * e.g:
- * 
- * <pre>
+ * e.g: <pre>
  *   &lt;openmrs:formatDate date="${dateObj}" type="textbox"/&gt;
- * </pre>
- * 
- * becomes a string like: "20/11/2009" in the user's current locale. <br>
+ * </pre> becomes a string like: "20/11/2009" in the user's current locale. <br>
  * <br>
  * Options for "type" are:
  * <ul>
@@ -97,8 +93,7 @@ public class FormatDateTag extends TagSupport {
 						date = new Date(timestamp.getTime());
 					}
 				}
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				log.warn("Unable to get a date object from path: " + getPath(), e);
 				return SKIP_BODY;
 			}
@@ -143,8 +138,8 @@ public class FormatDateTag extends TagSupport {
 				if (type.equals("milliseconds")) {
 					datestr = "" + date.getTime();
 				} else {
-					if (showTodayOrYesterday
-					        && (DateUtils.isSameDay(Calendar.getInstance().getTime(), date) || OpenmrsUtil.isYesterday(date))) {
+					if (showTodayOrYesterday && (DateUtils.isSameDay(Calendar.getInstance().getTime(), date)
+					        || OpenmrsUtil.isYesterday(date))) {
 						//print only time of day but maintaining the format(24 Vs 12) if any was specified
 						String timeFormatString = (format != null && !format.contains("a")) ? "HH:mm" : "h:mm a";
 						dateFormat = new SimpleDateFormat(timeFormatString);
@@ -160,8 +155,7 @@ public class FormatDateTag extends TagSupport {
 					}
 				}
 			}
-		}
-		catch (IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			//format or date is invalid
 			log.error("date: " + date);
 			log.error("format: " + format);
@@ -171,8 +165,7 @@ public class FormatDateTag extends TagSupport {
 		
 		try {
 			pageContext.getOut().write(datestr);
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			log.error(e);
 		}
 		

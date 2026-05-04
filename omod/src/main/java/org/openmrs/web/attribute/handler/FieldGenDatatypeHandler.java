@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -26,8 +26,8 @@ import org.openmrs.customdatatype.InvalidCustomValueException;
 public interface FieldGenDatatypeHandler<DT extends CustomDatatype<T>, T> extends HtmlDisplayableDatatypeHandler<T> {
 	
 	/**
-	 * @return the name of the fieldgen widget to be used to allow data entry for attribute types
-	 *         that use this handler
+	 * @return the name of the fieldgen widget to be used to allow data entry for attribute types that
+	 *         use this handler
 	 */
 	String getWidgetName();
 	

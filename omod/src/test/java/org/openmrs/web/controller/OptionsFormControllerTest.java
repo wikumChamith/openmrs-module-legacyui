@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -215,8 +215,8 @@ public class OptionsFormControllerTest extends BaseModuleWebContextSensitiveTest
 		OptionsForm optionsForm = (OptionsForm) controller.formBackingObject(request);
 		assertEquals(incorrectAddress, optionsForm.getNotificationAddress());
 		
-		BeanPropertyBindingResult bindingResult = (BeanPropertyBindingResult) modelAndView.getModel().get(
-		    "org.springframework.validation.BindingResult.opts");
+		BeanPropertyBindingResult bindingResult = (BeanPropertyBindingResult) modelAndView.getModel()
+		        .get("org.springframework.validation.BindingResult.opts");
 		Assertions.assertTrue(bindingResult.hasErrors());
 	}
 	
@@ -247,8 +247,8 @@ public class OptionsFormControllerTest extends BaseModuleWebContextSensitiveTest
 		HttpServletResponse response = new MockHttpServletResponse();
 		ModelAndView modelAndView = controller.handleRequest(request, response);
 		
-		BeanPropertyBindingResult bindingResult = (BeanPropertyBindingResult) modelAndView.getModel().get(
-		    "org.springframework.validation.BindingResult.opts");
+		BeanPropertyBindingResult bindingResult = (BeanPropertyBindingResult) modelAndView.getModel()
+		        .get("org.springframework.validation.BindingResult.opts");
 		Assertions.assertTrue(bindingResult.hasErrors());
 	}
 	

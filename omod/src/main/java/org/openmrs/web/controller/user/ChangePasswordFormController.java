@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -62,8 +62,8 @@ public class ChangePasswordFormController {
 	}
 	
 	/**
-	 * Method to save changes of the new password for a user. The password will be validated against
-	 * the current rules and will display error messages in case the password is not strong enough.
+	 * Method to save changes of the new password for a user. The password will be validated against the
+	 * current rules and will display error messages in case the password is not strong enough.
 	 * 
 	 * @should display an error message when the password and confirm password entries are different
 	 * @should not display error message if password and confirm password are the same
@@ -91,8 +91,8 @@ public class ChangePasswordFormController {
 	        @RequestParam(required = true, value = "confirmPassword") String confirmPassword,
 	        @RequestParam(required = false, value = "question") String question,
 	        @RequestParam(required = false, value = "answer") String answer,
-	        @RequestParam(required = false, value = "confirmAnswer") String confirmAnswer,
-	        @ModelAttribute("user") User user, BindingResult errors) {
+	        @RequestParam(required = false, value = "confirmAnswer") String confirmAnswer, @ModelAttribute("user") User user,
+	        BindingResult errors) {
 		
 		NewPassword newPassword = new NewPassword(password, confirmPassword);
 		NewQuestionAnswer newQuestionAnswer = new NewQuestionAnswer(question, answer, confirmAnswer);
@@ -135,8 +135,7 @@ public class ChangePasswordFormController {
 			}
 			
 			Context.refreshAuthenticatedUser();
-		}
-		finally {
+		} finally {
 			Context.removeProxyPrivilege(PrivilegeConstants.EDIT_USERS);
 			Context.removeProxyPrivilege(PrivilegeConstants.GET_USERS);
 			Context.removeProxyPrivilege(PrivilegeConstants.EDIT_USER_PASSWORDS);
@@ -265,8 +264,7 @@ public class ChangePasswordFormController {
 			} else {
 				try {
 					newPassword.checkStrength(user);
-				}
-				catch (PasswordException e) {
+				} catch (PasswordException e) {
 					errors.reject(e.getMessage());
 				}
 			}

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -37,9 +37,8 @@ public class ConceptListItem {
 	private String description;
 	
 	/**
-	 * Will be non-null if the name hit is not the preferred name. The name is matched against the
-	 * fully specified name since version 1.7 when concept name tags were converted to concept name
-	 * types
+	 * Will be non-null if the name hit is not the preferred name. The name is matched against the fully
+	 * specified name since version 1.7 when concept name tags were converted to concept name types
 	 */
 	private String preferredName;
 	

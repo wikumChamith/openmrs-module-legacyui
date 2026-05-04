@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -44,9 +44,9 @@ public class DWREncounterService {
 	}
 	
 	/**
-	 * Returns a list of matching encounters (depending on values of start and length parameters) if
-	 * the length parameter is not specified, then all matches will be returned from the start index
-	 * if specified.
+	 * Returns a list of matching encounters (depending on values of start and length parameters) if the
+	 * length parameter is not specified, then all matches will be returned from the start index if
+	 * specified.
 	 * 
 	 * @param phrase patient name or identifier
 	 * @param includeVoided Specifies if voided encounters should be included or not
@@ -62,9 +62,9 @@ public class DWREncounterService {
 	}
 	
 	/**
-	 * Returns a list of matching encounters (depending on values of start and length parameters) if
-	 * the length parameter is not specified, then all matches will be returned from the start index
-	 * if specified.
+	 * Returns a list of matching encounters (depending on values of start and length parameters) if the
+	 * length parameter is not specified, then all matches will be returned from the start index if
+	 * specified.
 	 * 
 	 * @param phrase encounter id, provider identifier, location, encounter type, provider, form or
 	 *            provider name
@@ -113,8 +113,8 @@ public class DWREncounterService {
 			
 			if (encs.size() == 0) {
 				String htmlSafePhrase = "<b>" + Encode.forHtml(phrase) + "</b>";
-				objectList.add(mss.getMessage("Encounter.noMatchesFound", new Object[] { htmlSafePhrase },
-				    Context.getLocale()));
+				objectList.add(
+				    mss.getMessage("Encounter.noMatchesFound", new Object[] { htmlSafePhrase }, Context.getLocale()));
 			} else {
 				objectList = new Vector<Object>(encs.size());
 				for (Encounter e : encs) {
@@ -123,8 +123,7 @@ public class DWREncounterService {
 					objectList.add(htmlSafeEncounter);
 				}
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.error("Error while searching for encounters", e);
 			objectList.add(mss.getMessage("Encounter.search.error") + " - " + e.getMessage());
 		}
@@ -132,10 +131,10 @@ public class DWREncounterService {
 	}
 	
 	/**
-	 * Returns a map of results with the values as count of matches and a partial list of the
-	 * matching encounters (depending on values of start and length parameters) while the keys are
-	 * are 'count' and 'objectList' respectively, if the length parameter is not specified, then all
-	 * matches will be returned from the start index if specified.
+	 * Returns a map of results with the values as count of matches and a partial list of the matching
+	 * encounters (depending on values of start and length parameters) while the keys are are 'count'
+	 * and 'objectList' respectively, if the length parameter is not specified, then all matches will be
+	 * returned from the start index if specified.
 	 * 
 	 * @param phrase patient name or identifier
 	 * @param includeVoided Specifies if voided encounters should be included or not
@@ -176,8 +175,7 @@ public class DWREncounterService {
 				resultsMap.put("count", encounterCount);
 				resultsMap.put("objectList", objectList);
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.error("Error while searching for encounters", e);
 			objectList.clear();
 			objectList.add(Context.getMessageSourceService().getMessage("Encounter.search.error") + " - " + e.getMessage());
@@ -200,9 +198,9 @@ public class DWREncounterService {
 	}
 	
 	/**
-	 * Returns a list of matching locations (depending on values of start and length parameters) if
-	 * the length parameter is not specified, then all matches will be returned from the start index
-	 * if specified.
+	 * Returns a list of matching locations (depending on values of start and length parameters) if the
+	 * length parameter is not specified, then all matches will be returned from the start index if
+	 * specified.
 	 * 
 	 * @param searchValue is the string used to search for locations
 	 * @param includeRetired Specifies if retired locations should be returned
@@ -226,8 +224,7 @@ public class DWREncounterService {
 			for (Location loc : locations) {
 				locationList.add(new LocationListItem(loc));
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.error(e);
 			locationList.add(mss.getMessage("Location.search.error") + " - " + e.getMessage());
 		}
@@ -254,8 +251,7 @@ public class DWREncounterService {
 				locationList.add(new LocationListItem(loc));
 			}
 			
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.error("Error while attempting to get locations", e);
 			locationList.add(Context.getMessageSourceService().getMessage("Location.get.error") + " - " + e.getMessage());
 		}
@@ -270,10 +266,10 @@ public class DWREncounterService {
 	}
 	
 	/**
-	 * Returns a map of results with the values as count of matches and a partial list of the
-	 * matching locations (depending on values of start and length parameters) while the keys are
-	 * are 'count' and 'objectList' respectively, if the length parameter is not specified, then all
-	 * matches will be returned from the start index if specified.
+	 * Returns a map of results with the values as count of matches and a partial list of the matching
+	 * locations (depending on values of start and length parameters) while the keys are are 'count' and
+	 * 'objectList' respectively, if the length parameter is not specified, then all matches will be
+	 * returned from the start index if specified.
 	 * 
 	 * @param phrase is the string used to search for locations
 	 * @param includeRetired Specifies if retired locations should be returned
@@ -304,8 +300,7 @@ public class DWREncounterService {
 			
 			resultsMap.put("count", locationCount);
 			resultsMap.put("objectList", objectList);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.error("Error while searching for locations", e);
 			objectList.clear();
 			objectList.add(Context.getMessageSourceService().getMessage("Location.search.error") + " - " + e.getMessage());

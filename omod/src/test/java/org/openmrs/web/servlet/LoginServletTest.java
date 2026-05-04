@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -22,8 +22,8 @@ import org.springframework.mock.web.MockHttpServletResponse;
 public class LoginServletTest extends BaseModuleWebContextSensitiveTest {
 	
 	/**
-	 * The servlet should send the user back to the login box if the user enters the wrong username
-	 * or password.
+	 * The servlet should send the user back to the login box if the user enters the wrong username or
+	 * password.
 	 * 
 	 * @throws Exception
 	 */

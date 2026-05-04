@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -81,17 +81,17 @@ public class SchedulerFormControllerTest extends BaseModuleWebContextSensitiveTe
 		Date timeOne = taskHelper.getTime(Calendar.MINUTE, 5);
 		TaskDefinition task = taskHelper.getScheduledTaskDefinition(timeOne);
 		Task oldTaskInstance = task.getTaskInstance();
-
+		
 		Date timeTwo = taskHelper.getTime(Calendar.MINUTE, 2);
 		mockRequest.setParameter("startTime", new SimpleDateFormat(DATE_TIME_FORMAT).format(timeTwo));
-
+		
 		ModelAndView mav = controller.handleRequest(mockRequest, new MockHttpServletResponse());
 		assertNotNull(mav);
 		assertTrue(mav.getModel().isEmpty());
-
+		
 		Assertions.assertNotSame(oldTaskInstance, task.getTaskInstance());
 	}
-
+	
 	/**
 	 * @see SchedulerFormController#onSubmit(HttpServletRequest,HttpServletResponse,Object,BindException)
 	 */
@@ -142,21 +142,21 @@ public class SchedulerFormControllerTest extends BaseModuleWebContextSensitiveTe
 	public void onSubmit_shouldNotRescheduleAnExecutingTask() throws Exception {
 		Date startTime = taskHelper.getTime(Calendar.SECOND, 1);
 		TaskDefinition task = taskHelper.getScheduledTaskDefinition(startTime);
-
+		
 		taskHelper.waitUntilTaskIsExecuting(task, MAX_WAIT_TIME_IN_MILLISECONDS);
 		Task oldTaskInstance = task.getTaskInstance();
-
+		
 		// use the *same* start time as in the task already running
 		mockRequest.setParameter("startTime", new SimpleDateFormat(DATE_TIME_FORMAT).format(startTime));
-
+		
 		ModelAndView mav = controller.handleRequest(mockRequest, new MockHttpServletResponse());
 		assertNotNull(mav);
 		assertTrue(mav.getModel().isEmpty());
-
+		
 		Assertions.assertSame(oldTaskInstance, task.getTaskInstance());
 		deleteAllData();
 	}
-
+	
 	/**
 	 * @see SchedulerFormController#processFormSubmission(HttpServletRequest,HttpServletResponse,Object,BindException)
 	 * @verifies not throw null pointer exception if repeat interval is null

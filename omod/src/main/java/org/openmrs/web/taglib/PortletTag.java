@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -49,7 +49,7 @@ public class PortletTag extends BodyTagSupport {
 	private String patientIds = "";
 	
 	private String moduleId = "";
-
+	
 	private String url = "";
 	
 	public PageContext getPageContext() {
@@ -95,8 +95,7 @@ public class PortletTag extends BodyTagSupport {
 				pageContext.getOut().flush();
 				pageContext.include(url);
 			}
-		}
-		catch (IOException | ServletException e) {
+		} catch (IOException | ServletException e) {
 			log.error("Error while starting portlet tag", e);
 		}
 		
@@ -110,8 +109,7 @@ public class PortletTag extends BodyTagSupport {
 		try {
 			// closing portlet tag
 			pageContext.getOut().print("</div>");
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			log.error("Error while closing portlet tag", e);
 		}
 		
@@ -267,7 +265,7 @@ public class PortletTag extends BodyTagSupport {
 	public void setModuleId(String moduleId) {
 		this.moduleId = moduleId;
 	}
-
+	
 	public String getUrl() {
 		return url;
 	}

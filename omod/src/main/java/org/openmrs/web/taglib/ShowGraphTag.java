@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -77,8 +77,7 @@ public class ShowGraphTag extends BodyTagSupport {
 				pageContext.getResponse().setContentType("image/png");
 				pageContext.getResponse().getWriter().write(byteArray.toString());
 				
-			}
-			catch (IOException e) {
+			} catch (IOException e) {
 				log.error(e);
 			}
 		}
@@ -94,8 +93,7 @@ public class ShowGraphTag extends BodyTagSupport {
 			if (bodyContent != null) {
 				bodyContent.writeOut(bodyContent.getEnclosingWriter());
 			}
-		}
-		catch (java.io.IOException e) {
+		} catch (java.io.IOException e) {
 			throw new JspTagException("IO Error: " + e.getMessage());
 		}
 		return EVAL_PAGE;

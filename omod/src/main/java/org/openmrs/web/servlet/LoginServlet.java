@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -85,17 +85,15 @@ public class LoginServlet extends HttpServlet {
 		String allowedLockoutAttemptsGP = "100";
 		try {
 			Context.addProxyPrivilege(PrivilegeConstants.GET_GLOBAL_PROPERTIES);
-			allowedLockoutAttemptsGP = Context.getAdministrationService().getGlobalProperty(
-			    GP_ALLOWED_LOGIN_ATTEMPTS_PER_IP, "100");
-		}
-		finally {
+			allowedLockoutAttemptsGP = Context.getAdministrationService().getGlobalProperty(GP_ALLOWED_LOGIN_ATTEMPTS_PER_IP,
+			    "100");
+		} finally {
 			Context.removeProxyPrivilege(PrivilegeConstants.GET_GLOBAL_PROPERTIES);
 		}
 		
 		try {
 			allowedLockoutAttempts = Integer.valueOf(allowedLockoutAttemptsGP.trim());
-		}
-		catch (NumberFormatException nfe) {
+		} catch (NumberFormatException nfe) {
 			log.error("Unable to format '" + allowedLockoutAttemptsGP + "' from global property "
 			        + GP_ALLOWED_LOGIN_ATTEMPTS_PER_IP + " as an integer");
 		}
@@ -183,8 +181,7 @@ public class LoginServlet extends HttpServlet {
 					
 					return;
 				}
-			}
-			catch (ContextAuthenticationException e) {
+			} catch (ContextAuthenticationException e) {
 				// set the error message for the user telling them
 				// to try again
 				httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "auth.password.invalid");
@@ -250,7 +247,8 @@ public class LoginServlet extends HttpServlet {
 			redirect = request.getContextPath();
 		} else if (redirect.contains("/options.form") || redirect.contains("/changePassword.form")
 		        || redirect.contains("/forgotPassword.form")) {
-			log.debug("The user was on a page for setting/changing passwords. Send them to the homepage to reduce confusion");
+			log.debug(
+			    "The user was on a page for setting/changing passwords. Send them to the homepage to reduce confusion");
 			redirect = request.getContextPath();
 		}
 		

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -92,8 +92,8 @@ public class FieldGenTag extends TagSupport {
 				handler.setFieldGenTag(this);
 				handler.run();
 			} else {
-				StringBuilder output = new StringBuilder("Cannot handle type [" + type
-				        + "]. Please add a module to handle this type.");
+				StringBuilder output = new StringBuilder(
+				        "Cannot handle type [" + type + "]. Please add a module to handle this type.");
 				
 				if (type.equals("char") || type.indexOf("java.lang.Character") >= 0) {
 					String startVal = "";
@@ -222,11 +222,10 @@ public class FieldGenTag extends TagSupport {
 					Class cls = null;
 					try {
 						cls = Class.forName(className);
-					}
-					catch (Exception e) {
+					} catch (Exception e) {
 						cls = null;
-						log.error("Could not instantiate class for this enum of class name [" + className
-						        + "] in FieldGenTag");
+						log.error(
+						    "Could not instantiate class for this enum of class name [" + className + "] in FieldGenTag");
 					}
 					
 					if (cls != null && cls.isEnum()) {
@@ -285,8 +284,7 @@ public class FieldGenTag extends TagSupport {
 				
 				try {
 					pageContext.getOut().write(output.toString());
-				}
-				catch (IOException e) {
+				} catch (IOException e) {
 					log.error(e);
 				}
 			}
@@ -306,8 +304,8 @@ public class FieldGenTag extends TagSupport {
 		pageContext.getRequest().setAttribute("org.openmrs.fieldGen.type", type);
 		pageContext.getRequest().setAttribute("org.openmrs.fieldGen.formFieldName", formFieldName);
 		pageContext.getRequest().setAttribute("org.openmrs.fieldGen.parameters", OpenmrsUtil.parseParameterList(parameters));
-		Map<String, Object> hmParamMap = (Map<String, Object>) pageContext.getRequest().getAttribute(
-		    "org.openmrs.fieldGen.parameterMap");
+		Map<String, Object> hmParamMap = (Map<String, Object>) pageContext.getRequest()
+		        .getAttribute("org.openmrs.fieldGen.parameterMap");
 		if (hmParamMap == null) {
 			hmParamMap = new HashMap<String, Object>();
 		}
@@ -321,11 +319,9 @@ public class FieldGenTag extends TagSupport {
 		
 		try {
 			pageContext.include(this.url);
-		}
-		catch (ServletException e) {
+		} catch (ServletException e) {
 			log.error("ServletException while trying to include a file in FieldGenTag", e);
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			log.error("IOException while trying to include a file in FieldGenTag", e);
 		}
 		
@@ -452,8 +448,7 @@ public class FieldGenTag extends TagSupport {
 				}
 				this.parameterMap.put(name, val);
 			}
-		}
-		catch (ArrayIndexOutOfBoundsException ae) {
+		} catch (ArrayIndexOutOfBoundsException ae) {
 			log.error("Out of bounds while trying to parse " + parameters + " with delimiter " + delimiter);
 		}
 	}
@@ -473,8 +468,8 @@ public class FieldGenTag extends TagSupport {
 	 * <br>
 	 * An example of when the dev doesn't want a default value is if location is set to null by a
 	 * previous user and the current user is only editing. Therefore, the
-	 * FieldGenTag.java#setAllowUserDefault() should only be set to true if creating an object for
-	 * the first time)
+	 * FieldGenTag.java#setAllowUserDefault() should only be set to true if creating an object for the
+	 * first time)
 	 * 
 	 * @param allowUserDefault the allowUserDefault to set
 	 */
@@ -505,8 +500,7 @@ public class FieldGenTag extends TagSupport {
 			*/
 			factory = FieldGenHandlerFactory.getSingletonInstance();
 			
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			factory = null;
 			log.error(e);
 		}
@@ -521,8 +515,7 @@ public class FieldGenTag extends TagSupport {
 					FieldGenHandler handler = (FieldGenHandler) ct.newInstance();
 					fieldGenHandlerCache.put(className, handler);
 					return handler;
-				}
-				catch (Exception e) {
+				} catch (Exception e) {
 					log.error("Unable to handle type [" + className + "] with handler [" + handlerClassName + "]. " + e);
 					return null;
 				}

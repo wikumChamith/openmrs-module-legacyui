@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -47,8 +47,8 @@ public class WebAttributeUtil {
 	}
 	
 	/**
-	 * Gets the value of an attribute out of an HTTP request, treating it according to the
-	 * appropriate handler type.
+	 * Gets the value of an attribute out of an HTTP request, treating it according to the appropriate
+	 * handler type.
 	 * 
 	 * @param request
 	 * @param handler
@@ -146,8 +146,7 @@ public class WebAttributeUtil {
 					Object valueAsObject;
 					try {
 						valueAsObject = getValue(request, dt, handler, paramName);
-					}
-					catch (Exception ex) {
+					} catch (Exception ex) {
 						errors.rejectValue("activeAttributes", "attribute.error.invalid",
 						    new Object[] { attrType.getName() }, "Illegal value for " + attrType.getName());
 						continue;
@@ -158,8 +157,7 @@ public class WebAttributeUtil {
 							AttributeClass attr;
 							try {
 								attr = attributeClass.newInstance();
-							}
-							catch (Exception ex) {
+							} catch (Exception ex) {
 								throw new RuntimeException(ex);
 							}
 							attr.setAttributeType(attrType);
@@ -183,8 +181,7 @@ public class WebAttributeUtil {
 							AttributeClass newVal;
 							try {
 								newVal = attributeClass.newInstance();
-							}
-							catch (Exception ex) {
+							} catch (Exception ex) {
 								throw new RuntimeException(ex);
 							}
 							newVal.setAttributeType(attrType);

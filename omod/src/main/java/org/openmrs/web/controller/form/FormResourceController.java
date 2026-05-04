@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -83,8 +83,7 @@ public class FormResourceController {
 		try {
 			Object value = WebAttributeUtil.getValue(request, resource, "resourceValue");
 			resource.setValue(value);
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			errors.rejectValue("value", "error.general");
 		}
 		if (errors.hasErrors()) {
@@ -92,8 +91,7 @@ public class FormResourceController {
 		} else {
 			try {
 				Context.getFormService().saveFormResource(resource);
-			}
-			catch (InvalidFileTypeException ex) {
+			} catch (InvalidFileTypeException ex) {
 				log.error(ex.getMessage(), ex);
 				session.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "error.file.upload.expected.text.file");
 				return "redirect:addFormResource.form?formId=" + resource.getForm().getId() + "&datatype="

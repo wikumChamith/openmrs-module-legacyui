@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -60,7 +60,8 @@ public class EncounterRoleFormController {
 	 * @should raise an error if validation of encounter role fails
 	 * @should edit and save an existing encounter
 	 */
-	@RequestMapping(value = ENCOUNTERS_PATH + "encounterRole.form", method = RequestMethod.POST, params = "saveEncounterRole")
+	@RequestMapping(value = ENCOUNTERS_PATH
+	        + "encounterRole.form", method = RequestMethod.POST, params = "saveEncounterRole")
 	public String save(HttpSession session, @ModelAttribute("encounterRole") EncounterRole encounterRole,
 	        BindingResult errors) throws Exception {
 		new EncounterRoleValidator().validate(encounterRole, errors);
@@ -192,11 +193,9 @@ public class EncounterRoleFormController {
 		try {
 			service.purgeEncounterRole(encounterRole);
 			session.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "EncounterRole.purgedSuccessfully");
-		}
-		catch (DataIntegrityViolationException e) {
+		} catch (DataIntegrityViolationException e) {
 			session.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "error.object.inuse.cannot.purge");
-		}
-		catch (APIException e) {
+		} catch (APIException e) {
 			session.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "error.general: " + e.getLocalizedMessage());
 		}
 	}

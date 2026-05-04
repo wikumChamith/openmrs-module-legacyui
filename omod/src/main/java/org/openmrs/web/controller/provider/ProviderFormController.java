@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -55,8 +55,8 @@ public class ProviderFormController {
 		
 		// manually handle the attribute parameters
 		List<ProviderAttributeType> attributeTypes = (List<ProviderAttributeType>) model.get("providerAttributeTypes");
-		WebAttributeUtil
-		        .handleSubmittedAttributesForType(provider, errors, ProviderAttribute.class, request, attributeTypes);
+		WebAttributeUtil.handleSubmittedAttributesForType(provider, errors, ProviderAttribute.class, request,
+		    attributeTypes);
 		if (Context.isAuthenticated()) {
 			ProviderService service = Context.getProviderService();
 			String message = "Provider.saved";
@@ -65,8 +65,7 @@ public class ProviderFormController {
 				try {
 					service.purgeProvider(provider);
 					message = "Provider.purged";
-				}
-				catch (DataIntegrityViolationException e) {
+				} catch (DataIntegrityViolationException e) {
 					request.getSession().setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "error.object.inuse.cannot.purge");
 					return showForm(provider.getId());
 				}

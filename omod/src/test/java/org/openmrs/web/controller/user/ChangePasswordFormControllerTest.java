@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -48,8 +48,8 @@ public class ChangePasswordFormControllerTest extends BaseModuleWebContextSensit
 	}
 	
 	/**
-	 * @see ChangePasswordFormController#handleSubmission(HttpSession, String, String, String,
-	 *      String, String, User, BindingResult)
+	 * @see ChangePasswordFormController#handleSubmission(HttpSession, String, String, String, String,
+	 *      String, User, BindingResult)
 	 */
 	@Test
 	@Verifies(value = "display an error message when the password and confirm password entries are different", method = "handleSubmission()")
@@ -65,8 +65,8 @@ public class ChangePasswordFormControllerTest extends BaseModuleWebContextSensit
 	}
 	
 	/**
-	 * @see ChangePasswordFormController#handleSubmission(HttpSession, String, String, String,
-	 *      String, String, User, BindingResult)
+	 * @see ChangePasswordFormController#handleSubmission(HttpSession, String, String, String, String,
+	 *      String, User, BindingResult)
 	 */
 	@Test
 	@Verifies(value = "not display error message if password and confirm password are the same", method = "handleSubmission()")
@@ -82,8 +82,8 @@ public class ChangePasswordFormControllerTest extends BaseModuleWebContextSensit
 	}
 	
 	/**
-	 * @see ChangePasswordFormController#handleSubmission(HttpSession, String, String, String,
-	 *      String, String, User, BindingResult) test =
+	 * @see ChangePasswordFormController#handleSubmission(HttpSession, String, String, String, String,
+	 *      String, User, BindingResult) test =
 	 */
 	@Test
 	@Verifies(value = "display error message when the password is empty", method = "handleSubmission()")
@@ -99,8 +99,8 @@ public class ChangePasswordFormControllerTest extends BaseModuleWebContextSensit
 	}
 	
 	/**
-	 * @see ChangePasswordFormController#handleSubmission(HttpSession, String, String, String,
-	 *      String, String, User, BindingResult)
+	 * @see ChangePasswordFormController#handleSubmission(HttpSession, String, String, String, String,
+	 *      String, User, BindingResult)
 	 */
 	@Test
 	@Verifies(value = "display error message if password is weak", method = "handleSubmission()")
@@ -116,8 +116,8 @@ public class ChangePasswordFormControllerTest extends BaseModuleWebContextSensit
 	}
 	
 	/**
-	 * @see ChangePasswordFormController#handleSubmission(HttpSession, String, String, String,
-	 *      String, String, User, BindingResult)
+	 * @see ChangePasswordFormController#handleSubmission(HttpSession, String, String, String, String,
+	 *      String, User, BindingResult)
 	 */
 	@Test
 	@Verifies(value = "display error message when question is empty and answer is not empty", method = "handleSubmission()")
@@ -125,16 +125,16 @@ public class ChangePasswordFormControllerTest extends BaseModuleWebContextSensit
 		ChangePasswordFormController controller = new ChangePasswordFormController();
 		BindException errors = new BindException(controller.formBackingObject(), "user");
 		
-		String result = controller.handleSubmission(new MockHttpSession(), oldPassword, "Passw0rd", "Passw0rd", "",
-		    "answer", "answer", Context.getAuthenticatedUser(), errors);
+		String result = controller.handleSubmission(new MockHttpSession(), oldPassword, "Passw0rd", "Passw0rd", "", "answer",
+		    "answer", Context.getAuthenticatedUser(), errors);
 		
 		assertTrue(errors.hasErrors());
 		assertEquals("auth.question.empty", errors.getGlobalError().getCode());
 	}
 	
 	/**
-	 * @see ChangePasswordFormController#handleSubmission(HttpSession, String, String, String,
-	 *      String, String, User, BindingResult)
+	 * @see ChangePasswordFormController#handleSubmission(HttpSession, String, String, String, String,
+	 *      String, User, BindingResult)
 	 */
 	@Test
 	@Verifies(value = "display error message when the answer and the confirm answer entered are not the same", method = "handleSubmission()")
@@ -150,8 +150,8 @@ public class ChangePasswordFormControllerTest extends BaseModuleWebContextSensit
 	}
 	
 	/**
-	 * @see ChangePasswordFormController#handleSubmission(HttpSession, String, String, String,
-	 *      String, String, User, BindingResult)
+	 * @see ChangePasswordFormController#handleSubmission(HttpSession, String, String, String, String,
+	 *      String, User, BindingResult)
 	 */
 	@Test
 	@Verifies(value = "display error message when the answer is empty and question is not empty", method = "handleSubmission()")
@@ -167,8 +167,8 @@ public class ChangePasswordFormControllerTest extends BaseModuleWebContextSensit
 	}
 	
 	/**
-	 * @see ChangePasswordFormController#handleSubmission(HttpSession, String, String, String,
-	 *      String, String, User, BindingResult)
+	 * @see ChangePasswordFormController#handleSubmission(HttpSession, String, String, String, String,
+	 *      String, User, BindingResult)
 	 */
 	@Test
 	@Verifies(value = "navigate to the home page if the authentication is successful", method = "handleSubmission()")
@@ -184,8 +184,8 @@ public class ChangePasswordFormControllerTest extends BaseModuleWebContextSensit
 	}
 	
 	/**
-	 * @see ChangePasswordFormController#handleSubmission(HttpSession, String, String, String,
-	 *      String, String, User, BindingResult)
+	 * @see ChangePasswordFormController#handleSubmission(HttpSession, String, String, String, String,
+	 *      String, User, BindingResult)
 	 */
 	@Test
 	@Verifies(value = "set the user property forcePassword to false after successful password change", method = "handleSubmission()")
@@ -207,8 +207,8 @@ public class ChangePasswordFormControllerTest extends BaseModuleWebContextSensit
 	}
 	
 	/**
-	 * @see ChangePasswordFormController#handleSubmission(HttpSession, String, String, String,
-	 *      String, String, User, BindingResult)
+	 * @see ChangePasswordFormController#handleSubmission(HttpSession, String, String, String, String,
+	 *      String, User, BindingResult)
 	 */
 	@Test
 	@Verifies(value = "do not set the user property forcePassword to false after unsuccessful password change", method = "handleSubmission()")
@@ -244,8 +244,8 @@ public class ChangePasswordFormControllerTest extends BaseModuleWebContextSensit
 	}
 	
 	/**
-	 * @see ChangePasswordFormController#handleSubmission(HttpSession, String, String, String,
-	 *      String, String, User, BindingResult)
+	 * @see ChangePasswordFormController#handleSubmission(HttpSession, String, String, String, String,
+	 *      String, User, BindingResult)
 	 */
 	@Test
 	@Verifies(value = "set the secret question and answer of the user", method = "handleSubmission()")

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -55,8 +55,7 @@ public class ImplementationIdFormController extends SimpleFormController {
 		try {
 			Context.getAdministrationService().setImplementationId(implId);
 			req.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR, "ImplementationId.validatedId");
-		}
-		catch (APIException e) {
+		} catch (APIException e) {
 			log.warn("Unable to set implementation id", e);
 			exceptions.reject(e.getMessage());
 			req.getSession().setAttribute(WebConstants.OPENMRS_ERROR_ATTR, e.getMessage());

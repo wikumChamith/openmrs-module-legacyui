@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -30,9 +30,7 @@ import org.openmrs.util.OpenmrsUtil;
 
 /**
  * Extension point tag. Loops over all extensions defined for point "pointId". Makes the variable
- * "extension" Usage:
- * 
- * <pre>
+ * "extension" Usage: <pre>
  *  &lt;openmrs:extensionPoint pointId=&quot;org.openmrs.cohortbuilder.links&quot; type=&quot;html&quot; varStatus=&quot;stat&quot;&gt;
  *     &lt;c:if test=&quot;${stat.first}&quot;&gt;
  *       &lt;br/&gt;
@@ -111,8 +109,7 @@ public class ExtensionPointTag extends TagSupport implements BodyTag {
 				Extension.MEDIA_TYPE mediaType = Enum.valueOf(Extension.MEDIA_TYPE.class, type);
 				log.debug("Getting extensions: " + pointId + " : " + mediaType);
 				extensionList = ModuleFactory.getExtensions(pointId, mediaType);
-			}
-			catch (IllegalArgumentException e) {
+			} catch (IllegalArgumentException e) {
 				log.warn("extension point type: '" + type + "' is invalid. Must be enum of Extension.MEDIA_TYPE", e);
 			}
 		} else {
@@ -135,8 +132,7 @@ public class ExtensionPointTag extends TagSupport implements BodyTag {
 							validExtensions.add(ext);
 						}
 					}
-				}
-				catch (ClassNotFoundException ex) {
+				} catch (ClassNotFoundException ex) {
 					throw new IllegalArgumentException(ex);
 				}
 			}
@@ -178,8 +174,8 @@ public class ExtensionPointTag extends TagSupport implements BodyTag {
 	}
 	
 	/**
-	 * Put the next extension into the request from the <code>extensions</code> iterator. If the
-	 * current ext returns a non-null getBodyContentString(), print that to the request instead.
+	 * Put the next extension into the request from the <code>extensions</code> iterator. If the current
+	 * ext returns a non-null getBodyContentString(), print that to the request instead.
 	 */
 	private void iterate() {
 		Extension ext = extensions.next();
@@ -197,8 +193,7 @@ public class ExtensionPointTag extends TagSupport implements BodyTag {
 		} else {
 			try {
 				bodyContent.getEnclosingWriter().write(overrideContent);
-			}
-			catch (IOException io) {
+			} catch (IOException io) {
 				log.warn("Cannot write override content of extension: " + ext.toString(), io);
 			}
 		}
@@ -229,8 +224,7 @@ public class ExtensionPointTag extends TagSupport implements BodyTag {
 					}
 				}
 			}
-		}
-		catch (java.io.IOException e) {
+		} catch (java.io.IOException e) {
 			throw new JspTagException("IO Error while ending tag for point: " + pointId, e);
 		}
 		release();

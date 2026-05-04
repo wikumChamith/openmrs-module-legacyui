@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -73,12 +73,10 @@ public class DWRProgramWorkflowService {
 				li.setId(wf.getProgramWorkflowId());
 				try {
 					li.setName(wf.getConcept().getName().getName());
-				}
-				catch (NullPointerException ex) {}
+				} catch (NullPointerException ex) {}
 				try {
 					li.setDescription(wf.getConcept().getDescription().getDescription());
-				}
-				catch (NullPointerException ex) {}
+				} catch (NullPointerException ex) {}
 				ret.add(li);
 			}
 		}
@@ -137,8 +135,7 @@ public class DWRProgramWorkflowService {
 					li.setId(state.getProgramWorkflowStateId());
 					try {
 						li.setName(state.getConcept().getName(Context.getLocale(), false).getName());
-					}
-					catch (NullPointerException ex) {}
+					} catch (NullPointerException ex) {}
 					ret.add(li);
 				}
 			} else {
@@ -154,13 +151,13 @@ public class DWRProgramWorkflowService {
 	
 	/**
 	 * Updates enrollment date, completion date, and location for a PatientProgram. Compares @param
-	 * enrollmentDateYmd with {@link PatientProgram#getDateEnrolled()} compares @param
-	 * completionDateYmd with {@link PatientProgram#getDateCompleted()}, compares @param locationId
-	 * with {@link PatientProgram#getLocation()}, compares @param outcomeId with
-	 * {@link org.openmrs.PatientProgram#getOutcome()}. At least one of these comparisons must
-	 * indicate a change in order to update the PatientProgram. In other words, if neither the @param
-	 * enrollmentDateYmd, the @param completionDateYmd, or the @param locationId or the @param
-	 * outcomeId match with the persisted object, then the PatientProgram will not be updated.
+	 * enrollmentDateYmd with {@link PatientProgram#getDateEnrolled()} compares @param completionDateYmd
+	 * with {@link PatientProgram#getDateCompleted()}, compares @param locationId with
+	 * {@link PatientProgram#getLocation()}, compares @param outcomeId with
+	 * {@link org.openmrs.PatientProgram#getOutcome()}. At least one of these comparisons must indicate
+	 * a change in order to update the PatientProgram. In other words, if neither the @param
+	 * enrollmentDateYmd, the @param completionDateYmd, or the @param locationId or the @param outcomeId
+	 * match with the persisted object, then the PatientProgram will not be updated.
 	 * <p>
 	 * Also, if the enrollment date comes after the completion date, the PatientProgram will not be
 	 * updated.

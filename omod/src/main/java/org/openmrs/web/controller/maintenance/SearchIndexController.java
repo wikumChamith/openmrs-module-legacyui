@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -47,8 +47,7 @@ public class SearchIndexController {
 	 * @return a marker indicating success
 	 */
 	@RequestMapping(method = RequestMethod.POST, value = "admin/maintenance/rebuildSearchIndex.htm")
-	public @ResponseBody
-	Map<String, Object> rebuildSearchIndex() {
+	public @ResponseBody Map<String, Object> rebuildSearchIndex() {
 		boolean success = true;
 		Map<String, Object> results = new HashMap<String, Object>();
 		log.debug("rebuilding search index");
@@ -57,8 +56,7 @@ public class SearchIndexController {
 		} else {
 			try {
 				updateSearchIndexAsync = Context.updateSearchIndexAsync();
-			}
-			catch (RuntimeException e) {
+			} catch (RuntimeException e) {
 				success = false;
 			}
 		}
@@ -74,18 +72,18 @@ public class SearchIndexController {
 	 *         search index
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "admin/maintenance/rebuildSearchIndexStatus.htm")
-    public @ResponseBody Map<String, String> getStatus() {
-        if (updateSearchIndexAsync == null) {
-            throw new APIException("There was a problem rebuilding the search index");
-        }
-
-        Map<String, String> results = new HashMap<>();
-        if (updateSearchIndexAsync.isDone()) {
-            results.put("status", updateSearchIndexAsync.isCancelled() ? "error" : "success");
-            updateSearchIndexAsync = null;
-        } else {
-            results.put("status", "inProgress");
-        }
-        return results;
-    }
+	public @ResponseBody Map<String, String> getStatus() {
+		if (updateSearchIndexAsync == null) {
+			throw new APIException("There was a problem rebuilding the search index");
+		}
+		
+		Map<String, String> results = new HashMap<>();
+		if (updateSearchIndexAsync.isDone()) {
+			results.put("status", updateSearchIndexAsync.isCancelled() ? "error" : "success");
+			updateSearchIndexAsync = null;
+		} else {
+			results.put("status", "inProgress");
+		}
+		return results;
+	}
 }

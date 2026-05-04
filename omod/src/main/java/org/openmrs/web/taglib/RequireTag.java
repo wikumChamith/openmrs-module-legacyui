@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -32,15 +32,11 @@ import org.springframework.util.StringUtils;
  * Controller for the &lt;openmrs:require&gt; taglib used on jsp pages. This taglib restricts the
  * page view to currently logged in (or anonymous) users that have the given privileges. <br>
  * <br>
- * Example use case:
- * 
- * <pre>
+ * Example use case: <pre>
  * &lt;openmrs:require privilege="Manage Concept Classes" otherwise="/login.htm" redirect="/admin/concepts/conceptClass.form" /&gt;
- * </pre>
- * 
- * This will demand that the user have the "Manage Concept Classes" privilege. If they don't, kick
- * the user back to the "/login.htm" page. Then, after they log in on that page, send the user to
- * "/admin/concepts/conceptClass.form".
+ * </pre> This will demand that the user have the "Manage Concept Classes" privilege. If they don't,
+ * kick the user back to the "/login.htm" page. Then, after they log in on that page, send the user
+ * to "/admin/concepts/conceptClass.form".
  */
 public class RequireTag extends TagSupport {
 	
@@ -138,8 +134,7 @@ public class RequireTag extends TagSupport {
 				try {
 					httpResponse.sendRedirect(redirect);
 					return SKIP_PAGE;
-				}
-				catch (IOException e) {
+				} catch (IOException e) {
 					// oops, cannot redirect
 					log.error("Unable to redirect for password change: " + redirect, e);
 					throw new APIException(e);
@@ -173,8 +168,7 @@ public class RequireTag extends TagSupport {
 			try {
 				httpResponse.sendRedirect(request.getContextPath() + otherwise);
 				return SKIP_PAGE;
-			}
-			catch (IOException e) {
+			} catch (IOException e) {
 				// oops, cannot redirect
 				throw new APIException(e);
 			}

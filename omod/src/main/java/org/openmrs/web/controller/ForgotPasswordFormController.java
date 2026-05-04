@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -64,8 +64,8 @@ public class ForgotPasswordFormController extends SimpleFormController {
 	private Map<String, Date> lockoutDateByIP = new HashMap<String, Date>();
 	
 	/**
-	 * This takes in the form twice. The first time when the input their username and the second
-	 * when they submit both their username and their secret answer
+	 * This takes in the form twice. The first time when the input their username and the second when
+	 * they submit both their username and their secret answer
 	 * 
 	 * @see org.springframework.web.servlet.mvc.SimpleFormController#onSubmit(javax.servlet.http.HttpServletRequest,
 	 *      javax.servlet.http.HttpServletResponse, java.lang.Object,
@@ -123,8 +123,7 @@ public class ForgotPasswordFormController extends SimpleFormController {
 					if (username != null && username.length() > 0) {
 						user = Context.getUserService().getUserByUsername(username);
 					}
-				}
-				finally {
+				} finally {
 					Context.removeProxyPrivilege(PrivilegeConstants.GET_USERS);
 				}
 				
@@ -152,8 +151,7 @@ public class ForgotPasswordFormController extends SimpleFormController {
 				try {
 					Context.addProxyPrivilege(PrivilegeConstants.GET_USERS);
 					user = Context.getUserService().getUserByUsername(username);
-				}
-				finally {
+				} finally {
 					Context.removeProxyPrivilege(PrivilegeConstants.GET_USERS);
 				}
 				
@@ -174,8 +172,7 @@ public class ForgotPasswordFormController extends SimpleFormController {
 							Context.addProxyPrivilege(PrivilegeConstants.EDIT_USER_PASSWORDS);
 							Context.addProxyPrivilege(PrivilegeConstants.GET_GLOBAL_PROPERTIES);
 							Context.getUserService().changePassword(user, randomPassword);
-						}
-						finally {
+						} finally {
 							Context.removeProxyPrivilege(PrivilegeConstants.EDIT_USER_PASSWORDS);
 							Context.removeProxyPrivilege(PrivilegeConstants.GET_GLOBAL_PROPERTIES);
 						}
@@ -185,8 +182,8 @@ public class ForgotPasswordFormController extends SimpleFormController {
 						Context.authenticate(username, randomPassword);
 						httpSession.setAttribute("loginAttempts", 0);
 						
-						return new ModelAndView(new RedirectView(request.getContextPath()
-						        + "/options.form#Change Login Info"));
+						return new ModelAndView(
+						        new RedirectView(request.getContextPath() + "/options.form#Change Login Info"));
 					} else {
 						httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "auth.answer.invalid");
 						httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "auth.question.fill");
@@ -207,14 +204,14 @@ public class ForgotPasswordFormController extends SimpleFormController {
 		//Password should be satisfy the minimum length if any is set, must have 1 upper case letter and 1 number
 		Integer minLength = 8;
 		String str;
-
+		
 		try {
 			Context.getUserContext().addProxyPrivilege(PrivilegeConstants.GET_GLOBAL_PROPERTIES);
 			str = Context.getAdministrationService().getGlobalProperty(OpenmrsConstants.GP_PASSWORD_MINIMUM_LENGTH);
 		} finally {
 			Context.getUserContext().removeProxyPrivilege(PrivilegeConstants.GET_GLOBAL_PROPERTIES);
 		}
-
+		
 		if (StringUtils.isNotBlank(str)) {
 			minLength = Integer.valueOf(str);
 		}

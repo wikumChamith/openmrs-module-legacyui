@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -187,7 +187,8 @@ public class DWRConceptServiceTest extends BaseModuleWebContextSensitiveTest {
 				Object item = iterator.next();
 				if (item instanceof ConceptListItem) {
 					ConceptListItem resultItem = (ConceptListItem) item;
-					if (resultItem != null && OpenmrsUtil.nullSafeEquals(resultItem.getConceptId(), expected.getConceptId())) {
+					if (resultItem != null
+					        && OpenmrsUtil.nullSafeEquals(resultItem.getConceptId(), expected.getConceptId())) {
 						found = Boolean.TRUE;
 						break;
 					}
@@ -211,7 +212,7 @@ public class DWRConceptServiceTest extends BaseModuleWebContextSensitiveTest {
 		user.setUserProperty(OpenmrsConstants.USER_PROPERTY_PROFICIENT_LOCALES, "en_GB, en_US, pl");
 		Context.getUserService().saveUser(user);
 		Context.clearSession();
-
+		
 		Concept answer1 = Context.getConceptService().getConcept(7);
 		answer1.addName(new ConceptName("TAK", new Locale("pl")));
 		Context.getConceptService().saveConcept(answer1);

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -42,12 +42,12 @@ public class WebTextHandler extends TextHandler {
 	}
 	
 	/**
-	 * Returns the ComplexData for an Obs depending on the view. Currently, the views implemented
-	 * are those supported by ancestor plus the following:
+	 * Returns the ComplexData for an Obs depending on the view. Currently, the views implemented are
+	 * those supported by ancestor plus the following:
 	 * <ul>
-	 * <li>{@link ComplexObsHandler#URI_VIEW}: a lightweight alternative to returning the
-	 * ComplexData from the parent class since this does not require access to the service layer.
-	 * Gives a link to the ComplexServlet for this obs
+	 * <li>{@link ComplexObsHandler#URI_VIEW}: a lightweight alternative to returning the ComplexData
+	 * from the parent class since this does not require access to the service layer. Gives a link to
+	 * the ComplexServlet for this obs
 	 * </ul>
 	 * 
 	 * @see org.openmrs.obs.handler.TextHandler#getObs(Obs, String)
@@ -56,8 +56,8 @@ public class WebTextHandler extends TextHandler {
 	public Obs getObs(Obs obs, String view) {
 		if (ComplexObsHandler.URI_VIEW.equals(view)) {
 			Locale locale = Context.getLocale();
-			ComplexData cd = new ComplexData(obs.getValueAsString(locale), WebHandlerUtils.getHyperlink(obs,
-			    ComplexObsHandler.RAW_VIEW));
+			ComplexData cd = new ComplexData(obs.getValueAsString(locale),
+			        WebHandlerUtils.getHyperlink(obs, ComplexObsHandler.RAW_VIEW));
 			obs.setComplexData(cd);
 			return obs;
 		}

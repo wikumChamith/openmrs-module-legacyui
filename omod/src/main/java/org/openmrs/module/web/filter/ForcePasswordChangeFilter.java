@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -29,7 +29,7 @@ import org.openmrs.web.user.UserProperties;
  * the user to change his password.
  */
 public class ForcePasswordChangeFilter implements Filter {
-
+	
 	private static boolean enabled = true;
 	
 	private String excludeURL;
@@ -47,11 +47,11 @@ public class ForcePasswordChangeFilter implements Filter {
 	}
 	
 	/**
-	 * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest,
-	 *      javax.servlet.ServletResponse, javax.servlet.FilterChain)
+	 * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest, javax.servlet.ServletResponse,
+	 *      javax.servlet.FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
-	        ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+	        throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		String requestURI = httpRequest.getRequestURI().substring(httpRequest.getContextPath().length());
 		
@@ -94,11 +94,11 @@ public class ForcePasswordChangeFilter implements Filter {
 		excludedURLs = excludeURL.split(",");
 		changePasswordForm = config.getInitParameter("changePasswordForm");
 	}
-
+	
 	public static boolean isEnabled() {
 		return enabled;
 	}
-
+	
 	public static void setEnabled(boolean enabled) {
 		ForcePasswordChangeFilter.enabled = enabled;
 	}

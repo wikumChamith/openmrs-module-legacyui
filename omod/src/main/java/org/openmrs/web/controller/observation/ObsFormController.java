@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -77,8 +77,8 @@ public class ObsFormController extends SimpleFormController {
 		
 		binder.registerCustomEditor(java.lang.Integer.class, new CustomNumberEditor(java.lang.Integer.class, true));
 		binder.registerCustomEditor(java.util.Date.class, new CustomDateEditor(Context.getDateFormat(), true));
-		binder.registerCustomEditor(java.util.Date.class, "valueDatetime", new CustomDateEditor(Context.getDateTimeFormat(),
-		        true));
+		binder.registerCustomEditor(java.util.Date.class, "valueDatetime",
+		    new CustomDateEditor(Context.getDateTimeFormat(), true));
 		binder.registerCustomEditor(java.util.Date.class, "valueTime", new CustomDateEditor(Context.getTimeFormat(), true));
 		binder.registerCustomEditor(Location.class, new LocationEditor());
 		binder.registerCustomEditor(java.lang.Boolean.class, new CustomBooleanEditor(true)); //allow for an empty boolean value
@@ -115,8 +115,8 @@ public class ObsFormController extends SimpleFormController {
 	}
 	
 	/**
-	 * The onSubmit function receives the form/command object that was modified by the input form
-	 * and saves it to the db
+	 * The onSubmit function receives the form/command object that was modified by the input form and
+	 * saves it to the db
 	 * 
 	 * @see org.springframework.web.servlet.mvc.SimpleFormController#onSubmit(javax.servlet.http.HttpServletRequest,
 	 *      javax.servlet.http.HttpServletResponse, java.lang.Object,
@@ -177,12 +177,10 @@ public class ObsFormController extends SimpleFormController {
 					httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "Obs.unvoidedSuccessfully");
 				}
 				
-			}
-			catch (IllegalArgumentException e) {
+			} catch (IllegalArgumentException e) {
 				errors.reject("invalidImage", "Obs.invalidImage");
 				return showForm(request, response, errors);
-			}
-			catch (APIException e) {
+			} catch (APIException e) {
 				httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, e.getMessage());
 				return showForm(request, response, errors);
 			}
@@ -203,8 +201,8 @@ public class ObsFormController extends SimpleFormController {
 	}
 	
 	/**
-	 * This is called prior to displaying a form for the first time. It tells Spring the
-	 * form/command object to load into the request
+	 * This is called prior to displaying a form for the first time. It tells Spring the form/command
+	 * object to load into the request
 	 * 
 	 * @see org.springframework.web.servlet.mvc.AbstractFormController#formBackingObject(javax.servlet.http.HttpServletRequest)
 	 */

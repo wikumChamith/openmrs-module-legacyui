@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -41,7 +41,8 @@ public class ProgramWorkflowHandler extends AbstractFieldGenHandler implements F
 			}
 			String programPrefix = "false";
 			if (this.fieldGenTag.getParameterMap() != null) {
-				programPrefix = "true".equalsIgnoreCase((String) (this.fieldGenTag.getParameterMap().get("programPrefix"))) ? "true"
+				programPrefix = "true".equalsIgnoreCase((String) (this.fieldGenTag.getParameterMap().get("programPrefix")))
+				        ? "true"
 				        : "false";
 			}
 			

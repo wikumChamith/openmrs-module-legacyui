@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -79,8 +79,8 @@ public class PatientFormController extends PersonFormController {
 	PatientValidator patientValidator;
 	
 	/**
-	 * Allows for other Objects to be used as values in input tags. Normally, only strings and lists
-	 * are expected
+	 * Allows for other Objects to be used as values in input tags. Normally, only strings and lists are
+	 * expected
 	 * 
 	 * @see org.springframework.web.servlet.mvc.BaseCommandController#initBinder(javax.servlet.http.HttpServletRequest,
 	 *      org.springframework.web.bind.ServletRequestDataBinder)
@@ -210,8 +210,7 @@ public class PatientFormController extends PersonFormController {
 							String msg = getMessageSourceAccessor().getMessage("error.identifier.formatInvalid", args);
 							errors.rejectValue("identifiers", msg);
 						}
-					}
-					catch (Exception e) {
+					} catch (Exception e) {
 						log.error("exception thrown with: " + pit.getName() + " " + identifier);
 						log.error("Error while adding patient identifiers to savedIdentifier list", e);
 						String msg = getMessageSourceAccessor().getMessage("error.identifier.formatInvalid", args);
@@ -230,8 +229,8 @@ public class PatientFormController extends PersonFormController {
 	}
 	
 	/**
-	 * The onSubmit function receives the form/command object that was modified by the input form
-	 * and saves it to the db
+	 * The onSubmit function receives the form/command object that was modified by the input form and
+	 * saves it to the db
 	 * 
 	 * @see org.springframework.web.servlet.mvc.SimpleFormController#onSubmit(javax.servlet.http.HttpServletRequest,
 	 *      javax.servlet.http.HttpServletResponse, java.lang.Object,
@@ -258,12 +257,11 @@ public class PatientFormController extends PersonFormController {
 					ps.purgePatient(patient);
 					httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "Patient.deleted");
 					return new ModelAndView(new RedirectView("index.htm"));
-				}
-				catch (DataIntegrityViolationException e) {
+				} catch (DataIntegrityViolationException e) {
 					log.error("Unable to delete patient because of database FK errors: " + patient, e);
 					httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "Patient.cannot.delete");
-					return new ModelAndView(new RedirectView(getSuccessView() + "?patientId="
-					        + patient.getPatientId().toString()));
+					return new ModelAndView(
+					        new RedirectView(getSuccessView() + "?patientId=" + patient.getPatientId().toString()));
 				}
 			} else if (action.equals(msa.getMessage("Patient.void"))) {
 				String voidReason = request.getParameter("voidReason");
@@ -284,38 +282,32 @@ public class PatientFormController extends PersonFormController {
 				
 				try {
 					Context.getPatientService().savePatient(patient);
-				}
-				catch (ValidationException ve) {
+				} catch (ValidationException ve) {
 					log.error(ve);
 					httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, ve.getMessage());
 					isError = true;
-				}
-				catch (InvalidIdentifierFormatException iife) {
+				} catch (InvalidIdentifierFormatException iife) {
 					log.error(iife);
 					patient.removeIdentifier(iife.getPatientIdentifier());
 					httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "PatientIdentifier.error.formatInvalid");
 					isError = true;
-				}
-				catch (IdentifierNotUniqueException inue) {
+				} catch (IdentifierNotUniqueException inue) {
 					log.error(inue);
 					patient.removeIdentifier(inue.getPatientIdentifier());
 					httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "PatientIdentifier.error.notUnique");
 					isError = true;
-				}
-				catch (DuplicateIdentifierException die) {
+				} catch (DuplicateIdentifierException die) {
 					log.error(die);
 					patient.removeIdentifier(die.getPatientIdentifier());
 					httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "PatientIdentifier.error.duplicate");
 					isError = true;
-				}
-				catch (InsufficientIdentifiersException iie) {
+				} catch (InsufficientIdentifiersException iie) {
 					log.error(iie);
 					patient.removeIdentifier(iie.getPatientIdentifier());
 					httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR,
 					    "PatientIdentifier.error.insufficientIdentifiers");
 					isError = true;
-				}
-				catch (PatientIdentifierException pie) {
+				} catch (PatientIdentifierException pie) {
 					log.error(pie);
 					patient.removeIdentifier(pie.getPatientIdentifier());
 					httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "PatientIdentifier.error.general");
@@ -327,8 +319,8 @@ public class PatientFormController extends PersonFormController {
 					log.debug("Patient is dead, so let's make sure there's an Obs for it");
 					// need to make sure there is an Obs that represents the patient's cause of death, if applicable
 					
-					String causeOfDeathConceptId = Context.getAdministrationService().getGlobalProperty(
-					    "concept.causeOfDeath");
+					String causeOfDeathConceptId = Context.getAdministrationService()
+					        .getGlobalProperty("concept.causeOfDeath");
 					Concept causeOfDeath = Context.getConceptService().getConcept(causeOfDeathConceptId);
 					
 					if (causeOfDeath != null) {
@@ -383,8 +375,8 @@ public class PatientFormController extends PersonFormController {
 									obsDeath.setObsDatetime(dateDeath);
 									
 									// check if this is an "other" concept - if so, then we need to add value_text
-									String otherConcept = Context.getAdministrationService().getGlobalProperty(
-									    "concept.otherNonCoded");
+									String otherConcept = Context.getAdministrationService()
+									        .getGlobalProperty("concept.otherNonCoded");
 									Concept conceptOther = Context.getConceptService().getConcept(otherConcept);
 									boolean deathReasonChanged = false;
 									if (conceptOther != null) {
@@ -418,7 +410,8 @@ public class PatientFormController extends PersonFormController {
 							}
 						}
 					} else {
-						log.debug("Cause of death is null - should not have gotten here without throwing an error on the form.");
+						log.debug(
+						    "Cause of death is null - should not have gotten here without throwing an error on the form.");
 					}
 					
 				}
@@ -439,8 +432,8 @@ public class PatientFormController extends PersonFormController {
 	}
 	
 	/**
-	 * This is called prior to displaying a form for the first time. It tells Spring the
-	 * form/command object to load into the request
+	 * This is called prior to displaying a form for the first time. It tells Spring the form/command
+	 * object to load into the request
 	 * 
 	 * @see org.springframework.web.servlet.mvc.AbstractFormController#formBackingObject(javax.servlet.http.HttpServletRequest)
 	 */
@@ -463,8 +456,7 @@ public class PatientFormController extends PersonFormController {
 						session.setAttribute(WebConstants.OPENMRS_ERROR_ARGS, patientId);
 						return new Patient();
 					}
-				}
-				catch (NumberFormatException numberError) {
+				} catch (NumberFormatException numberError) {
 					log.warn("Invalid patientId supplied: '" + patientId + "'", numberError);
 				}
 			}
@@ -536,8 +528,8 @@ public class PatientFormController extends PersonFormController {
 			patientVariation = "Dead";
 		}
 		
-		Concept reasonForExitConcept = Context.getConceptService().getConcept(
-		    Context.getAdministrationService().getGlobalProperty("concept.reasonExitedCare"));
+		Concept reasonForExitConcept = Context.getConceptService()
+		        .getConcept(Context.getAdministrationService().getGlobalProperty("concept.reasonExitedCare"));
 		
 		if (reasonForExitConcept != null && patient.getPatientId() != null) {
 			List<Obs> patientExitObs = Context.getObsService().getObservationsByPersonAndConcept(patient,

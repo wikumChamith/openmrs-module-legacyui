@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -33,17 +33,17 @@ import java.util.List;
 import java.util.Set;
 
 public class ShortPatientFormValidatorTest extends BaseModuleWebContextSensitiveTest {
-
+	
 	// Resets the AddressSupport singleton (which caches a global property across tests)
 	// so PersonAddressValidator does not inherit required-element state from earlier tests.
 	private static final String EMPTY_REQUIRED_ELEMENTS_ADDRESS_TEMPLATE = "<org.openmrs.layout.address.AddressTemplate>"
 	        + "<nameMappings class=\"properties\"/>" + "<sizeMappings class=\"properties\"/>" + "<lineByLineFormat/>"
 	        + "<requiredElements/>" + "</org.openmrs.layout.address.AddressTemplate>";
-
+	
 	ShortPatientFormValidator validator = null;
-
+	
 	PatientService ps = null;
-
+	
 	/**
 	 * Run this before each unit test in this class.
 	 *

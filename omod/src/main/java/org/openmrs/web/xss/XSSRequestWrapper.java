@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -62,28 +62,27 @@ public class XSSRequestWrapper extends HttpServletRequestWrapper {
 		String sanitizedBody = Encode.forHtmlContent(requestBody);
 		
 		return new ServletInputStream() {
-
+			
 			private final ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(sanitizedBody.getBytes());
-
+			
 			@Override
 			public int read() throws IOException {
 				return byteArrayInputStream.read();
 			}
-
-
+			
 			@Override
 			public boolean isFinished() {
 				return byteArrayInputStream.available() == 0;
 			}
-
+			
 			@Override
 			public boolean isReady() {
 				return true;
 			}
-
+			
 			@Override
 			public void setReadListener(ReadListener readListener) {
-
+				
 			}
 		};
 	}

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -100,8 +100,8 @@ public class PatientDashboardController {
 			patientVariation = "Dead";
 		}
 		
-		Concept reasonForExitConcept = Context.getConceptService().getConcept(
-		    Context.getAdministrationService().getGlobalProperty("concept.reasonExitedCare"));
+		Concept reasonForExitConcept = Context.getConceptService()
+		        .getConcept(Context.getAdministrationService().getGlobalProperty("concept.reasonExitedCare"));
 		
 		if (reasonForExitConcept != null) {
 			List<Obs> patientExitObs = Context.getObsService().getObservationsByPersonAndConcept(patient,
@@ -157,8 +157,7 @@ public class PatientDashboardController {
 		Patient patient = null;
 		try {
 			patient = ps.getPatient(Integer.valueOf(patientId));
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			patient = ps.getPatientByUuid(patientId);
 		}
 		return patient;

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -251,8 +251,7 @@ public class ObsTableWidget extends TagSupport {
 			} else {
 				try {
 					c = cs.getConcept(Integer.valueOf(s.trim()));
-				}
-				catch (Exception ex) {
+				} catch (Exception ex) {
 					log.error("Error during concept c getConcept", ex);
 				}
 			}
@@ -375,8 +374,7 @@ public class ObsTableWidget extends TagSupport {
 		try {
 			JspWriter w = pageContext.getOut();
 			w.println(ret);
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			log.error("Error while starting ObsTableWidget tag", ex);
 		}
 		return SKIP_BODY;

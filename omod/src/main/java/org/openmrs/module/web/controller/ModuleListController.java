@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -65,8 +65,8 @@ public class ModuleListController extends SimpleFormController {
 	protected static final Log log = LogFactory.getLog(ModuleListController.class);
 	
 	/**
-	 * The onSubmit function receives the form/command object that was modified by the input form
-	 * and saves it to the db
+	 * The onSubmit function receives the form/command object that was modified by the input form and
+	 * saves it to the db
 	 * 
 	 * @see org.springframework.web.servlet.mvc.SimpleFormController#onSubmit(HttpServletRequest,
 	 *      HttpServletResponse, Object, BindException)
@@ -74,18 +74,18 @@ public class ModuleListController extends SimpleFormController {
 	@Override
 	protected ModelAndView onSubmit(HttpServletRequest request, HttpServletResponse response, Object command,
 	        BindException errors) throws Exception {
-
+		
 		if (!Context.hasPrivilege(PrivilegeConstants.MANAGE_MODULES)) {
 			throw new APIAuthenticationException("Privilege required: " + PrivilegeConstants.MANAGE_MODULES);
 		}
-
+		
 		HttpSession httpSession = request.getSession();
 		String moduleId = ServletRequestUtils.getStringParameter(request, "moduleId", "");
 		String view = getFormView();
 		String success = "";
 		String error = "";
 		MessageSourceAccessor msa = getMessageSourceAccessor();
-
+		
 		String action = ServletRequestUtils.getStringParameter(request, "action", "");
 		if (ServletRequestUtils.getStringParameter(request, "start.x", null) != null) {
 			action = "start";
@@ -94,7 +94,7 @@ public class ModuleListController extends SimpleFormController {
 		} else if (ServletRequestUtils.getStringParameter(request, "unload.x", null) != null) {
 			action = "unload";
 		}
-
+		
 		// handle module upload
 		if ("upload".equals(action)) {
 			// double check upload permissions
@@ -119,7 +119,7 @@ public class ModuleListController extends SimpleFormController {
 						inputStream = ModuleUtil.getURLStream(url);
 						moduleFile = ModuleUtil.insertModuleFile(inputStream, fileName);
 					} else if (request instanceof MultipartHttpServletRequest) {
-
+						
 						MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 						MultipartFile multipartModuleFile = multipartRequest.getFile("moduleFile");
 						if (multipartModuleFile != null && !multipartModuleFile.isEmpty()) {
@@ -127,16 +127,16 @@ public class ModuleListController extends SimpleFormController {
 							// if user is using the "upload an update" form instead of the main form
 							if (updateModule) {
 								// parse the module so that we can get the id
-
+								
 								Module tmpModule = new ModuleFileParser(multipartModuleFile.getInputStream()).parse();
 								Module existingModule = ModuleFactory.getModuleById(tmpModule.getModuleId());
 								if (existingModule != null) {
 									dependentModulesStopped = ModuleFactory.stopModule(existingModule, false, true); // stop the module with these parameters so that mandatory modules can be upgraded
-
+									
 									for (Module depMod : dependentModulesStopped) {
 										WebModuleUtil.stopModule(depMod, getServletContext(), true);
 									}
-
+									
 									WebModuleUtil.stopModule(existingModule, getServletContext(), true);
 									ModuleFactory.unloadModule(existingModule);
 								}
@@ -150,38 +150,36 @@ public class ModuleListController extends SimpleFormController {
 						}
 					}
 					module = ModuleFactory.loadModule(moduleFile);
-				}
-				catch (ModuleException me) {
+				} catch (ModuleException me) {
 					log.warn("Unable to load and start module", me);
 					error = me.getMessage();
-				}
-				finally {
+				} finally {
 					// clean up the module repository folder
 					try {
 						if (inputStream != null) {
 							inputStream.close();
 						}
-					}
-					catch (IOException io) {
+					} catch (IOException io) {
 						log.warn("Unable to close temporary input stream", io);
 					}
-
+					
 					if (module == null && moduleFile != null) {
 						moduleFile.delete();
 					}
 				}
-
+				
 				// if we didn't have trouble loading the module, start it
 				if (module != null) {
 					ModuleFactory.startModule(module);
 					boolean someModuleNeedsARefresh = WebModuleUtil.startModule(module, getServletContext(), true);
 					if (module.isStarted()) {
 						success = msa.getMessage("Module.loadedAndStarted", new String[] { module.getName() });
-
+						
 						if (updateModule && dependentModulesStopped != null) {
 							for (Module depMod : sortStartupOrder(dependentModulesStopped)) {
 								ModuleFactory.startModule(depMod);
-								boolean thisModuleCausesRefresh = WebModuleUtil.startModule(depMod, getServletContext(), true);
+								boolean thisModuleCausesRefresh = WebModuleUtil.startModule(depMod, getServletContext(),
+								    true);
 								someModuleNeedsARefresh = someModuleNeedsARefresh || thisModuleCausesRefresh;
 								if (someModuleNeedsARefresh) {
 									WebModuleUtil.refreshWAC(getServletContext(), false, depMod);
@@ -199,7 +197,7 @@ public class ModuleListController extends SimpleFormController {
 								((OpenmrsDWRServlet) WebModuleUtil.getServlet("dwr-invoker")).reInitServlet();
 							}
 						}
-
+						
 					} else {
 						success = msa.getMessage("Module.loaded", new String[] { module.getName() });
 					}
@@ -215,7 +213,7 @@ public class ModuleListController extends SimpleFormController {
 					if (ModuleFactory.isModuleStarted(module)) {
 						continue;
 					}
-
+					
 					ModuleFactory.startModule(module);
 					boolean thisModuleCausesRefresh = WebModuleUtil.startModule(module, getServletContext(), true);
 					someModuleNeedsARefresh = someModuleNeedsARefresh || thisModuleCausesRefresh;
@@ -223,7 +221,7 @@ public class ModuleListController extends SimpleFormController {
 						modulesToRefresh.add(module);
 					}
 				}
-
+				
 				if (someModuleNeedsARefresh) {
 					WebModuleUtil.refreshWAC(getServletContext(), false, null);
 					for (Module module : modulesToRefresh) {
@@ -257,10 +255,10 @@ public class ModuleListController extends SimpleFormController {
 			} else {
 				log.debug("Module id: " + moduleId);
 				Module mod = ModuleFactory.getModuleById(moduleId);
-
+				
 				// Argument to pass to the success/error message
 				Object[] args = new Object[] { moduleId };
-
+				
 				if (mod == null) {
 					error = msa.getMessage("Module.invalid", args);
 				} else {
@@ -288,24 +286,24 @@ public class ModuleListController extends SimpleFormController {
 				}
 			}
 		}
-
+		
 		view = getSuccessView();
-
+		
 		if (!"".equals(success)) {
 			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, success);
 		}
-
+		
 		if (!"".equals(error)) {
 			httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, error);
 		}
-
+		
 		return new ModelAndView(new RedirectView(view));
 	}
 	
 	/**
 	 * @param modulesToStart
-	 * @return a new list, with the same elements as modulesToStart, sorted so that no module is
-	 *         before a module it depends on
+	 * @return a new list, with the same elements as modulesToStart, sorted so that no module is before
+	 *         a module it depends on
 	 * @should sort modules correctly
 	 */
 	List<Module> sortStartupOrder(List<Module> modulesToStart) {
@@ -324,8 +322,8 @@ public class ModuleListController extends SimpleFormController {
 	}
 	
 	/**
-	 * Looks for a module in the list that doesn't depend on any other modules in the list. If any
-	 * is found, that module is removed from the list and returned.
+	 * Looks for a module in the list that doesn't depend on any other modules in the list. If any is
+	 * found, that module is removed from the list and returned.
 	 * 
 	 * @param candidates
 	 * @return
@@ -349,8 +347,8 @@ public class ModuleListController extends SimpleFormController {
 	}
 	
 	/**
-	 * This is called prior to displaying a form for the first time. It tells Spring the
-	 * form/command object to load into the request
+	 * This is called prior to displaying a form for the first time. It tells Spring the form/command
+	 * object to load into the request
 	 * 
 	 * @see org.springframework.web.servlet.mvc.AbstractFormController#formBackingObject(HttpServletRequest)
 	 */

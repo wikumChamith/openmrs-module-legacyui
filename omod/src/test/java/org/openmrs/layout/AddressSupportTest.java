@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -28,8 +28,8 @@ public class AddressSupportTest extends BaseModuleWebContextSensitiveTest {
 	/**
 	 * As described in TRUNK-3849, when AddressSupport was copied from package
 	 * org.openmrs.layout.web.address to org.openmrs.layout.address, and the AddressTemplate in the
-	 * database was updated, the web AddressSupport class stopped working with ClassCastExceptions.
-	 * A fix was made for backward-compatibility; this test ensures that the fix is working.
+	 * database was updated, the web AddressSupport class stopped working with ClassCastExceptions. A
+	 * fix was made for backward-compatibility; this test ensures that the fix is working.
 	 */
 	@Test
 	@Verifies(value = "should succeed even if db AddressTemplate class has changed", method = "getAddressTemplate()")

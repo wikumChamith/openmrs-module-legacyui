@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -253,8 +253,7 @@ public class FormatTag extends TagSupport {
 				} else {
 					pageContext.getOut().write(sb.toString());
 				}
-			}
-			catch (IOException e) {
+			} catch (IOException e) {
 				log.error("Failed to write to pageContext.getOut()", e);
 			}
 		}
@@ -396,16 +395,16 @@ public class FormatTag extends TagSupport {
 				sb.append("...");
 			}
 		} else {
-			sb.append(StringEscapeUtils.escapeHtml4(Context.getMessageSourceService().getMessage(
-			    "CustomDatatype.error.missingDatatype", new Object[] { descriptor.getDatatypeClassname() },
-			    Context.getLocale())));
+			sb.append(StringEscapeUtils
+			        .escapeHtml4(Context.getMessageSourceService().getMessage("CustomDatatype.error.missingDatatype",
+			            new Object[] { descriptor.getDatatypeClassname() }, Context.getLocale())));
 			sb.append(StringEscapeUtils.escapeHtml4(val.getValueReference()));
 		}
 	}
 	
 	/**
-	 * Formats a Concept and prints it to sb, respecting conceptNameType and conceptNameTag if they
-	 * are specified and a match is found. (This will always prints something.)
+	 * Formats a Concept and prints it to sb, respecting conceptNameType and conceptNameTag if they are
+	 * specified and a match is found. (This will always prints something.)
 	 * 
 	 * @param sb
 	 * @param concept
@@ -601,15 +600,15 @@ public class FormatTag extends TagSupport {
 	}
 	
 	/**
-	 * Filters a list of encounter providers according to the global property which determines
-	 * providers in which encounter roles to display.
+	 * Filters a list of encounter providers according to the global property which determines providers
+	 * in which encounter roles to display.
 	 * 
 	 * @param eps the encounter providers to filter.
 	 * @return the filtered encounter providers.
 	 */
 	private Set<Provider> getDisplayEncounterProviders(Map<EncounterRole, Set<Provider>> encounterProviders) {
-		String encounterRoles = Context.getAdministrationService().getGlobalProperty(
-		    OpenmrsConstants.GP_DASHBOARD_PROVIDER_DISPLAY_ENCOUNTER_ROLES, null);
+		String encounterRoles = Context.getAdministrationService()
+		        .getGlobalProperty(OpenmrsConstants.GP_DASHBOARD_PROVIDER_DISPLAY_ENCOUNTER_ROLES, null);
 		
 		if (StringUtils.isEmpty(encounterRoles)) {
 			

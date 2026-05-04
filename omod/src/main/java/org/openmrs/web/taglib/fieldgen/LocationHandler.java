@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -41,8 +41,8 @@ public class LocationHandler extends AbstractFieldGenHandler implements FieldGen
 				//  is set to null by a previous user and the current user is only editing.  Therefore,
 				//  the FieldGenTag.java#setAllowUserDefault() should only be set to true if
 				//  creating an object for the first time)
-				String userDefaultLocation = Context.getAuthenticatedUser().getUserProperty(
-				    OpenmrsConstants.USER_PROPERTY_DEFAULT_LOCATION);
+				String userDefaultLocation = Context.getAuthenticatedUser()
+				        .getUserProperty(OpenmrsConstants.USER_PROPERTY_DEFAULT_LOCATION);
 				initialValue = userDefaultLocation;
 			}
 			

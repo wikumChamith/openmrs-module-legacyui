@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -23,8 +23,8 @@ public abstract class BoxExt extends Extension {
 	public abstract String getPortletUrl();
 	
 	/**
-	 * The title is used as the title for the boxHeader. The returned String can be either straight
-	 * up plain text or a Spring message code.
+	 * The title is used as the title for the boxHeader. The returned String can be either straight up
+	 * plain text or a Spring message code.
 	 * 
 	 * @return String title
 	 */

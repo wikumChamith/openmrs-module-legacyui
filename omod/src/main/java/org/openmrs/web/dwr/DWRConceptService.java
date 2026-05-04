@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -232,8 +232,7 @@ public class DWRConceptService {
 					objectList.add(new ConceptListItem(searchResult));
 				}
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.error("Error while finding concepts + " + e.getMessage(), e);
 			objectList.add(Context.getMessageSourceService().getMessage("Concept.search.error") + " - " + e.getMessage());
 		}
@@ -280,13 +279,12 @@ public class DWRConceptService {
 	}
 	
 	/**
-	 * Find a list of {@link ConceptListItem} or {@link ConceptDrugListItem}s that are answers to
-	 * the given question. The given question is determined by the given <code>conceptId</code>
+	 * Find a list of {@link ConceptListItem} or {@link ConceptDrugListItem}s that are answers to the
+	 * given question. The given question is determined by the given <code>conceptId</code>
 	 * 
 	 * @param text the text to search for within the answers
 	 * @param conceptId the conceptId of the question concept
-	 * @param includeVoided (this argument is ignored now. searching for voided answers is not
-	 *            logical)
+	 * @param includeVoided (this argument is ignored now. searching for voided answers is not logical)
 	 * @param includeDrugConcepts if true, drug concepts are searched too
 	 * @return list of {@link ConceptListItem} or {@link ConceptDrugListItem} answers that match the
 	 *         query
@@ -295,8 +293,8 @@ public class DWRConceptService {
 	 * @should search for concept answers in all search locales
 	 * @should not return duplicates
 	 */
-	public List<Object> findConceptAnswers(String text, Integer conceptId, boolean includeVoided, boolean includeDrugConcepts)
-	        throws Exception {
+	public List<Object> findConceptAnswers(String text, Integer conceptId, boolean includeVoided,
+	        boolean includeDrugConcepts) throws Exception {
 		
 		if (includeVoided) {
 			throw new APIException("You should not include voideds in the search.");
@@ -423,8 +421,8 @@ public class DWRConceptService {
 		// selected
 		// by the openmrsSearch.fillTable(objs) function
 		if (showConcept) {
-			ConceptDrugListItem thisConcept = new ConceptDrugListItem(null, conceptId, concept.getName(locale, false)
-			        .getName());
+			ConceptDrugListItem thisConcept = new ConceptDrugListItem(null, conceptId,
+			        concept.getName(locale, false).getName());
 			items.add(thisConcept);
 		}
 		
@@ -496,8 +494,8 @@ public class DWRConceptService {
 	}
 	
 	/**
-	 * Converts the datatype of a concept that already has Obs referencing it from boolean to coded
-	 * to support addition of more coded answers
+	 * Converts the datatype of a concept that already has Obs referencing it from boolean to coded to
+	 * support addition of more coded answers
 	 * 
 	 * @param conceptId the conceptId of the concept to be converted
 	 * @return String to act as a signal if successfully converted or an error message
@@ -509,22 +507,20 @@ public class DWRConceptService {
 			//this particular message isn't displayed in the browser rather it acts as
 			//a signal that the concept was successfully converted and should refresh page. 
 			return "refresh";
-		}
-		catch (ConceptsLockedException cle) {
+		} catch (ConceptsLockedException cle) {
 			log.error("Tried to save/convert concept while concepts were locked", cle);
 			return Context.getMessageSourceService().getMessage("Concept.concepts.locked");
-		}
-		catch (APIException e) {
+		} catch (APIException e) {
 			log.error("Error while trying to change the datatype of concept", e);
 			return Context.getMessageSourceService().getMessage("Concept.cannot.save");
 		}
 	}
 	
 	/**
-	 * Returns a map of results with the values as count of matches and a partial list of the
-	 * matching concepts (depending on values of start and length parameters) while the keys are are
-	 * 'count' and 'objectList' respectively, if the length parameter is not specified, then all
-	 * matches will be returned from the start index if specified.
+	 * Returns a map of results with the values as count of matches and a partial list of the matching
+	 * concepts (depending on values of start and length parameters) while the keys are are 'count' and
+	 * 'objectList' respectively, if the length parameter is not specified, then all matches will be
+	 * returned from the start index if specified.
 	 * 
 	 * @param phrase concept name or conceptId
 	 * @param includeRetired boolean if false, will exclude retired concepts
@@ -645,8 +641,7 @@ public class DWRConceptService {
 				objectList.add(Context.getMessageSourceService().getMessage("searchWidget.noMatchesFound"));
 			}
 			
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.error("Error while searching for concepts", e);
 			objectList.clear();
 			objectList.add(Context.getMessageSourceService().getMessage("Concept.search.error") + " - " + e.getMessage());
@@ -701,8 +696,8 @@ public class DWRConceptService {
 			terms.addAll(cs.getConceptReferenceTerms(phrase, source, start, length, includeRetired));
 			
 			if (terms.size() == 0) {
-				objectList.add(mss.getMessage("general.noMatchesFound", new Object[] { "'" + phrase + "'" },
-				    Context.getLocale()));
+				objectList.add(
+				    mss.getMessage("general.noMatchesFound", new Object[] { "'" + phrase + "'" }, Context.getLocale()));
 			} else {
 				objectList = new ArrayList<Object>(terms.size());
 				for (ConceptReferenceTerm term : terms) {
@@ -712,8 +707,7 @@ public class DWRConceptService {
 					objectList.add(conceptReferenceTermListItem);
 				}
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.error("Error while searching for concept reference terms", e);
 			objectList.add(mss.getMessage("ConceptReferenceTerm.search.error") + " - " + e.getMessage());
 		}
@@ -754,12 +748,11 @@ public class DWRConceptService {
 			
 			resultsMap.put("count", conceptReferenceTermCount);
 			resultsMap.put("objectList", objectList);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.error("Error while searching for conceptReferenceTerms", e);
 			objectList.clear();
-			objectList.add(Context.getMessageSourceService().getMessage("ConceptReferenceTerm.search.error") + " - "
-			        + e.getMessage());
+			objectList.add(
+			    Context.getMessageSourceService().getMessage("ConceptReferenceTerm.search.error") + " - " + e.getMessage());
 			resultsMap.put("count", 0);
 			resultsMap.put("objectList", objectList);
 		}
@@ -799,8 +792,7 @@ public class DWRConceptService {
 			try {
 				cs.saveConceptReferenceTerm(term);
 				return null;//indicates that the term was saved successfully
-			}
-			catch (APIException e) {
+			} catch (APIException e) {
 				errors.add(mss.getMessage("ConceptReferenceTerm.save.error"));
 			}
 		}

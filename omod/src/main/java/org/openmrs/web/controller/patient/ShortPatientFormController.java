@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -177,8 +177,7 @@ public class ShortPatientFormController {
 	 * 
 	 * @param request the webRequest object
 	 * @param relationshipsMap
-	 * @param patientModel the modelObject containing the patient info collected from the form
-	 *            fields
+	 * @param patientModel the modelObject containing the patient info collected from the form fields
 	 * @param result
 	 * @return the view to forward to
 	 * @should pass if all the form data is valid
@@ -252,8 +251,7 @@ public class ShortPatientFormController {
 						}
 					}
 				}
-			}
-			catch (APIException e) {
+			} catch (APIException e) {
 				log.error("Error occurred while attempting to save patient", e);
 				request.setAttribute(WebConstants.OPENMRS_ERROR_ATTR,
 				    Context.getMessageSourceService().getMessage("Patient.save.error"), WebRequest.SCOPE_SESSION);
@@ -327,9 +325,8 @@ public class ShortPatientFormController {
 				}
 				
 				//if the value has been changed for an existing attribute, void it and create a new one
-				if (formAttribute.getPersonAttributeId() != null
-				        && !OpenmrsUtil.nullSafeEquals(formAttribute.getValue(),
-				            patient.getAttribute(formAttribute.getAttributeType()).getValue())) {
+				if (formAttribute.getPersonAttributeId() != null && !OpenmrsUtil.nullSafeEquals(formAttribute.getValue(),
+				    patient.getAttribute(formAttribute.getAttributeType()).getValue())) {
 					//As per the logic in Person.addAttribute, the old edited attribute will get voided 
 					//as this new one is getting added 
 					formAttribute = new PersonAttribute(formAttribute.getAttributeType(), formAttribute.getValue());
@@ -368,16 +365,16 @@ public class ShortPatientFormController {
 		}
 		
 		// Check if relationships must be shown
-		String showRelationships = Context.getAdministrationService().getGlobalProperty(
-		    OpenmrsConstants.GLOBAL_PROPERTY_NEWPATIENTFORM_SHOW_RELATIONSHIPS, "false");
+		String showRelationships = Context.getAdministrationService()
+		        .getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_NEWPATIENTFORM_SHOW_RELATIONSHIPS, "false");
 		
 		if ("false".equals(showRelationships)) {
 			return relationshipMap;
 		}
 		
 		// gp is in the form "3a, 7b, 4a"
-		String relationshipsString = Context.getAdministrationService().getGlobalProperty(
-		    OpenmrsConstants.GLOBAL_PROPERTY_NEWPATIENTFORM_RELATIONSHIPS, "");
+		String relationshipsString = Context.getAdministrationService()
+		        .getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_NEWPATIENTFORM_RELATIONSHIPS, "");
 		relationshipsString = relationshipsString.trim();
 		if (relationshipsString.length() > 0) {
 			String[] showRelations = relationshipsString.split(",");
@@ -394,8 +391,8 @@ public class ShortPatientFormController {
 				String showRelationId = showRelation.replace("a", "");
 				showRelationId = showRelationId.replace("b", "");
 				
-				RelationshipType relationshipType = Context.getPersonService().getRelationshipType(
-				    Integer.valueOf(showRelationId));
+				RelationshipType relationshipType = Context.getPersonService()
+				        .getRelationshipType(Integer.valueOf(showRelationId));
 				
 				// flag to know if we need to create a stub relationship
 				boolean relationshipFound = false;
@@ -452,8 +449,7 @@ public class ShortPatientFormController {
 	/**
 	 * Processes the death information for a deceased patient and save it to the database
 	 * 
-	 * @param patientModel the modelObject containing the patient info collected from the form
-	 *            fields
+	 * @param patientModel the modelObject containing the patient info collected from the form fields
 	 * @param request webRequest object
 	 */
 	private void saveDeathInfo(ShortPatientModel patientModel, WebRequest request) {
@@ -513,8 +509,8 @@ public class ShortPatientFormController {
 							
 							// check if this is an "other" concept - if
 							// so, then we need to add value_text
-							String otherConcept = Context.getAdministrationService().getGlobalProperty(
-							    "concept.otherNonCoded");
+							String otherConcept = Context.getAdministrationService()
+							        .getGlobalProperty("concept.otherNonCoded");
 							Concept conceptOther = Context.getConceptService().getConcept(otherConcept);
 							if (conceptOther != null) {
 								if (conceptOther.equals(currCause)) {
@@ -538,8 +534,8 @@ public class ShortPatientFormController {
 							}
 							
 							if (StringUtils.isBlank(obsDeath.getVoidReason())) {
-								obsDeath.setVoidReason(Context.getMessageSourceService().getMessage(
-								    "general.default.changeReason"));
+								obsDeath.setVoidReason(
+								    Context.getMessageSourceService().getMessage("general.default.changeReason"));
 							}
 							Context.getObsService().saveObs(obsDeath, obsDeath.getVoidReason());
 						} else {

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -63,8 +63,8 @@ public class FieldFormController extends SimpleFormController {
 	}
 	
 	/**
-	 * The onSubmit function receives the form/command object that was modified by the input form
-	 * and saves it to the db
+	 * The onSubmit function receives the form/command object that was modified by the input form and
+	 * saves it to the db
 	 * 
 	 * @see org.springframework.web.servlet.mvc.SimpleFormController#onSubmit(javax.servlet.http.HttpServletRequest,
 	 *      javax.servlet.http.HttpServletResponse, java.lang.Object,
@@ -85,8 +85,7 @@ public class FieldFormController extends SimpleFormController {
 			if (action != null && action.equals(Context.getMessageSourceService().getMessage("general.delete"))) {
 				try {
 					Context.getFormService().purgeField(field);
-				}
-				catch (DataIntegrityViolationException e) {
+				} catch (DataIntegrityViolationException e) {
 					httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "error.object.inuse.cannot.purge");
 					return new ModelAndView(new RedirectView("field.form?fieldId=" + field.getFieldId()));
 				}
@@ -104,8 +103,8 @@ public class FieldFormController extends SimpleFormController {
 	}
 	
 	/**
-	 * This is called prior to displaying a form for the first time. It tells Spring the
-	 * form/command object to load into the request
+	 * This is called prior to displaying a form for the first time. It tells Spring the form/command
+	 * object to load into the request
 	 * 
 	 * @see org.springframework.web.servlet.mvc.AbstractFormController#formBackingObject(javax.servlet.http.HttpServletRequest)
 	 */
@@ -159,8 +158,7 @@ public class FieldFormController extends SimpleFormController {
 		try {
 			formsReturned = fs.getForms(null, null, encounterTypes, null, containingAnyFormField, containingAllFormFields,
 			    fields); // Retrieving forms which contain this particular field
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			// When Object parameter doesn't contain a valid Form object, getFroms() throws an Exception
 		}
 		

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -55,8 +55,8 @@ public class ComplexObsServlet extends HttpServlet {
 		}
 		if (!Context.hasPrivilege(PrivilegeConstants.GET_OBS)) {
 			session.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "Privilege required: " + PrivilegeConstants.GET_OBS);
-			session.setAttribute(WebConstants.OPENMRS_LOGIN_REDIRECT_HTTPSESSION_ATTR, request.getRequestURI() + "?"
-			        + request.getQueryString());
+			session.setAttribute(WebConstants.OPENMRS_LOGIN_REDIRECT_HTTPSESSION_ATTR,
+			    request.getRequestURI() + "?" + request.getQueryString());
 			response.sendRedirect(request.getContextPath() + "/login.htm");
 			return;
 		}
@@ -99,8 +99,8 @@ public class ComplexObsServlet extends HttpServlet {
 			OpenmrsUtil.copyFile(stream, response.getOutputStream());
 			stream.close();
 		} else {
-			throw new ServletException("Couldn't serialize complex obs data for obsId=" + obsId + " of type "
-			        + data.getClass());
+			throw new ServletException(
+			        "Couldn't serialize complex obs data for obsId=" + obsId + " of type " + data.getClass());
 		}
 	}
 }

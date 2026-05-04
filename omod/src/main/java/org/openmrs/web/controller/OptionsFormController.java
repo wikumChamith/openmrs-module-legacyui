@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -100,8 +100,8 @@ public class OptionsFormController extends SimpleFormController {
 	}
 	
 	/**
-	 * The onSubmit function receives the form/command object that was modified by the input form
-	 * and saves it to the db
+	 * The onSubmit function receives the form/command object that was modified by the input form and
+	 * saves it to the db
 	 * 
 	 * @see org.springframework.web.servlet.mvc.SimpleFormController#onSubmit(javax.servlet.http.HttpServletRequest,
 	 *      javax.servlet.http.HttpServletResponse, java.lang.Object,
@@ -125,8 +125,7 @@ public class OptionsFormController extends SimpleFormController {
 			try {
 				Context.addProxyPrivilege(PrivilegeConstants.GET_USERS);
 				user = us.getUser(loginUser.getUserId());
-			}
-			finally {
+			} finally {
 				Context.removeProxyPrivilege(PrivilegeConstants.GET_USERS);
 			}
 			
@@ -145,10 +144,10 @@ public class OptionsFormController extends SimpleFormController {
 			    WebUtil.sanitizeLocales(opts.getProficientLocales()));
 			properties.put(OpenmrsConstants.USER_PROPERTY_SHOW_RETIRED, opts.getShowRetiredMessage().toString());
 			properties.put(OpenmrsConstants.USER_PROPERTY_SHOW_VERBOSE, opts.getVerbose().toString());
-			properties.put(OpenmrsConstants.USER_PROPERTY_NOTIFICATION, opts.getNotification() == null ? "" : opts
-			        .getNotification().toString());
-			properties.put(OpenmrsConstants.USER_PROPERTY_NOTIFICATION_ADDRESS, opts.getNotificationAddress() == null ? ""
-			        : opts.getNotificationAddress().toString());
+			properties.put(OpenmrsConstants.USER_PROPERTY_NOTIFICATION,
+			    opts.getNotification() == null ? "" : opts.getNotification().toString());
+			properties.put(OpenmrsConstants.USER_PROPERTY_NOTIFICATION_ADDRESS,
+			    opts.getNotificationAddress() == null ? "" : opts.getNotificationAddress().toString());
 			
 			if (!"".equals(opts.getOldPassword())) {
 				try {
@@ -158,8 +157,7 @@ public class OptionsFormController extends SimpleFormController {
 					if (password.length() > 0) {
 						try {
 							OpenmrsUtil.validatePassword(user.getUsername(), password, String.valueOf(user.getUserId()));
-						}
-						catch (PasswordException e) {
+						} catch (PasswordException e) {
 							errors.reject(e.getMessage());
 						}
 						if (password.equals(opts.getOldPassword()) && !errors.hasErrors()) {
@@ -178,8 +176,7 @@ public class OptionsFormController extends SimpleFormController {
 						}
 						new UserProperties(user.getUserProperties()).setSupposedToChangePassword(false);
 					}
-				}
-				catch (APIException e) {
+				} catch (APIException e) {
 					errors.rejectValue("oldPassword", "error.password.match");
 				}
 			} else {
@@ -195,8 +192,7 @@ public class OptionsFormController extends SimpleFormController {
 					try {
 						us.changeQuestionAnswer(opts.getSecretQuestionPassword(), opts.getSecretQuestionNew(),
 						    opts.getSecretAnswerNew());
-					}
-					catch (APIException e) {
+					} catch (APIException e) {
 						errors.rejectValue("secretQuestionPassword", "error.password.match");
 					}
 				}
@@ -207,9 +203,8 @@ public class OptionsFormController extends SimpleFormController {
 			}
 			
 			String notifyType = opts.getNotification();
-			if (notifyType != null
-			        && (notifyType.equals("internal") || notifyType.equals("internalProtected") || notifyType
-			                .equals("email"))) {
+			if (notifyType != null && (notifyType.equals("internal") || notifyType.equals("internalProtected")
+			        || notifyType.equals("email"))) {
 				if (opts.getNotificationAddress().isEmpty()) {
 					errors.reject("error.options.notificationAddress.empty");
 				} else if (!EmailValidator.getInstance().isValid(opts.getNotificationAddress())) {
@@ -223,8 +218,7 @@ public class OptionsFormController extends SimpleFormController {
 					if (us.hasDuplicateUsername(user)) {
 						errors.rejectValue("username", "error.username.taken");
 					}
-				}
-				finally {
+				} finally {
 					Context.removeProxyPrivilege(PrivilegeConstants.GET_USERS);
 				}
 			}
@@ -275,8 +269,7 @@ public class OptionsFormController extends SimpleFormController {
 					// update login user object so that the new name is visible
 					// in the webapp
 					Context.refreshAuthenticatedUser();
-				}
-				finally {
+				} finally {
 					Context.removeProxyPrivilege(PrivilegeConstants.EDIT_USERS);
 					Context.removeProxyPrivilege(PrivilegeConstants.GET_USERS);
 				}
@@ -292,8 +285,8 @@ public class OptionsFormController extends SimpleFormController {
 	}
 	
 	/**
-	 * This is called prior to displaying a form for the first time. It tells Spring the
-	 * form/command object to load into the request
+	 * This is called prior to displaying a form for the first time. It tells Spring the form/command
+	 * object to load into the request
 	 * 
 	 * @see org.springframework.web.servlet.mvc.AbstractFormController#formBackingObject(javax.servlet.http.HttpServletRequest)
 	 */
@@ -373,12 +366,12 @@ public class OptionsFormController extends SimpleFormController {
 				if (minChar < 1) {
 					minChar = 1;
 				}
-			}
-			catch (NumberFormatException e) {
+			} catch (NumberFormatException e) {
 				//ignore
 			}
 			
-			hints.add(mss.getMessage("options.login.password.minCharacterCount", new Object[] { minChar }, Context.getLocale()));
+			hints.add(
+			    mss.getMessage("options.login.password.minCharacterCount", new Object[] { minChar }, Context.getLocale()));
 			addHint(hints, as.getGlobalProperty(OpenmrsConstants.GP_PASSWORD_CANNOT_MATCH_USERNAME_OR_SYSTEMID),
 			    mss.getMessage("options.login.password.cannotMatchUsername"));
 			addHint(hints, as.getGlobalProperty(OpenmrsConstants.GP_PASSWORD_REQUIRES_UPPER_AND_LOWER_CASE),

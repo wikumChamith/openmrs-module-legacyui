@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -57,8 +57,8 @@ public class CopyLegacyUiContentToWebInf implements ServletContextAware {
 			
 			//copy openmrs.js
 			File destFile = new File(basePath + "/openmrs.js".replace("/", File.separator));
-			File srcFile = new File(basePath + MODULE_ROOT_DIR
-			        + "/resources/scripts/openmrs.js".replace("/", File.separator));
+			File srcFile = new File(
+			        basePath + MODULE_ROOT_DIR + "/resources/scripts/openmrs.js".replace("/", File.separator));
 			FileUtils.copyFile(srcFile, destFile);
 			
 			//copy images
@@ -92,10 +92,9 @@ public class CopyLegacyUiContentToWebInf implements ServletContextAware {
 			destDir = new File(basePath + "/WEB-INF/view".replace("/", File.separator));
 			srcDir = new File(basePath + MODULE_ROOT_DIR.replace("/", File.separator));
 			final File src = srcDir;
-			FileUtils.copyDirectory(src, destDir, toCopy -> !toIgnore.contains(toCopy)
-			        && (toCopy.isDirectory() || !toCopy.getParentFile().equals(src)));
-		}
-		catch (IOException ex) {
+			FileUtils.copyDirectory(src, destDir,
+			    toCopy -> !toIgnore.contains(toCopy) && (toCopy.isDirectory() || !toCopy.getParentFile().equals(src)));
+		} catch (IOException ex) {
 			log.error("Failed to copy legacy ui files", ex);
 		}
 	}

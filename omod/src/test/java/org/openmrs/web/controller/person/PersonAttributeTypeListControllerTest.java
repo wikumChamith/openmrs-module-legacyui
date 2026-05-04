@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -144,8 +144,8 @@ public class PersonAttributeTypeListControllerTest extends BaseModuleWebContextS
 	@Verifies(value = "should save given personListingAttributeTypes", method = "updateGlobalProperties(String,String,String,String,String,HttpSession)")
 	public void updateGlobalProperties_shouldSaveGivenPersonListingAttributeTypes() throws Exception {
 		new PersonAttributeTypeListController().updateGlobalProperties("asdf", "", "", "", "", new MockHttpSession());
-		String attr = Context.getAdministrationService().getGlobalProperty(
-		    OpenmrsConstants.GLOBAL_PROPERTY_PATIENT_LISTING_ATTRIBUTES);
+		String attr = Context.getAdministrationService()
+		        .getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_PATIENT_LISTING_ATTRIBUTES);
 		Assertions.assertEquals("asdf", attr);
 	}
 }

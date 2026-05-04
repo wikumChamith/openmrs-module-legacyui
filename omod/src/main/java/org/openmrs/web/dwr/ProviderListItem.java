@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -45,8 +45,7 @@ public class ProviderListItem {
 	
 	/**
 	 * @return the identifier of the provider
-	 * @should return the identifier that is mentioned for the provider when a person is not
-	 *         specified
+	 * @should return the identifier that is mentioned for the provider when a person is not specified
 	 */
 	public String getIdentifier() {
 		return identifier;

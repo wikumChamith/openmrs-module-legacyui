@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -82,7 +82,7 @@ public class TaskHelperTest extends BaseModuleWebContextSensitiveTest {
 		TaskDefinition task = taskHelper.getUnscheduledTaskDefinition(time);
 		Assertions.assertFalse(task.getStarted());
 	}
-
+	
 	// Disabled: TRUNK-6558 replaced TimerSchedulerServiceImpl with JobRunr. The new
 	// JobRunrSchedulerService.scheduleTask() does not populate TaskDefinition.taskInstance, so
 	// waitUntilTaskIsExecuting NPEs on task.getTaskInstance().isExecuting(). The legacy
@@ -94,18 +94,18 @@ public class TaskHelperTest extends BaseModuleWebContextSensitiveTest {
 		Date time = taskHelper.getTime(Calendar.SECOND, 1);
 		TaskDefinition task = taskHelper.getScheduledTaskDefinition(time);
 		taskHelper.waitUntilTaskIsExecuting(task, MAX_WAIT_TIME_IN_MILLISECONDS);
-
+		
 		Assertions.assertTrue(task.getTaskInstance().isExecuting());
 		deleteAllData();
 	}
-
+	
 	// Disabled: TRUNK-6558 replaced TimerSchedulerServiceImpl with JobRunr; see note on
 	// waitUntilTaskIsExecuting_shouldWaitUntilTaskIsExecuting. The polling loop now NPEs before
 	// it can throw TimeoutException.
 	@Disabled
 	@Test
-	public void waitUntilTaskIsExecuting_shouldRaiseATimeoutExceptionWhenTheTimeoutIsExceeded() throws SchedulerException,
-	        InterruptedException {
+	public void waitUntilTaskIsExecuting_shouldRaiseATimeoutExceptionWhenTheTimeoutIsExceeded()
+	        throws SchedulerException, InterruptedException {
 		Assertions.assertThrows(TimeoutException.class, () -> {
 			Date time = taskHelper.getTime(Calendar.MINUTE, 1);
 			TaskDefinition task = taskHelper.getScheduledTaskDefinition(time);

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -26,8 +26,8 @@ public class DWRCohortService {
 	protected final Log log = LogFactory.getLog(getClass());
 	
 	/**
-	 * Adds the {@link Patient} identified by <code>patientId</code> to the {@link Cohort}
-	 * identified by <code>cohortId</code>
+	 * Adds the {@link Patient} identified by <code>patientId</code> to the {@link Cohort} identified by
+	 * <code>cohortId</code>
 	 * 
 	 * @param cohortId - Identifies the {@link Cohort} to add to
 	 * @param patientId - Identifies the {@link Patient} to add
@@ -65,12 +65,12 @@ public class DWRCohortService {
 	}
 	
 	/**
-	 * Returns a Vector&lt;ListItem&gt; of all saved Cohorts containing the {@link Patient}
-	 * identified by <code>patientId</code>
+	 * Returns a Vector&lt;ListItem&gt; of all saved Cohorts containing the {@link Patient} identified
+	 * by <code>patientId</code>
 	 * 
 	 * @param patientId - Identifies the {@link Patient} to lookup in each {@link Cohort}
-	 * @return Vector&lt;ListItem&gt; - of all saved Cohorts containing the {@link Patient}
-	 *         identified by <code>patientId</code>
+	 * @return Vector&lt;ListItem&gt; - of all saved Cohorts containing the {@link Patient} identified
+	 *         by <code>patientId</code>
 	 */
 	public Vector<ListItem> getCohortsContainingPatient(Integer patientId) {
 		Vector<ListItem> ret = new Vector<ListItem>();

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -33,8 +33,8 @@ public class TimePatternTag extends TagSupport {
 	private String localize = null;//TRUE by default
 	
 	/**
-	 * Defines the format, "jquery" for time pattern to be in jquery format else time pattern to be
-	 * in Java format
+	 * Defines the format, "jquery" for time pattern to be in jquery format else time pattern to be in
+	 * Java format
 	 */
 	private String format = null;
 	
@@ -61,8 +61,7 @@ public class TimePatternTag extends TagSupport {
 			}
 			pageContext.getOut().write(pattern);
 			
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.error("error getting date pattern", e);
 		}
 		

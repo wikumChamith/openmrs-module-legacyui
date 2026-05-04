@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -70,9 +70,8 @@ public class DatatableRequest {
 	}
 	
 	/**
-	 * Number of records that the table can display in the current draw. It is expected that the
-	 * number of records returned will be equal to this number, unless the server has fewer records
-	 * to return.
+	 * Number of records that the table can display in the current draw. It is expected that the number
+	 * of records returned will be equal to this number, unless the server has fewer records to return.
 	 * 
 	 * @return the iDisplayLength
 	 */
@@ -123,8 +122,8 @@ public class DatatableRequest {
 	}
 	
 	/**
-	 * True if the global filter should be treated as a regular expression for advanced filtering,
-	 * false if not.
+	 * True if the global filter should be treated as a regular expression for advanced filtering, false
+	 * if not.
 	 * 
 	 * @return the bRegex
 	 */

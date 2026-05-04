@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -49,8 +49,8 @@ public class PatientProgramFormController {
 	}
 	
 	@RequestMapping("/admin/programs/patientProgram.form")
-	public ModelAndView enroll(HttpServletRequest request, HttpServletResponse response) throws ServletException,
-	        IOException {
+	public ModelAndView enroll(HttpServletRequest request, HttpServletResponse response)
+	        throws ServletException, IOException {
 		
 		String returnPage = request.getParameter("returnPage");
 		if (returnPage == null) {
@@ -78,16 +78,14 @@ public class PatientProgramFormController {
 		Location location;
 		try {
 			location = Context.getLocationService().getLocation(Integer.valueOf(locationIdStr));
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			location = null;
 		}
 		
 		Program program;
 		try {
 			program = pws.getProgram(Integer.valueOf(programIdStr));
-		}
-		catch (NumberFormatException e) {
+		} catch (NumberFormatException e) {
 			request.getSession().setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "Program.error.programRequired");
 			return new ModelAndView(new RedirectView(returnPage));
 		}
@@ -120,16 +118,15 @@ public class PatientProgramFormController {
 				} else {
 					Context.getProgramWorkflowService().savePatientProgram(pp);
 				}
-			}
-			catch (APIException e) {
+			} catch (APIException e) {
 				request.getSession().setAttribute(WebConstants.OPENMRS_ERROR_ATTR, e.getMessage());
 			}
 		}
 		return new ModelAndView(new RedirectView(returnPage));
 	}
 	
-	public ModelAndView complete(HttpServletRequest request, HttpServletResponse response) throws ServletException,
-	        IOException {
+	public ModelAndView complete(HttpServletRequest request, HttpServletResponse response)
+	        throws ServletException, IOException {
 		
 		String returnPage = request.getParameter("returnPage");
 		if (returnPage == null) {
@@ -153,8 +150,7 @@ public class PatientProgramFormController {
 			} else {
 				Context.getProgramWorkflowService().savePatientProgram(p);
 			}
-		}
-		catch (APIException e) {
+		} catch (APIException e) {
 			request.getSession().setAttribute(WebConstants.OPENMRS_ERROR_ATTR, e.getMessage());
 		}
 		

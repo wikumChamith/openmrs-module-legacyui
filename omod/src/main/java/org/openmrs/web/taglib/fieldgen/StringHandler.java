@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -27,29 +27,34 @@ public class StringHandler extends AbstractFieldGenHandler implements FieldGenHa
 			log.debug("Initialvalue: '" + initialValue + "'");
 			setParameter("initialValue", initialValue == null ? "" : initialValue);
 			
-			String fieldLength = this.fieldGenTag.getParameterMap() != null ? (String) this.fieldGenTag.getParameterMap()
-			        .get("fieldLength") : null;
+			String fieldLength = this.fieldGenTag.getParameterMap() != null
+			        ? (String) this.fieldGenTag.getParameterMap().get("fieldLength")
+			        : null;
 			fieldLength = (fieldLength == null) ? FieldGenTag.DEFAULT_INPUT_TEXT_LENGTH : fieldLength;
 			setParameter("fieldLength", fieldLength);
 			
-			String answerSet = this.fieldGenTag.getParameterMap() != null ? (String) this.fieldGenTag.getParameterMap().get(
-			    "answerSet") : null;
+			String answerSet = this.fieldGenTag.getParameterMap() != null
+			        ? (String) this.fieldGenTag.getParameterMap().get("answerSet")
+			        : null;
 			setParameter("answerSet", answerSet);
 			
-			String inputType = this.fieldGenTag.getParameterMap() != null ? (String) this.fieldGenTag.getParameterMap().get(
-			    "inputType") : null;
+			String inputType = this.fieldGenTag.getParameterMap() != null
+			        ? (String) this.fieldGenTag.getParameterMap().get("inputType")
+			        : null;
 			inputType = (inputType == null) ? "text" : inputType;
 			
 			setParameter("inputType", inputType);
 			
-			String rows = this.fieldGenTag.getParameterMap() != null ? (String) this.fieldGenTag.getParameterMap().get(
-			    "rows") : null;
+			String rows = this.fieldGenTag.getParameterMap() != null
+			        ? (String) this.fieldGenTag.getParameterMap().get("rows")
+			        : null;
 			rows = (rows == null) ? DEFAULT_TEXTAREA_ROWS : rows;
 			
 			setParameter("rows", rows);
 			
-			String cols = this.fieldGenTag.getParameterMap() != null ? (String) this.fieldGenTag.getParameterMap().get(
-			    "cols") : null;
+			String cols = this.fieldGenTag.getParameterMap() != null
+			        ? (String) this.fieldGenTag.getParameterMap().get("cols")
+			        : null;
 			cols = (cols == null) ? DEFAULT_TEXTAREA_COLS : cols;
 			
 			setParameter("cols", cols);

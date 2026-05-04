@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -39,16 +39,14 @@ public class HierarchyController {
 	@RequestMapping("/admin/locations/hierarchy.list")
 	public void showHierarchy(ModelMap model) throws IOException {
 		model.addAttribute("json", getHierarchyAsJson());
-		model.addAttribute(
-		    "locationWidgetType",
-		    Context.getAdministrationService().getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_LOCATION_WIDGET_TYPE,
-		        "default"));
+		model.addAttribute("locationWidgetType", Context.getAdministrationService()
+		        .getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_LOCATION_WIDGET_TYPE, "default"));
 	}
 	
 	@RequestMapping("/admin/locations/changeLocationWidgetType.form")
 	public String setWidgetType(@RequestParam("locationWidgetType") String widgetType) {
-		Context.getAdministrationService().saveGlobalProperty(
-		    new GlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_LOCATION_WIDGET_TYPE, widgetType));
+		Context.getAdministrationService()
+		        .saveGlobalProperty(new GlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_LOCATION_WIDGET_TYPE, widgetType));
 		return "redirect:hierarchy.list";
 	}
 	

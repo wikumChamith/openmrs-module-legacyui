@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -69,14 +69,14 @@ public class UserFormController {
 	
 	// the personId attribute is called person_id so that spring MVC doesn't try to bind it to the personId property of user
 	@ModelAttribute("user")
-	public User formBackingObject(WebRequest request, @RequestParam(required = false, value = "person_id") Integer personId) {
+	public User formBackingObject(WebRequest request,
+	        @RequestParam(required = false, value = "person_id") Integer personId) {
 		String userId = request.getParameter("userId");
 		User u = null;
 		if (!StringUtils.isEmpty(userId)) {
 			try {
 				u = Context.getUserService().getUser(Integer.valueOf(userId));
-			}
-			catch (Exception ex) {
+			} catch (Exception ex) {
 				log.error("Error while getting user", ex);
 			}
 		}
@@ -175,8 +175,7 @@ public class UserFormController {
 				Context.getUserService().purgeUser(user);
 				httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "User.delete.success");
 				return "redirect:users.list";
-			}
-			catch (Exception ex) {
+			} catch (Exception ex) {
 				httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "User.delete.failure");
 				log.error("Failed to delete user", ex);
 				return "redirect:/admin/users/user.form?userId=" + request.getParameter("userId");
@@ -221,8 +220,7 @@ public class UserFormController {
 			if (password.length() > 0) {
 				try {
 					OpenmrsUtil.validatePassword(user.getUsername(), password, user.getSystemId());
-				}
-				catch (PasswordException e) {
+				} catch (PasswordException e) {
 					errors.reject(e.getMessage());
 				}
 			}
@@ -311,8 +309,8 @@ public class UserFormController {
 	}
 	
 	/**
-	 * Superficially determines if this form is being filled out for a new user (basically just
-	 * looks for a primary key (user_id)
+	 * Superficially determines if this form is being filled out for a new user (basically just looks
+	 * for a primary key (user_id)
 	 * 
 	 * @param user
 	 * @return true/false if this user is new

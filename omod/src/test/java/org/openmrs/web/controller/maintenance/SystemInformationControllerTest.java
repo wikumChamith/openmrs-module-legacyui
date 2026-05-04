@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -47,8 +47,8 @@ public class SystemInformationControllerTest extends BaseModuleWebContextSensiti
 	@Test
 	@Verifies(value = "should add openmrs information attribute to the model map", method = "showPage()")
 	public void showPage_shouldReturnOpenmrsInformation() {
-		Assertions.assertTrue(((Map<String, Map<String, String>>) model.get("systemInfo"))
-		        .containsKey("SystemInfo.title.openmrsInformation"));
+		Assertions.assertTrue(
+		    ((Map<String, Map<String, String>>) model.get("systemInfo")).containsKey("SystemInfo.title.openmrsInformation"));
 	}
 	
 	/**
@@ -67,8 +67,8 @@ public class SystemInformationControllerTest extends BaseModuleWebContextSensiti
 	@Test
 	@Verifies(value = "should add module information attribute to the model map", method = "showPage()")
 	public void showPage_shouldReturnAllJavaRuntimeInformation() {
-		Assertions.assertTrue(((Map<String, Map<String, String>>) model.get("systemInfo"))
-		        .containsKey("SystemInfo.title.moduleInformation"));
+		Assertions.assertTrue(
+		    ((Map<String, Map<String, String>>) model.get("systemInfo")).containsKey("SystemInfo.title.moduleInformation"));
 	}
 	
 	/**
@@ -87,8 +87,8 @@ public class SystemInformationControllerTest extends BaseModuleWebContextSensiti
 	@Test
 	@Verifies(value = "should add memory information attribute to the model map", method = "getMemoryInformation()")
 	public void getMemoryInformation_shouldReturnMemoryInformation() {
-		Assertions.assertTrue(((Map<String, Map<String, String>>) model.get("systemInfo"))
-		        .containsKey("SystemInfo.title.memoryInformation"));
+		Assertions.assertTrue(
+		    ((Map<String, Map<String, String>>) model.get("systemInfo")).containsKey("SystemInfo.title.memoryInformation"));
 	}
 	
 }

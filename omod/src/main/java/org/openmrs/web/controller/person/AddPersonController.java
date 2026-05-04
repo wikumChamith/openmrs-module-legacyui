@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -105,8 +105,7 @@ public class AddPersonController extends SimpleFormController {
 					if (Context.getPatientService().getPatient(Integer.valueOf(personId)) == null) {
 						viewType = "shortEdit";
 					}
-				}
-				catch (Exception noPatientEx) {
+				} catch (Exception noPatientEx) {
 					// if there is no patient yet, they must go through those motions
 					viewType = "shortEdit";
 				}
@@ -118,8 +117,8 @@ public class AddPersonController extends SimpleFormController {
 	}
 	
 	/**
-	 * This is called prior to displaying a form for the first time. It tells Spring the
-	 * form/command object to load into the request
+	 * This is called prior to displaying a form for the first time. It tells Spring the form/command
+	 * object to load into the request
 	 * 
 	 * @see org.springframework.web.servlet.mvc.AbstractFormController#formBackingObject(javax.servlet.http.HttpServletRequest)
 	 * @should catch an invalid birthdate
@@ -165,8 +164,7 @@ public class AddPersonController extends SimpleFormController {
 						calender.setTime(birthdateFormatted);
 						birthyear = calender.get(Calendar.YEAR);
 					}
-				}
-				catch (ParseException e) {
+				} catch (ParseException e) {
 					// In theory, this should never happen -- the date selector should never allowed the
 					// user set an invalid date, but never know the scripts could be broken
 					if (log.isDebugEnabled()) {
@@ -184,8 +182,7 @@ public class AddPersonController extends SimpleFormController {
 					d = c.get(Calendar.YEAR);
 					try {
 						d = d - Integer.parseInt(age);
-					}
-					catch (NumberFormatException e) {
+					} catch (NumberFormatException e) {
 						// In theory, this should never happen -- Javascript in the UI should prevent this... 
 						invalidAgeFormat = true;
 					}
@@ -290,13 +287,9 @@ public class AddPersonController extends SimpleFormController {
 				return request.getContextPath() + PERSON_EDIT_URL + getParametersForURL(person);
 			}
 		}
-		throw new ServletException(
-		        "You entered viewType = \""
-		                + viewType
-		                + "\" and personType = \""
-		                + personType
-		                + "\" which is an invalid viewType/personType combination.\n"
-		                + "Valid viewType/personType combinations are edit/patient, edit/user, shortEdit/patient, view/patient. The viewType edit is valid without any personType. Also, the personType user is valid without any viewType. \n");
+		throw new ServletException("You entered viewType = \"" + viewType + "\" and personType = \"" + personType
+		        + "\" which is an invalid viewType/personType combination.\n"
+		        + "Valid viewType/personType combinations are edit/patient, edit/user, shortEdit/patient, view/patient. The viewType edit is valid without any personType. Also, the personType user is valid without any viewType. \n");
 	}
 	
 	/**

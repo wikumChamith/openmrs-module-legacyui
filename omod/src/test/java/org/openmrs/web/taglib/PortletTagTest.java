@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -56,11 +56,11 @@ public class PortletTagTest {
 		try (MockedStatic<ModuleFactory> mock = mockStatic(ModuleFactory.class)) {
 			
 			mock.when(() -> ModuleFactory.getModuleById(moduleId)).thenReturn(new Module(moduleId));
-
+			
 			// Instantiate the portlet and get the module url
 			PortletTag portlet = new PortletTag();
 			String result = portlet.generatePortletUrl(portletUrl, moduleId);
-
+			
 			// Verify the portlet url
 			assertEquals("/module/" + moduleId + "/portlets/" + portletUrl, result);
 		}
@@ -77,13 +77,13 @@ public class PortletTagTest {
 		
 		try (MockedStatic<ModuleFactory> mock = mockStatic(ModuleFactory.class)) {
 			mock.when(() -> ModuleFactory.getModuleById(moduleId)).thenReturn(new Module(moduleId));
-
+			
 			PortletTag portlet = new PortletTag();
 			String result = portlet.generatePortletUrl(portletUrl, moduleId);
-
+			
 			assertEquals("/module/" + moduleId.replace('.', '/') + "/portlets/" + portletUrl, result);
 		}
-
+		
 	}
 	
 	/**
@@ -94,14 +94,14 @@ public class PortletTagTest {
 	public void getModulePortletUrl_shouldNotUpdateTheModuleIdFieldForAModulePortlet() {
 		String portletUrl = "test.portlet";
 		String moduleId = "module.id";
-
+		
 		try (MockedStatic<ModuleFactory> mock = mockStatic(ModuleFactory.class)) {
 			mock.when(() -> ModuleFactory.getModuleById(moduleId)).thenReturn(new Module(moduleId));
-
+			
 			PortletTag portlet = new PortletTag();
 			portlet.setModuleId(moduleId);
 			String result = portlet.generatePortletUrl(portletUrl, moduleId);
-
+			
 			assertEquals("/module/" + moduleId.replace('.', '/') + "/portlets/" + portletUrl, result);
 			assertEquals(moduleId, portlet.getModuleId());
 		}
@@ -119,10 +119,10 @@ public class PortletTagTest {
 		// Setup the mocking for ModuleFactory to return null to test when the module is not found
 		try (MockedStatic<ModuleFactory> mock = mockStatic(ModuleFactory.class)) {
 			mock.when(() -> ModuleFactory.getModuleById(moduleId)).thenReturn(null);
-
+			
 			PortletTag portlet = new PortletTag();
 			String result = portlet.generatePortletUrl(portletUrl, moduleId);
-
+			
 			assertEquals("/portlets/" + portletUrl, result);
 		}
 	}

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -40,8 +40,8 @@ public abstract class FormEntryHandler extends Extension {
 	
 	/**
 	 * If you want your module to require any privileges before the user can enter forms with this
-	 * particular module (besides "Form Entry" which is automatically required by the framework)
-	 * then return it here.
+	 * particular module (besides "Form Entry" which is automatically required by the framework) then
+	 * return it here.
 	 * 
 	 * @return privilege to require
 	 */
@@ -52,8 +52,8 @@ public abstract class FormEntryHandler extends Extension {
 	/**
 	 * If your module allows filling out forms, override this method.
 	 * 
-	 * @param formEntryContext details about the state of the user interface where the user is
-	 *            choosing to enter a form from
+	 * @param formEntryContext details about the state of the user interface where the user is choosing
+	 *            to enter a form from
 	 * @return the list of forms provided by this module.
 	 */
 	public List<Form> getFormsModuleCanEnter(FormEntryContext formEntryContext) {
@@ -73,8 +73,7 @@ public abstract class FormEntryHandler extends Extension {
 	/**
 	 * If your module wants to override the View link for encounters, override this method.
 	 * 
-	 * @return the url to go to to view a form. (The framework will take care of adding
-	 *         ?encounterId=xyz
+	 * @return the url to go to to view a form. (The framework will take care of adding ?encounterId=xyz
 	 */
 	public String getViewFormUrl() {
 		return null;
@@ -92,8 +91,7 @@ public abstract class FormEntryHandler extends Extension {
 	/**
 	 * If your module wants to override the Edit link for encounters, override this method.
 	 * 
-	 * @return the url to go to to edit a form. (The framework will take care of adding
-	 *         ?encounterId=xyz
+	 * @return the url to go to to edit a form. (The framework will take care of adding ?encounterId=xyz
 	 */
 	public String getEditFormUrl() {
 		return null;

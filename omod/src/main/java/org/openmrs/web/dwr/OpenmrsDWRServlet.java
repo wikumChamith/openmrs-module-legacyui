@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -102,8 +102,8 @@ public class OpenmrsDWRServlet extends DwrServlet {
 	
 	/**
 	 * Our module engine does not cater for servlet init parameters which are required by the DWR
-	 * servlet. So this class ensures that we keep the servlet parameters and pass them over to the
-	 * DWR engine.
+	 * servlet. So this class ensures that we keep the servlet parameters and pass them over to the DWR
+	 * engine.
 	 */
 	public static class DwrServletConfig implements ServletConfig {
 		

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -110,8 +110,8 @@ public class EncounterFormController extends SimpleFormController {
 				Context.addProxyPrivilege(PrivilegeConstants.GET_PATIENTS);
 				
 				if (encounter.getEncounterId() == null && StringUtils.hasText(request.getParameter("patientId"))) {
-					encounter.setPatient(Context.getPatientService().getPatient(
-					    Integer.valueOf(request.getParameter("patientId"))));
+					encounter.setPatient(
+					    Context.getPatientService().getPatient(Integer.valueOf(request.getParameter("patientId"))));
 				}
 				if (encounter.isVoided()) {
 					ValidationUtils.rejectIfEmptyOrWhitespace(errors, "voidReason", "error.null");
@@ -147,8 +147,8 @@ public class EncounterFormController extends SimpleFormController {
 					//Get rid of the removed ones
 					for (Map.Entry<EncounterRole, Set<Provider>> entry : encounter.getProvidersByRoles().entrySet()) {
 						for (Provider p : entry.getValue()) {
-							if (!unremovedRoleAndProviders.contains(entry.getKey().getEncounterRoleId() + "-"
-							        + p.getProviderId())) {
+							if (!unremovedRoleAndProviders
+							        .contains(entry.getKey().getEncounterRoleId() + "-" + p.getProviderId())) {
 								encounter.removeProvider(entry.getKey(), p);
 							}
 						}
@@ -157,8 +157,7 @@ public class EncounterFormController extends SimpleFormController {
 				
 				ValidationUtils.invokeValidator(new EncounterValidator(), encounter, errors);
 			}
-		}
-		finally {
+		} finally {
 			Context.removeProxyPrivilege(PrivilegeConstants.GET_USERS);
 			Context.removeProxyPrivilege(PrivilegeConstants.GET_PATIENTS);
 		}
@@ -167,8 +166,8 @@ public class EncounterFormController extends SimpleFormController {
 	}
 	
 	/**
-	 * The onSubmit function receives the form/command object that was modified by the input form
-	 * and saves it to the db
+	 * The onSubmit function receives the form/command object that was modified by the input form and
+	 * saves it to the db
 	 * 
 	 * @see org.springframework.web.servlet.mvc.SimpleFormController#onSubmit(javax.servlet.http.HttpServletRequest,
 	 *      javax.servlet.http.HttpServletResponse, java.lang.Object,
@@ -224,15 +223,13 @@ public class EncounterFormController extends SimpleFormController {
 				
 				httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "Encounter.saved");
 			}
-		}
-		catch (APIException e) {
+		} catch (APIException e) {
 			log.error("Error while trying to save the encounter", e);
 			httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "Encounter.cannot.save");
 			errors.reject("encounter", "Encounter.cannot.save");
 			// return to the form because an exception was thrown
 			return showForm(request, response, errors);
-		}
-		finally {
+		} finally {
 			Context.removeProxyPrivilege(PrivilegeConstants.GET_USERS);
 			Context.removeProxyPrivilege(PrivilegeConstants.GET_PATIENTS);
 		}
@@ -241,8 +238,8 @@ public class EncounterFormController extends SimpleFormController {
 	}
 	
 	/**
-	 * This is called prior to displaying a form for the first time. It tells Spring the
-	 * form/command object to load into the request
+	 * This is called prior to displaying a form for the first time. It tells Spring the form/command
+	 * object to load into the request
 	 * 
 	 * @see org.springframework.web.servlet.mvc.AbstractFormController#formBackingObject(javax.servlet.http.HttpServletRequest)
 	 */
@@ -285,8 +282,8 @@ public class EncounterFormController extends SimpleFormController {
 		// This is a mapping between the formfield and a list of the Obs/ObsGroup in that field
 		// This mapping is sorted according to the comparator in FormField.java
 		SortedMap<FormField, List<Obs>> obsMapToReturn = null;
-		String sortType = Context.getAdministrationService().getGlobalProperty(
-		    OpenmrsConstants.GLOBAL_PROPERTY_ENCOUNTER_FORM_OBS_SORT_ORDER);
+		String sortType = Context.getAdministrationService()
+		        .getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_ENCOUNTER_FORM_OBS_SORT_ORDER);
 		if ("weight".equals(sortType)) {
 			obsMapToReturn = new TreeMap<FormField, List<Obs>>(); // use FormField.compareTo
 		} else {
@@ -361,9 +358,9 @@ public class EncounterFormController extends SimpleFormController {
 	}
 	
 	/**
-	 * Comparator to sort the FormFields by page+fieldNumber+fieldPart/sortWeight. This allows obs
-	 * to be sorted/displayed strictly according to numbering. The FormField default comparator
-	 * sorts on sortWeight first, then other numbers.
+	 * Comparator to sort the FormFields by page+fieldNumber+fieldPart/sortWeight. This allows obs to be
+	 * sorted/displayed strictly according to numbering. The FormField default comparator sorts on
+	 * sortWeight first, then other numbers.
 	 * 
 	 * @see FormField#compareTo(FormField)
 	 * @see EncounterDisplayController

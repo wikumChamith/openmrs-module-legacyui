@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -41,15 +41,15 @@ public class WebMediaHandler extends MediaHandler {
 	}
 	
 	/**
-	 * Returns the ComplexData for an Obs depending on the view. Currently supported views are
-	 * listed in ComplexObsHandler.*_VIEW. <br>
+	 * Returns the ComplexData for an Obs depending on the view. Currently supported views are listed in
+	 * ComplexObsHandler.*_VIEW. <br>
 	 * Currently the only implemented views are those implemented by ancestor plus the following:
 	 * <ul>
-	 * <li>{@link org.openmrs.web.WebConstants#HYPERLINK_VIEW}: a lightweight alternative to
-	 * returning the ComplexData from the parent class since this does not require access to the
-	 * service layer. Gives a link to the ComplexServlet for this obs
-	 * <li>{@link org.openmrs.web.WebConstants#HTML_VIEW}: An html tag that will display this
-	 * complex data. For this MediaHandler, its an html5 audio or video tag.
+	 * <li>{@link org.openmrs.web.WebConstants#HYPERLINK_VIEW}: a lightweight alternative to returning
+	 * the ComplexData from the parent class since this does not require access to the service layer.
+	 * Gives a link to the ComplexServlet for this obs
+	 * <li>{@link org.openmrs.web.WebConstants#HTML_VIEW}: An html tag that will display this complex
+	 * data. For this MediaHandler, its an html5 audio or video tag.
 	 * </ul>
 	 * 
 	 * @see org.openmrs.obs.handler.MediaHandler#getObs(org.openmrs.Obs, java.lang.String)
@@ -58,8 +58,8 @@ public class WebMediaHandler extends MediaHandler {
 	public Obs getObs(Obs obs, String view) {
 		if (ComplexObsHandler.URI_VIEW.equals(view)) {
 			Locale locale = Context.getLocale();
-			ComplexData cd = new ComplexData(obs.getValueAsString(locale), WebHandlerUtils.getHyperlink(obs,
-			    ComplexObsHandler.RAW_VIEW));
+			ComplexData cd = new ComplexData(obs.getValueAsString(locale),
+			        WebHandlerUtils.getHyperlink(obs, ComplexObsHandler.RAW_VIEW));
 			obs.setComplexData(cd);
 			return obs;
 		}

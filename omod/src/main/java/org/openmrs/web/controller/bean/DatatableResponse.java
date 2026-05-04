@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -35,10 +35,10 @@ public class DatatableResponse {
 	}
 	
 	/**
-	 * An unaltered copy of sEcho sent from the client side. This parameter will change with each
-	 * draw (it is basically a draw count) - so it is important that this is implemented. Note that
-	 * it strongly recommended for security reasons that you 'cast' this parameter to an integer in
-	 * order to prevent Cross Site Scripting (XSS) attacks.
+	 * An unaltered copy of sEcho sent from the client side. This parameter will change with each draw
+	 * (it is basically a draw count) - so it is important that this is implemented. Note that it
+	 * strongly recommended for security reasons that you 'cast' this parameter to an integer in order
+	 * to prevent Cross Site Scripting (XSS) attacks.
 	 * 
 	 * @return the sEcho
 	 */
@@ -72,8 +72,8 @@ public class DatatableResponse {
 	}
 	
 	/**
-	 * Total records, after filtering (i.e. the total number of records after filtering has been
-	 * applied - not just the number of records being returned in this result set).
+	 * Total records, after filtering (i.e. the total number of records after filtering has been applied
+	 * - not just the number of records being returned in this result set).
 	 * 
 	 * @param iTotalDisplayRecords the iTotalDisplayRecords to set
 	 */
@@ -91,23 +91,22 @@ public class DatatableResponse {
 	
 	/**
 	 * Optional - this is a string of column names, comma separated (used in combination with sName)
-	 * which will allow DataTables to reorder data on the client-side if required for display. Note
-	 * that the number of column names returned must exactly match the number of columns in the
-	 * table. For a more flexible JSON format, please consider using mDataProp.
+	 * which will allow DataTables to reorder data on the client-side if required for display. Note that
+	 * the number of column names returned must exactly match the number of columns in the table. For a
+	 * more flexible JSON format, please consider using mDataProp.
 	 * 
 	 * @param sColumns the sColumns to set
 	 */
 	public void setsColumns(String... sColumns) {
 		if (aaData != null && aaData.get(0).length != sColumns.length) {
-			throw new IllegalArgumentException("Must contain " + aaData.get(0).length + " columns whereas "
-			        + sColumns.length + " given");
+			throw new IllegalArgumentException(
+			        "Must contain " + aaData.get(0).length + " columns whereas " + sColumns.length + " given");
 		}
 		this.sColumns = sColumns;
 	}
 	
 	/**
-	 * The data in a 2D array. Note that you can change the name of this parameter with
-	 * sAjaxDataProp.
+	 * The data in a 2D array. Note that you can change the name of this parameter with sAjaxDataProp.
 	 * 
 	 * @return the aaData
 	 */
@@ -126,13 +125,13 @@ public class DatatableResponse {
 	 */
 	public void addRow(String... row) {
 		if (sColumns != null && sColumns.length != row.length) {
-			throw new IllegalArgumentException("Must contain " + sColumns.length
-			        + " columns as declared in sColumns whereas " + row.length + " given");
+			throw new IllegalArgumentException(
+			        "Must contain " + sColumns.length + " columns as declared in sColumns whereas " + row.length + " given");
 		}
 		
 		if (aaData != null && aaData.get(0).length != row.length) {
-			throw new IllegalArgumentException("Must contain " + aaData.get(0).length + " columns whereas " + row.length
-			        + " given");
+			throw new IllegalArgumentException(
+			        "Must contain " + aaData.get(0).length + " columns whereas " + row.length + " given");
 		}
 		
 		if (aaData == null) {

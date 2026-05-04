@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -146,8 +146,7 @@ public class ConceptReferenceTermFormController {
 				result.pushNestedPath("conceptReferenceTerm");
 				ValidationUtils.invokeValidator(new ConceptReferenceTermValidator(), conceptReferenceTerm, result);
 				ValidationUtils.invokeValidator(new ConceptReferenceTermWebValidator(), conceptReferenceTerm, result);
-			}
-			finally {
+			} finally {
 				result.popNestedPath();
 			}
 		}
@@ -161,8 +160,7 @@ public class ConceptReferenceTermFormController {
 				request.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "ConceptReferenceTerm.saved", WebRequest.SCOPE_SESSION);
 				return "redirect:" + CONCEPT_REFERENCE_TERM_FORM_URL + "?conceptReferenceTermId="
 				        + conceptReferenceTerm.getConceptReferenceTermId();
-			}
-			catch (APIException e) {
+			} catch (APIException e) {
 				log.error("Error while saving concept reference term", e);
 				request.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "ConceptReferenceTerm.save.error",
 				    WebRequest.SCOPE_SESSION);
@@ -199,8 +197,7 @@ public class ConceptReferenceTermFormController {
 			    Context.getMessageSourceService().getMessage("ConceptReferenceTerm.retired"), WebRequest.SCOPE_SESSION);
 			
 			return "redirect:" + FIND_CONCEPT_REFERENCE_TERM_URL;
-		}
-		catch (APIException e) {
+		} catch (APIException e) {
 			log.error("Error occurred while retiring concept reference term", e);
 			request.setAttribute(WebConstants.OPENMRS_ERROR_ATTR,
 			    Context.getMessageSourceService().getMessage("ConceptReferenceTerm.retire.error"), WebRequest.SCOPE_SESSION);
@@ -214,8 +211,7 @@ public class ConceptReferenceTermFormController {
 	 * Processes requests to unretire concept reference terms
 	 * 
 	 * @param request the {@link WebRequest} object
-	 * @param conceptReferenceTermModel the concept reference term model object for the term to
-	 *            unretire
+	 * @param conceptReferenceTermModel the concept reference term model object for the term to unretire
 	 * @return the url to redirect to
 	 */
 	@RequestMapping(method = RequestMethod.POST, value = "/admin/concepts/unretireConceptReferenceTerm.htm")
@@ -233,8 +229,7 @@ public class ConceptReferenceTermFormController {
 			
 			return "redirect:" + CONCEPT_REFERENCE_TERM_FORM_URL + "?conceptReferenceTermId="
 			        + conceptReferenceTerm.getConceptReferenceTermId();
-		}
-		catch (APIException e) {
+		} catch (APIException e) {
 			log.error("Error occurred while unretiring concept reference term", e);
 			request.setAttribute(WebConstants.OPENMRS_ERROR_ATTR,
 			    Context.getMessageSourceService().getMessage("ConceptReferenceTerm.unretire.error"),
@@ -264,8 +259,7 @@ public class ConceptReferenceTermFormController {
 			request.setAttribute(WebConstants.OPENMRS_MSG_ATTR,
 			    Context.getMessageSourceService().getMessage("ConceptReferenceTerm.purged"), WebRequest.SCOPE_SESSION);
 			return "redirect:" + FIND_CONCEPT_REFERENCE_TERM_URL;
-		}
-		catch (APIException e) {
+		} catch (APIException e) {
 			log.warn("Error occurred while attempting to purge concept reference term", e);
 			request.setAttribute(WebConstants.OPENMRS_ERROR_ATTR,
 			    Context.getMessageSourceService().getMessage("ConceptReferenceTerm.purge.error"), WebRequest.SCOPE_SESSION);

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -69,8 +69,8 @@ public class PersonListItem {
 	private Map<String, String> attributes = new HashMap<String, String>();
 	
 	/**
-	 * Creates an instance of a subclass of PersonListItem which is best suited for the parameter.
-	 * If a {@link Patient} is passed in, a {@link PatientListItem} is returned, otherwise a
+	 * Creates an instance of a subclass of PersonListItem which is best suited for the parameter. If a
+	 * {@link Patient} is passed in, a {@link PatientListItem} is returned, otherwise a
 	 * {@link PersonListItem} is returned.
 	 * 
 	 * @param person the {@link Person} object to covert to a {@link PersonListItem}
@@ -189,8 +189,8 @@ public class PersonListItem {
 	}
 	
 	/**
-	 * Helper method to check if all the search names(separated by spaces) are contained in the
-	 * person's full name.
+	 * Helper method to check if all the search names(separated by spaces) are contained in the person's
+	 * full name.
 	 * 
 	 * @param fullName the fullName upon which the search names are to be compared
 	 * @param searchNames Array&lt;String&gt; of searched names

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -27,13 +27,12 @@ public class ModuleListControllerTest {
 	public void sortStartupOrder_shouldSortModulesCorrectly() throws Exception {
 		// simulate the particular case I'm seeing in TRUNK-3384
 		Module appframework = mockModule("appframework", "org.openmrs.module.uiframework,org.openmrs.module.uilibrary");
-		Module kenyaemr = mockModule(
-		    "kenyaemr",
+		Module kenyaemr = mockModule("kenyaemr",
 		    "org.openmrs.module.uiframework,org.openmrs.module.uilibrary,org.openmrs.module.appframework,org.openmrs.module.metadatasharing,org.openmrs.module.htmlformentry");
 		Module uilibrary = mockModule("uilibrary", "org.openmrs.module.uiframework");
 		
-		List<Module> list = new ModuleListController().sortStartupOrder(Arrays.asList(appframework, kenyaemr, kenyaemr,
-		    uilibrary));
+		List<Module> list = new ModuleListController()
+		        .sortStartupOrder(Arrays.asList(appframework, kenyaemr, kenyaemr, uilibrary));
 		Assertions.assertSame(uilibrary, list.get(0));
 		Assertions.assertSame(appframework, list.get(1));
 		Assertions.assertSame(kenyaemr, list.get(2));

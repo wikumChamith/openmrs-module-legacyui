@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -50,9 +50,7 @@ public class PortletController implements Controller {
 	protected Log log = LogFactory.getLog(this.getClass());
 	
 	/**
-	 * This method produces a model containing the following mappings:
-	 * 
-	 * <pre>
+	 * This method produces a model containing the following mappings: <pre>
 	 *     (always)
 	 *          (java.util.Date) now
 	 *          (String) size
@@ -96,8 +94,8 @@ public class PortletController implements Controller {
 	 * @should not fail with empty height and weight properties
 	 */
 	@SuppressWarnings("unchecked")
-	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException,
-	        IOException {
+	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+	        throws ServletException, IOException {
 		
 		AdministrationService as = Context.getAdministrationService();
 		ConceptService cs = Context.getConceptService();
@@ -217,9 +215,8 @@ public class PortletController implements Controller {
 									        || obs.getObsDatetime().compareTo(latestWeight.getObsDatetime()) > 0) {
 										latestWeight = obs;
 									}
-								} else if (obs.getConcept().equals(heightConcept)
-								        && (latestHeight == null || obs.getObsDatetime().compareTo(
-								            latestHeight.getObsDatetime()) > 0)) {
+								} else if (obs.getConcept().equals(heightConcept) && (latestHeight == null
+								        || obs.getObsDatetime().compareTo(latestHeight.getObsDatetime()) > 0)) {
 									latestHeight = obs;
 								}
 							}
@@ -237,8 +234,8 @@ public class PortletController implements Controller {
 								} else if (weightConcept.getUnits().equalsIgnoreCase("lb")) {
 									weightInKg = latestWeight.getValueNumeric() * 0.45359237;
 								} else {
-									throw new IllegalArgumentException("Can't handle units of weight concept: "
-									        + weightConcept.getUnits());
+									throw new IllegalArgumentException(
+									        "Can't handle units of weight concept: " + weightConcept.getUnits());
 								}
 								if (heightConcept.getUnits().equalsIgnoreCase("cm")) {
 									heightInM = latestHeight.getValueNumeric() / 100;
@@ -247,16 +244,15 @@ public class PortletController implements Controller {
 								} else if (heightConcept.getUnits().equalsIgnoreCase("in")) {
 									heightInM = latestHeight.getValueNumeric() * 0.0254;
 								} else {
-									throw new IllegalArgumentException("Can't handle units of height concept: "
-									        + heightConcept.getUnits());
+									throw new IllegalArgumentException(
+									        "Can't handle units of height concept: " + heightConcept.getUnits());
 								}
 								double bmi = weightInKg / (heightInM * heightInM);
 								model.put("patientBmi", bmi);
 								String temp = "" + bmi;
 								bmiAsString = temp.substring(0, temp.indexOf('.') + 2);
 							}
-						}
-						catch (Exception ex) {
+						} catch (Exception ex) {
 							if (latestWeight != null && latestHeight != null) {
 								log.error("Failed to calculate BMI even though a weight and height were found", ex);
 							}
@@ -266,10 +262,8 @@ public class PortletController implements Controller {
 						model.put("patientObs", new HashSet<Obs>());
 					}
 					/**
-					 * Copied from OpenMRS core 1.9.13 See
-					 * https://github.com/openmrs/openmrs-core/blob
-					 * /1.9.13/web/src/main/java/org/openmrs
-					 * /web/controller/PortletController.java#L267
+					 * Copied from OpenMRS core 1.9.13 See https://github.com/openmrs/openmrs-core/blob
+					 * /1.9.13/web/src/main/java/org/openmrs /web/controller/PortletController.java#L267
 					 */
 					// information about whether or not the patient has exited care
 					Obs reasonForExitObs = null;
@@ -304,10 +298,8 @@ public class PortletController implements Controller {
 					        && Context.hasPrivilege(PrivilegeConstants.GET_PATIENT_PROGRAMS)) {
 						model.put("patientPrograms",
 						    Context.getProgramWorkflowService().getPatientPrograms(p, null, null, null, null, null, false));
-						model.put(
-						    "patientCurrentPrograms",
-						    Context.getProgramWorkflowService().getPatientPrograms(p, null, null, new Date(), new Date(),
-						        null, false));
+						model.put("patientCurrentPrograms", Context.getProgramWorkflowService().getPatientPrograms(p, null,
+						    null, new Date(), new Date(), null, false));
 					}
 					
 					model.put("patientId", patientId);
@@ -336,7 +328,8 @@ public class PortletController implements Controller {
 					model.put("person", p);
 				}
 				
-				if (!model.containsKey("personRelationships") && Context.hasPrivilege(PrivilegeConstants.GET_RELATIONSHIPS)) {
+				if (!model.containsKey("personRelationships")
+				        && Context.hasPrivilege(PrivilegeConstants.GET_RELATIONSHIPS)) {
 					List<Relationship> relationships = new ArrayList<Relationship>();
 					relationships.addAll(Context.getPersonService().getRelationshipsByPerson(p));
 					Map<RelationshipType, List<Relationship>> relationshipsByType = new HashMap<RelationshipType, List<Relationship>>();
@@ -399,8 +392,7 @@ public class PortletController implements Controller {
 						Concept c = cs.getConcept(i);
 						concepts.put(i, c);
 						conceptsByStringIds.put(i.toString(), c);
-					}
-					catch (Exception ex) {
+					} catch (Exception ex) {
 						log.error("Error during putting int i into concept c", ex);
 					}
 				}
@@ -419,8 +411,8 @@ public class PortletController implements Controller {
 	
 	/**
 	 * Subclasses should override this to put more data into the model. This will be called AFTER
-	 * handleRequest has put mappings in the model as described in its javadoc. Note that context
-	 * could be null when this method is called.
+	 * handleRequest has put mappings in the model as described in its javadoc. Note that context could
+	 * be null when this method is called.
 	 */
 	protected void populateModel(HttpServletRequest request, Map<String, Object> model) {
 	}

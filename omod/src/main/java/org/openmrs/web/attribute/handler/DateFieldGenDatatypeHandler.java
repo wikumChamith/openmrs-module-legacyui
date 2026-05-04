@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -69,8 +69,7 @@ public class DateFieldGenDatatypeHandler implements FieldGenDatatypeHandler<Date
 				java.util.Date date = Context.getDateFormat().parse(stringVal);
 				datatype.validate(date);
 				return date;
-			}
-			catch (ParseException ex) {
+			} catch (ParseException ex) {
 				throw new InvalidCustomValueException("general.invalid", ex);
 			}
 		}

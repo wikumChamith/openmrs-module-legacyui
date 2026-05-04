@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -79,12 +79,12 @@ public class DwrServletRequest implements HttpServletRequest {
 	public int getContentLength() {
 		return request.getContentLength();
 	}
-
+	
 	@Override
 	public long getContentLengthLong() {
 		return request.getContentLengthLong();
 	}
-
+	
 	@Override
 	public String getContentType() {
 		return request.getContentType();
@@ -181,7 +181,6 @@ public class DwrServletRequest implements HttpServletRequest {
 		return request.getRequestDispatcher(path);
 	}
 	
-
 	@Override
 	public int getRemotePort() {
 		return request.getRemotePort();
@@ -237,22 +236,22 @@ public class DwrServletRequest implements HttpServletRequest {
 	public DispatcherType getDispatcherType() {
 		return request.getDispatcherType();
 	}
-
+	
 	@Override
 	public String getRequestId() {
 		return request.getRequestId();
 	}
-
+	
 	@Override
 	public String getProtocolRequestId() {
 		return request.getProtocolRequestId();
 	}
-
+	
 	@Override
 	public ServletConnection getServletConnection() {
 		return request.getServletConnection();
 	}
-
+	
 	@Override
 	public String getAuthType() {
 		return request.getAuthType();
@@ -357,12 +356,12 @@ public class DwrServletRequest implements HttpServletRequest {
 	public HttpSession getSession() {
 		return request.getSession();
 	}
-
+	
 	@Override
 	public String changeSessionId() {
 		return request.changeSessionId();
 	}
-
+	
 	@Override
 	public boolean isRequestedSessionIdValid() {
 		return request.isRequestedSessionIdValid();
@@ -378,7 +377,6 @@ public class DwrServletRequest implements HttpServletRequest {
 		return request.isRequestedSessionIdFromURL();
 	}
 	
-
 	@Override
 	public boolean authenticate(HttpServletResponse response) throws IOException, ServletException {
 		return request.authenticate(response);
@@ -403,7 +401,7 @@ public class DwrServletRequest implements HttpServletRequest {
 	public Part getPart(String name) throws IOException, ServletException {
 		return request.getPart(name);
 	}
-
+	
 	@Override
 	public <T extends HttpUpgradeHandler> T upgrade(Class<T> aClass) throws IOException, ServletException {
 		return request.upgrade(aClass);

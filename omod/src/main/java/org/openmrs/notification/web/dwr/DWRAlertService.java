@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -28,8 +28,8 @@ public class DWRAlertService {
 	protected final Log log = LogFactory.getLog(getClass());
 	
 	/**
-	 * Calls the corresponding AlertService.getAlertsByUser(null) method to get alerts for the
-	 * current user or for the authenticated role
+	 * Calls the corresponding AlertService.getAlertsByUser(null) method to get alerts for the current
+	 * user or for the authenticated role
 	 * 
 	 * @return list of alerts
 	 */
@@ -47,8 +47,7 @@ public class DWRAlertService {
 				alerts.add(new AlertListItem(a));
 			}
 			
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.error("Error getting alerts", e);
 		}
 		return alerts;
@@ -79,11 +78,9 @@ public class DWRAlertService {
 			// Mark the alert as read and save it
 			as.saveAlert(alert.markAlertRead());
 			
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.error("Error while marking alert '" + alertId + "' as read", e);
-		}
-		finally {
+		} finally {
 			Context.removeProxyPrivilege(PrivilegeConstants.MANAGE_ALERTS);
 		}
 	}
@@ -106,11 +103,9 @@ public class DWRAlertService {
 				Context.getAlertService().saveAlert(new Alert(text, users));
 				
 				return true;
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				log.error("Error while creating an alert ", e);
-			}
-			finally {
+			} finally {
 				Context.removeProxyPrivilege(PrivilegeConstants.MANAGE_ALERTS);
 				Context.removeProxyPrivilege(PrivilegeConstants.GET_USERS);
 				Context.removeProxyPrivilege(PrivilegeConstants.GET_ROLES);

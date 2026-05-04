@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -174,10 +174,11 @@ public class RequireTagTest extends BaseModuleWebContextSensitiveTest {
 		tag.setRedirect(redirect);
 		
 		Assertions.assertEquals(Tag.SKIP_PAGE, tag.doStartTag());
-		Assertions.assertEquals(true, pageContext.getAttribute(WebConstants.INSUFFICIENT_PRIVILEGES, PageContext.SESSION_SCOPE));
+		Assertions.assertEquals(true,
+		    pageContext.getAttribute(WebConstants.INSUFFICIENT_PRIVILEGES, PageContext.SESSION_SCOPE));
 		Assertions.assertNotNull(pageContext.getAttribute(WebConstants.REQUIRED_PRIVILEGES, PageContext.SESSION_SCOPE));
-		Assertions.assertEquals(redirect, pageContext.getAttribute(WebConstants.DENIED_PAGE, PageContext.SESSION_SCOPE)
-		        .toString());
+		Assertions.assertEquals(redirect,
+		    pageContext.getAttribute(WebConstants.DENIED_PAGE, PageContext.SESSION_SCOPE).toString());
 		
 		Context.logout();
 	}
@@ -202,10 +203,11 @@ public class RequireTagTest extends BaseModuleWebContextSensitiveTest {
 		tag.setRedirect("");
 		
 		Assertions.assertEquals(Tag.SKIP_PAGE, tag.doStartTag());
-		Assertions.assertEquals(true, pageContext.getAttribute(WebConstants.INSUFFICIENT_PRIVILEGES, PageContext.SESSION_SCOPE));
+		Assertions.assertEquals(true,
+		    pageContext.getAttribute(WebConstants.INSUFFICIENT_PRIVILEGES, PageContext.SESSION_SCOPE));
 		Assertions.assertNotNull(pageContext.getAttribute(WebConstants.REQUIRED_PRIVILEGES, PageContext.SESSION_SCOPE));
-		Assertions.assertEquals(referer, pageContext.getAttribute(WebConstants.DENIED_PAGE, PageContext.SESSION_SCOPE)
-		        .toString());
+		Assertions.assertEquals(referer,
+		    pageContext.getAttribute(WebConstants.DENIED_PAGE, PageContext.SESSION_SCOPE).toString());
 		
 		Context.logout();
 	}

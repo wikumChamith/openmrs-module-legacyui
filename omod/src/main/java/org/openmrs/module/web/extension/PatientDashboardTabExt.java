@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -32,8 +32,8 @@ public abstract class PatientDashboardTabExt extends Extension {
 	public abstract String getTabId();
 	
 	/**
-	 * Tab views are controlled by privileges. The user must have this privilege to be able to view
-	 * this tab
+	 * Tab views are controlled by privileges. The user must have this privilege to be able to view this
+	 * tab
 	 * 
 	 * @return privilege
 	 */

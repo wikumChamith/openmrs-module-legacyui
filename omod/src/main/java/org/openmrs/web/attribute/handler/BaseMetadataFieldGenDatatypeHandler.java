@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -19,8 +19,7 @@ import org.openmrs.customdatatype.datatype.BaseMetadataDatatype;
 public abstract class BaseMetadataFieldGenDatatypeHandler<DT extends BaseMetadataDatatype<T>, T extends OpenmrsMetadata> extends SerializingFieldGenDatatypeHandler<DT, T> {
 	
 	/**
-	 * @see SerializingFieldGenDatatypeHandler#toHtml(org.openmrs.customdatatype.CustomDatatype,
-	 *      String)
+	 * @see SerializingFieldGenDatatypeHandler#toHtml(org.openmrs.customdatatype.CustomDatatype, String)
 	 * @should return the name
 	 */
 	@Override

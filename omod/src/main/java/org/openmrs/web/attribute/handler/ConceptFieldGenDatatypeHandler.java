@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -25,12 +25,13 @@ import java.util.Map;
  */
 @Component
 public class ConceptFieldGenDatatypeHandler extends SerializingFieldGenDatatypeHandler<ConceptDatatype, Concept> {
-
+	
 	public static final String SHOW_ANSWERS = "showAnswers";
-
+	
 	private ObjectMapper objectMapper = new ObjectMapper();
+	
 	private Map<String, Object> widgetConfiguration = new HashMap<>();
-
+	
 	/**
 	 * @see SerializingFieldGenDatatypeHandler#getWidgetName()
 	 */
@@ -72,8 +73,7 @@ public class ConceptFieldGenDatatypeHandler extends SerializingFieldGenDatatypeH
 		if (StringUtils.isNotBlank(handlerConfig)) {
 			try {
 				widgetConfiguration.putAll(objectMapper.readValue(handlerConfig, Map.class));
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				throw new IllegalArgumentException("Unable to parse widget configuration", e);
 			}
 			Object showAnswersRef = widgetConfiguration.remove(SHOW_ANSWERS);
@@ -81,8 +81,7 @@ public class ConceptFieldGenDatatypeHandler extends SerializingFieldGenDatatypeH
 				Concept concept = Context.getConceptService().getConceptByUuid(showAnswersRef.toString());
 				if (concept != null) {
 					widgetConfiguration.put(SHOW_ANSWERS, concept.getConceptId());
-				}
-				else {
+				} else {
 					widgetConfiguration.put(SHOW_ANSWERS, Integer.parseInt(showAnswersRef.toString()));
 				}
 			}

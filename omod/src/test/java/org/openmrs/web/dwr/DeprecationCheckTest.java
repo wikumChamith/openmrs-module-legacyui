@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -52,11 +52,9 @@ public class DeprecationCheckTest {
 				message = message.substring(0, message.length() - 1);
 				fail(message);
 			}
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		catch (ClassNotFoundException e) {
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
@@ -98,12 +96,11 @@ public class DeprecationCheckTest {
 	}
 	
 	/**
-	 * For the given class, checks if it contains any {@literal @}Deprecated annotation (at
-	 * method/class level).
+	 * For the given class, checks if it contains any {@literal @}Deprecated annotation (at method/class
+	 * level).
 	 * 
 	 * @param metadataReader
-	 * @return true if it finds {@literal @}Deprecated annotation in the class or any of its
-	 *         methods.
+	 * @return true if it finds {@literal @}Deprecated annotation in the class or any of its methods.
 	 * @throws ClassNotFoundException
 	 */
 	private boolean doesClassContainDeprecatedAnnotation(MetadataReader metadataReader) throws ClassNotFoundException {
@@ -119,8 +116,7 @@ public class DeprecationCheckTest {
 				if (method.isAnnotationPresent(Deprecated.class))
 					return true;
 			}
-		}
-		catch (Throwable e) {}
+		} catch (Throwable e) {}
 		return false;
 	}
 }

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -22,8 +22,8 @@ import org.openmrs.ConceptName;
 public class ConceptListItemTest {
 	
 	/**
-	 * Tests that the constructor sets the preferred name if any even if the matched name is marked
-	 * as fully specified
+	 * Tests that the constructor sets the preferred name if any even if the matched name is marked as
+	 * fully specified
 	 * 
 	 * @see ConceptListItem#ConceptListItem(Concept, ConceptName, Locale)
 	 */

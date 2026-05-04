@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -60,8 +60,7 @@ public class Hl7InArchiveListController {
 	 * @throws IOException
 	 */
 	@RequestMapping("/admin/hl7/hl7InArchiveList.json")
-	public @ResponseBody
-	Map<String, Object> getHL7InArchiveBatchAsJson(@RequestParam("iDisplayStart") int iDisplayStart,
+	public @ResponseBody Map<String, Object> getHL7InArchiveBatchAsJson(@RequestParam("iDisplayStart") int iDisplayStart,
 	        @RequestParam("iDisplayLength") int iDisplayLength, @RequestParam("sSearch") String sSearch,
 	        @RequestParam("sEcho") int sEcho) throws IOException {
 		

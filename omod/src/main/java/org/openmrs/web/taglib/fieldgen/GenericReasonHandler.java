@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -78,7 +78,8 @@ public class GenericReasonHandler extends AbstractFieldGenHandler implements Fie
 					possibleReasons.add(answer.getAnswerConcept());
 				}
 			} else {
-				log.debug("No reason concept found, either as global property or override.  Cannot generate list of possible reasons.");
+				log.debug(
+				    "No reason concept found, either as global property or override.  Cannot generate list of possible reasons.");
 			}
 			
 			Map<String, String> reasons = new HashMap<String, String>();

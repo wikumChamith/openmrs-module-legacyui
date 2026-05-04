@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -67,16 +67,13 @@ public abstract class OpenmrsRequestContextAwareBodyTag extends BodyTagSupport {
 			}
 			// do actual work of this tag
 			return doEndTagInternal();
-		}
-		catch (JspException ex) {
+		} catch (JspException ex) {
 			logger.error(ex.getMessage(), ex);
 			throw ex;
-		}
-		catch (RuntimeException ex) {
+		} catch (RuntimeException ex) {
 			logger.error(ex.getMessage(), ex);
 			throw ex;
-		}
-		catch (Exception ex) {
+		} catch (Exception ex) {
 			logger.error(ex.getMessage(), ex);
 			throw new JspTagException(ex.getMessage());
 		}

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -72,8 +72,7 @@ public class DWRUserService {
 			for (User u : userService.getUsers(searchValue, roles, includeVoided)) {
 				userList.add(new UserListItem(u));
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.error("Error while searching for users", e);
 			userList.add("Error while attempting to find users - " + e.getMessage());
 		}
@@ -126,8 +125,7 @@ public class DWRUserService {
 					userList.add(safeUser);
 				}
 				
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				log.error("Error while getting all users", e);
 				userList.add("Error while attempting to get users - " + e.getMessage());
 			}
@@ -147,8 +145,7 @@ public class DWRUserService {
 		if (Context.isAuthenticated()) {
 			try {
 				user = new UserListItem(Context.getUserService().getUser(userId));
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				log.error("Error while getting user", e);
 			}
 		}

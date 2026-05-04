@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -52,10 +52,10 @@ public class SampleFlowsheetServlet extends HttpServlet {
 		
 		if (!Context.isAuthenticated() || !Context.hasPrivilege(PrivilegeConstants.GET_PATIENTS)
 		        || !Context.hasPrivilege(PrivilegeConstants.GET_OBS)) {
-			session.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "Privileges required: " + PrivilegeConstants.GET_PATIENTS
-			        + " and " + PrivilegeConstants.GET_OBS);
-			session.setAttribute(WebConstants.OPENMRS_LOGIN_REDIRECT_HTTPSESSION_ATTR, request.getRequestURI() + "?"
-			        + request.getQueryString());
+			session.setAttribute(WebConstants.OPENMRS_ERROR_ATTR,
+			    "Privileges required: " + PrivilegeConstants.GET_PATIENTS + " and " + PrivilegeConstants.GET_OBS);
+			session.setAttribute(WebConstants.OPENMRS_LOGIN_REDIRECT_HTTPSESSION_ATTR,
+			    request.getRequestURI() + "?" + request.getQueryString());
 			response.sendRedirect(request.getContextPath() + "/login.htm");
 			return;
 		}
@@ -73,7 +73,8 @@ public class SampleFlowsheetServlet extends HttpServlet {
 		
 		out.println("<style>");
 		out.println(".header { font-family:Arial; font-weight:bold; text-align: center; font-size: 1.5em;}");
-		out.println(".label { font-family:Arial; text-align:right; color:#808080; font-style:italic; font-size: 0.6em; vertical-align: top;}");
+		out.println(
+		    ".label { font-family:Arial; text-align:right; color:#808080; font-style:italic; font-size: 0.6em; vertical-align: top;}");
 		out.println(".value { font-family:Arial; text-align:left; vertical-align:top; }");
 		out.println("</style>");
 		out.println("<table cellspacing=0 cellpadding=3>");
@@ -85,8 +86,8 @@ public class SampleFlowsheetServlet extends HttpServlet {
 			obsDate.setTime(obs.getObsDatetime());
 			if (Math.abs(obsDate.getTimeInMillis() - date.getTimeInMillis()) > 86400000) {
 				date = obsDate;
-				out.println("<tr><td class=header colspan=2>" + Context.getDateFormat().format(date.getTime())
-				        + "</td></tr>");
+				out.println(
+				    "<tr><td class=header colspan=2>" + Context.getDateFormat().format(date.getTime()) + "</td></tr>");
 			}
 			StringBuilder s = new StringBuilder("<tr><td class=label>");
 			s.append(getName(obs, locale));

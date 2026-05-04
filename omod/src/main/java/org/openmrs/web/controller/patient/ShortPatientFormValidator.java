@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -96,9 +96,7 @@ public class ShortPatientFormValidator implements Validator {
 			        && OpenmrsUtil.nullSafeEqualsIgnoreCase(possibleDuplicate.getMiddleName(), personName.getMiddleName())
 			        && OpenmrsUtil.nullSafeEqualsIgnoreCase(possibleDuplicate.getFamilyName(), personName.getFamilyName())) {
 				if (possibleDuplicate.isVoided()) {
-					errors.reject(
-					    "legacyui.patient.duplicateName.voided",
-					    new Object[] { personName.getFullName() },
+					errors.reject("legacyui.patient.duplicateName.voided", new Object[] { personName.getFullName() },
 					    personName.getFullName()
 					            + " is a duplicate name for the same patient and it's voided. Please restore the existing name "
 					            + "instead of creating new name");
@@ -120,9 +118,8 @@ public class ShortPatientFormValidator implements Validator {
 				ObjectError error = it.next();
 				// don't show similar error message multiple times in the view
 				// unless they take in arguments which will make them atleast different
-				if (error.getCode() != null
-				        && (!errorCodesWithNoArguments.contains(error.getCode()) || (error.getArguments() != null && error
-				                .getArguments().length > 0))) {
+				if (error.getCode() != null && (!errorCodesWithNoArguments.contains(error.getCode())
+				        || (error.getArguments() != null && error.getArguments().length > 0))) {
 					errors.reject(error.getCode(), error.getArguments(), "");
 					if (error.getArguments() == null || error.getArguments().length == 0) {
 						errorCodesWithNoArguments.add(error.getCode());
@@ -204,8 +201,8 @@ public class ShortPatientFormValidator implements Validator {
 				}
 			}
 		} else {
-			errors.rejectValue("patient.birthdate", "error.required", new Object[] { Context.getMessageSourceService()
-			        .getMessage("Person.birthdate") }, "");
+			errors.rejectValue("patient.birthdate", "error.required",
+			    new Object[] { Context.getMessageSourceService().getMessage("Person.birthdate") }, "");
 		}
 		
 		//validate the personAddress
@@ -213,8 +210,7 @@ public class ShortPatientFormValidator implements Validator {
 			try {
 				errors.pushNestedPath("personAddress");
 				ValidationUtils.invokeValidator(new PersonAddressValidator(), shortPatientModel.getPersonAddress(), errors);
-			}
-			finally {
+			} finally {
 				errors.popNestedPath();
 			}
 		}
@@ -229,9 +225,8 @@ public class ShortPatientFormValidator implements Validator {
 					errors.rejectValue("patient.deathDate", "error.date.future");
 				}
 				// death date has to be after birthdate if both are specified
-				if (shortPatientModel.getPatient().getBirthdate() != null
-				        && shortPatientModel.getPatient().getDeathDate()
-				                .before(shortPatientModel.getPatient().getBirthdate())) {
+				if (shortPatientModel.getPatient().getBirthdate() != null && shortPatientModel.getPatient().getDeathDate()
+				        .before(shortPatientModel.getPatient().getBirthdate())) {
 					errors.rejectValue("patient.deathDate", "error.deathdate.before.birthdate");
 				}
 			}

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -43,8 +43,8 @@ public class SchedulerListController extends SimpleFormController {
 	protected static final Log log = LogFactory.getLog(SchedulerListController.class);
 	
 	/**
-	 * Service context used to communicate with the services layer. TODO This is not used yet
-	 * because we get the context from the session.
+	 * Service context used to communicate with the services layer. TODO This is not used yet because we
+	 * get the context from the session.
 	 */
 	//private Context context;
 	/**
@@ -52,6 +52,7 @@ public class SchedulerListController extends SimpleFormController {
 	 * 
 	 * @param context
 	 */
+	
 	//public void setContext(Context context) { 
 	//	this.context = context;
 	//}
@@ -68,8 +69,8 @@ public class SchedulerListController extends SimpleFormController {
 	}
 	
 	/**
-	 * The onSubmit function receives the form/command object that was modified by the input form
-	 * and saves it to the db
+	 * The onSubmit function receives the form/command object that was modified by the input form and
+	 * saves it to the db
 	 * 
 	 * @see org.springframework.web.servlet.mvc.SimpleFormController#onSubmit(javax.servlet.http.HttpServletRequest,
 	 *      javax.servlet.http.HttpServletResponse, java.lang.Object,
@@ -121,12 +122,10 @@ public class SchedulerListController extends SimpleFormController {
 						schedulerService.scheduleTask(task);
 						success.append(msa.getMessage("Scheduler.taskList.started", args));
 					}
-				}
-				catch (APIException e) {
+				} catch (APIException e) {
 					log.warn("Error processing schedulerlistcontroller task", e);
 					error.append(msa.getMessage("Scheduler.taskList.error", args));
-				}
-				catch (SchedulerException ex) {
+				} catch (SchedulerException ex) {
 					log.error("Error processing schedulerlistcontroller task", ex);
 					error.append(msa.getMessage("Scheduler.taskList.error", args));
 				}
@@ -148,8 +147,8 @@ public class SchedulerListController extends SimpleFormController {
 	}
 	
 	/**
-	 * This is called prior to displaying a form for the first time. It tells Spring the
-	 * form/command object to load into the request
+	 * This is called prior to displaying a form for the first time. It tells Spring the form/command
+	 * object to load into the request
 	 * 
 	 * @see org.springframework.web.servlet.mvc.AbstractFormController#formBackingObject(javax.servlet.http.HttpServletRequest)
 	 */

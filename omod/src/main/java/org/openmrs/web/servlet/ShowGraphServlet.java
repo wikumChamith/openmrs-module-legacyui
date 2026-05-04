@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -125,8 +125,7 @@ public class ShowGraphServlet extends HttpServlet {
 				} else {
 					throw new APIException("unsupported.mime.type", (Object[]) null);
 				}
-			}
-			catch (IOException e) {
+			} catch (IOException e) {
 				// if its tomcat and the user simply navigated away from the page, don't throw an error
 				if (e.getClass().getName().equals("org.apache.catalina.connector.ClientAbortException")) {
 					// do nothing
@@ -143,8 +142,7 @@ public class ShowGraphServlet extends HttpServlet {
 	}
 	
 	/**
-	 * The main method for this class. It will create a JFreeChart object to be written to the
-	 * response.
+	 * The main method for this class. It will create a JFreeChart object to be written to the response.
 	 * 
 	 * @param request the current request will all the parameters needed
 	 * @return JFreeChart object to be rendered
@@ -461,8 +459,8 @@ public class ShowGraphServlet extends HttpServlet {
 	}
 	
 	/**
-	 * Get the toDate object from the given string that is the time in milliseconds. If
-	 * dateFromRequest is null, return tomorrow's date.
+	 * Get the toDate object from the given string that is the time in milliseconds. If dateFromRequest
+	 * is null, return tomorrow's date.
 	 * 
 	 * @param dateFromRequest String that was passed into this servlet
 	 * @return Date parsed from dateFromRequest string

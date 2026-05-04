@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -72,9 +72,9 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 	
 	@Autowired
 	ConceptService conceptService;
-
-    @Autowired
-    @Qualifier("conceptForm")
+	
+	@Autowired
+	@Qualifier("conceptForm")
 	ObjectFactory<ConceptFormController> conceptFormProvider;
 	
 	private Locale britishEn;
@@ -101,9 +101,9 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		request.setParameter("conceptId", "3");
 		
 		HttpServletResponse response = new MockHttpServletResponse();
-
+		
 		ConceptFormController controller = conceptFormProvider.getObject();
-
+		
 		ModelAndView modelAndView = controller.handleRequest(request, response);
 		
 		// make sure there is an "conceptId" filled in on the concept
@@ -125,7 +125,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		ConceptService cs = Context.getConceptService();
 		
 		// set up the controller
-        ConceptFormController controller = conceptFormProvider.getObject();
+		ConceptFormController controller = conceptFormProvider.getObject();
 		controller.setApplicationContext(applicationContext);
 		controller.setSuccessView("index.htm");
 		controller.setFormView("concept.form");
@@ -165,7 +165,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		Concept conceptToAdd = cs.getConceptByName(EXPECTED_PREFERRED_NAME);
 		assertNull(conceptToAdd);
 		
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		
 		MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 		
@@ -175,7 +175,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		mockRequest.setParameter("descriptionsByLocale[en_GB].description", "some description");
 		mockRequest.setParameter("concept.datatype", "1");
 		mockRequest.setParameter("concept.conceptClass", "1");
-
+		
 		ModelAndView mav = conceptFormController.handleRequest(mockRequest, new MockHttpServletResponse());
 		assertNotNull(mav);
 		assertTrue(mav.getModel().isEmpty());
@@ -205,7 +205,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		Concept conceptToAdd = cs.getConceptByName(EXPECTED_PREFERRED_NAME);
 		assertNull(conceptToAdd);
 		
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		
 		MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 		
@@ -216,7 +216,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		mockRequest.setParameter("descriptionsByLocale[en_GB].description", "some description");
 		mockRequest.setParameter("concept.datatype", "1");
 		mockRequest.setParameter("concept.conceptClass", "1");
-
+		
 		ModelAndView mav = conceptFormController.handleRequest(mockRequest, new MockHttpServletResponse());
 		assertNotNull(mav);
 		assertTrue(mav.getModel().isEmpty());
@@ -248,7 +248,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		Concept conceptToAdd = cs.getConceptByName(EXPECTED_PREFERRED_NAME);
 		assertNull(conceptToAdd);
 		
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		
 		MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 		MockHttpServletResponse response = new MockHttpServletResponse();
@@ -260,7 +260,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		mockRequest.setParameter("namesByLocale[en_GB].name", EXPECTED_PREFERRED_NAME);
 		mockRequest.setParameter("concept.datatype", "4");
 		mockRequest.setParameter("concept.conceptClass", "1");
-
+		
 		ModelAndView mav = conceptFormController.handleRequest(mockRequest, response);
 		assertNotNull(mav);
 		assertTrue(mav.getModel().isEmpty());
@@ -294,7 +294,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		Concept conceptToAdd = cs.getConceptByName(EXPECTED_PREFERRED_NAME);
 		assertNull(conceptToAdd);
 		
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		
 		MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 		MockHttpServletResponse response = new MockHttpServletResponse();
@@ -306,7 +306,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		mockRequest.setParameter("namesByLocale[en_GB].name", EXPECTED_PREFERRED_NAME);
 		mockRequest.setParameter("concept.datatype", "1");
 		mockRequest.setParameter("concept.conceptClass", "1");
-
+		
 		ModelAndView mav = conceptFormController.handleRequest(mockRequest, response);
 		assertNotNull(mav);
 		assertTrue(mav.getModel().isEmpty());
@@ -348,7 +348,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		Concept conceptToAdd = cs.getConceptByName(EXPECTED_PREFERRED_NAME);
 		assertNull(conceptToAdd);
 		
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		
 		MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 		MockHttpServletResponse response = new MockHttpServletResponse();
@@ -363,7 +363,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		mockRequest.setParameter("namesByLocale[en_GB].name", EXPECTED_PREFERRED_NAME);
 		mockRequest.setParameter("concept.datatype", "1");
 		mockRequest.setParameter("concept.conceptClass", "1");
-
+		
 		ModelAndView mav = conceptFormController.handleRequest(mockRequest, response);
 		assertNotNull(mav);
 		assertTrue(mav.getModel().isEmpty());
@@ -401,7 +401,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		Concept conceptToAdd = cs.getConceptByName(EXPECTED_PREFERRED_NAME);
 		assertNull(conceptToAdd);
 		
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		
 		MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 		MockHttpServletResponse response = new MockHttpServletResponse();
@@ -416,7 +416,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		mockRequest.setParameter("namesByLocale[en_GB].name", EXPECTED_PREFERRED_NAME);
 		mockRequest.setParameter("concept.datatype", "1");
 		mockRequest.setParameter("concept.conceptClass", "1");
-
+		
 		ModelAndView mav = conceptFormController.handleRequest(mockRequest, response);
 		assertNotNull(mav);
 		assertTrue(mav.getModel().isEmpty());
@@ -451,7 +451,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		Concept conceptToAdd = cs.getConceptByName(EXPECTED_PREFERRED_NAME);
 		assertNull(conceptToAdd);
 		
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		
 		MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 		MockHttpServletResponse response = new MockHttpServletResponse();
@@ -494,7 +494,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		Concept concept = cs.getConcept(3);
 		assertNotNull(concept);
 		
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		
 		MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 		MockHttpServletResponse response = new MockHttpServletResponse();
@@ -539,7 +539,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		assertThat(actualConcept.getShortNames().size(), greaterThan(0));
 		assertThat(actualConcept.getNames().size(), is(2));
 		
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		
 		MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 		MockHttpServletResponse response = new MockHttpServletResponse();
@@ -588,7 +588,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		cs.saveConcept(conceptToUpdate);
 		
 		// then submit changes through the controller
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		
 		MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 		MockHttpServletResponse response = new MockHttpServletResponse();
@@ -603,7 +603,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		mockRequest.setParameter("namesByLocale[en_GB].name", EXPECTED_PREFERRED_NAME);
 		mockRequest.setParameter("concept.datatype", "1");
 		mockRequest.setParameter("concept.conceptClass", "1");
-
+		
 		ModelAndView mav = conceptFormController.handleRequest(mockRequest, response);
 		assertNotNull(mav);
 		assertTrue(mav.getModel().isEmpty());
@@ -630,7 +630,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		
 		ConceptService cs = Context.getConceptService();
 		
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		
 		MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 		
@@ -673,7 +673,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		final Double EXPECTED_HI_CRITICAL = 1800.0;
 		final Double EXPECTED_HI_ABSOLUTE = 2500.0;
 		
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		
 		MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 		
@@ -701,7 +701,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 	public void shouldRemoveConceptSet() throws Exception {
 		ConceptService cs = Context.getConceptService();
 		
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 		
 		mockRequest.setMethod("POST");
@@ -730,7 +730,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 	public void shouldRemoveConceptAnswer() throws Exception {
 		ConceptService cs = Context.getConceptService();
 		
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 		
 		mockRequest.setMethod("POST");
@@ -751,8 +751,8 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 	}
 	
 	/**
-	 * This test makes sure that all answers are deleted if the user changes this concept's datatype
-	 * to something other than "Coded"
+	 * This test makes sure that all answers are deleted if the user changes this concept's datatype to
+	 * something other than "Coded"
 	 * 
 	 * @throws Exception
 	 */
@@ -760,7 +760,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 	public void shouldRemoveConceptAnswersIfDatatypeChangedFromCoded() throws Exception {
 		ConceptService cs = Context.getConceptService();
 		
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 		
 		mockRequest.setMethod("POST");
@@ -791,7 +791,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		
 		ConceptService cs = Context.getConceptService();
 		
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 		
 		mockRequest.setMethod("POST");
@@ -820,7 +820,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 	@Verifies(value = "should return a concept with a null id if no match is found", method = "onSubmit(HttpServletRequest,HttpServletResponse,Object,BindException)")
 	public void onSubmit_shouldReturnAConceptWithANullIdIfNoMatchIsFound() throws Exception {
 		
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 		mockRequest.setMethod("GET");
 		mockRequest.setParameter("conceptId", "57432223");
@@ -842,7 +842,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		//sanity check, the current preferred Name should be different from what will get set in the form
 		Assertions.assertNotSame("CD3+CD4+ABS CNT", concept.getPreferredName(britishEn).getName());
 		
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 		mockRequest.setMethod("POST");
 		mockRequest.setParameter("action", "");
@@ -872,7 +872,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		concept.addName(preferredName);
 		cs.saveConcept(concept);
 		
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 		mockRequest.setMethod("POST");
 		mockRequest.setParameter("action", "");
@@ -901,7 +901,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		assertNotNull(concept);
 		int initialConceptMappingCount = concept.getConceptMappings().size();
 		
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 		MockHttpServletResponse response = new MockHttpServletResponse();
 		
@@ -930,7 +930,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		Concept newConcept = cs.getConceptByName(conceptName);
 		assertNull(newConcept);
 		
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		
 		MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 		MockHttpServletResponse response = new MockHttpServletResponse();
@@ -967,7 +967,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		assertNotNull(concept);
 		int initialConceptMappingCount = concept.getConceptMappings().size();
 		
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 		MockHttpServletResponse response = new MockHttpServletResponse();
 		
@@ -1000,7 +1000,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		int initialConceptMappingCount = maps.size();
 		assertTrue(initialConceptMappingCount > 0);
 		
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 		MockHttpServletResponse response = new MockHttpServletResponse();
 		
@@ -1115,7 +1115,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		assertNotNull(concept.getDescription(britishEn, true));
 		assertNull(concept.getDescription(spanish, true));
 		
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		
 		MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 		MockHttpServletResponse response = new MockHttpServletResponse();
@@ -1149,7 +1149,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		
 		int initialCount = concept.getAnswers().size();
 		
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 		
 		mockRequest.setMethod("POST");
@@ -1218,7 +1218,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		
 		final Integer conceptId = 5089;
 		
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		
 		MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 		
@@ -1254,7 +1254,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		Concept conceptToAdd = cs.getConceptByName(EXPECTED_PREFERRED_NAME);
 		assertNull(conceptToAdd);
 		
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		
 		MockHttpServletRequest mockRequest = new MockHttpServletRequest();
 		mockRequest.setMethod("POST");
@@ -1264,7 +1264,7 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		mockRequest.setParameter("concept.datatype", "1");
 		mockRequest.setParameter("attribute.1.new[0]", "2011-04-25");
 		mockRequest.setParameter("concept.conceptClass", "1");
-
+		
 		ModelAndView mav = conceptFormController.handleRequest(mockRequest, new MockHttpServletResponse());
 		assertNotNull(mav);
 		assertTrue(mav.getModel().isEmpty());
@@ -1285,8 +1285,8 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		executeDataSet(CONCEPT_ATTRIBUTES_XML);
 		Concept concept = Context.getConceptService().getConcept(3);
 		final int existingConceptAttributeId = 1;
-		ConceptAttributeType conceptAttributeType = Context.getConceptService().getConceptAttributeType(
-		    existingConceptAttributeId);
+		ConceptAttributeType conceptAttributeType = Context.getConceptService()
+		        .getConceptAttributeType(existingConceptAttributeId);
 		conceptAttributeType.setName("concept joined date");
 		
 		//assert there is one concept attribute
@@ -1297,11 +1297,11 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		mockHttpServletRequest.setMethod("POST");
 		mockHttpServletRequest.setParameter("action", "");
 		mockHttpServletRequest.setParameter("conceptId", "3");
-		mockHttpServletRequest.setParameter("attribute." + conceptAttributeType.getId() + ".existing["
-		        + existingConceptAttributeId + "]", "2011-04-25");
+		mockHttpServletRequest.setParameter(
+		    "attribute." + conceptAttributeType.getId() + ".existing[" + existingConceptAttributeId + "]", "2011-04-25");
 		BindException errors = new BindException(concept, "concept");
 		
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		conceptFormController.handleRequest(mockHttpServletRequest, new MockHttpServletResponse());
 		
 		Assertions.assertEquals(1, concept.getAttributes().size());
@@ -1317,18 +1317,18 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 		executeDataSet(CONCEPT_ATTRIBUTES_XML);
 		Concept concept = Context.getConceptService().getConcept(3);
 		final int existingConceptAttributeId = 1;
-		ConceptAttributeType conceptAttributeType = Context.getConceptService().getConceptAttributeType(
-		    existingConceptAttributeId);
+		ConceptAttributeType conceptAttributeType = Context.getConceptService()
+		        .getConceptAttributeType(existingConceptAttributeId);
 		conceptAttributeType.setName("concept type");
 		MockHttpServletRequest mockHttpServletRequest = new MockHttpServletRequest();
 		//If value is not set then void all the attributes.
 		mockHttpServletRequest.setMethod("POST");
 		mockHttpServletRequest.setParameter("action", "");
 		mockHttpServletRequest.setParameter("conceptId", "3");
-		mockHttpServletRequest.setParameter("attribute." + conceptAttributeType.getId() + ".existing["
-		        + existingConceptAttributeId + "]", "");
+		mockHttpServletRequest.setParameter(
+		    "attribute." + conceptAttributeType.getId() + ".existing[" + existingConceptAttributeId + "]", "");
 		BindException errors = new BindException(concept, "concept");
-		ConceptFormController conceptFormController =  conceptFormProvider.getObject();
+		ConceptFormController conceptFormController = conceptFormProvider.getObject();
 		conceptFormController.handleRequest(mockHttpServletRequest, new MockHttpServletResponse());
 		
 		Assertions.assertEquals(1, concept.getAttributes().size());
@@ -1337,83 +1337,75 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 	}
 	
 	/**
-	 * To be uncommented when the openmrs-core version in this module is ultimately changed to 2.7.0
-	 * or above // /** // * @see ConceptFormController#onSubmit(HttpServletRequest,
-	 * HttpServletResponse, Object, // * BindException) // /
+	 * To be uncommented when the openmrs-core version in this module is ultimately changed to 2.7.0 or
+	 * above // /** // * @see ConceptFormController#onSubmit(HttpServletRequest, HttpServletResponse,
+	 * Object, // * BindException) // /
 	 * 
 	 * @Test public void onSubmit_shouldAddANewReferenceRangeToAnExistingConceptNumeric() throws
-	 *       Exception { ConceptService cs = Context.getConceptService(); ConceptNumeric
-	 *       conceptNumeric = cs.getConceptNumeric(4090); assertNotNull(conceptNumeric); int
-	 *       initialConceptMappingCount =
-	 *       getReferenceRangesFromConceptNumeric(conceptNumeric).size(); ConceptFormController
-	 *       conceptFormController = (ConceptFormController)
-	 *       applicationContext.getBean("conceptForm"); MockHttpServletRequest mockRequest = new
-	 *       MockHttpServletRequest(); MockHttpServletResponse response = new
-	 *       MockHttpServletResponse(); mockRequest.setMethod("POST");
+	 *       Exception { ConceptService cs = Context.getConceptService(); ConceptNumeric conceptNumeric
+	 *       = cs.getConceptNumeric(4090); assertNotNull(conceptNumeric); int initialConceptMappingCount
+	 *       = getReferenceRangesFromConceptNumeric(conceptNumeric).size(); ConceptFormController
+	 *       conceptFormController = (ConceptFormController) applicationContext.getBean("conceptForm");
+	 *       MockHttpServletRequest mockRequest = new MockHttpServletRequest(); MockHttpServletResponse
+	 *       response = new MockHttpServletResponse(); mockRequest.setMethod("POST");
 	 *       mockRequest.setParameter("referenceRanges[0].hiAbasolute", "120");
 	 *       mockRequest.setParameter("referenceRanges[0].lowAbsolute", "100");
-	 *       mockRequest.setParameter("referenceRanges[0].criteria", "$fn.getAge() > 3");
-	 *       ModelAndView mav = conceptFormController.handleRequest(mockRequest, response);
-	 *       assertNotNull(mav); assertTrue(mav.getModel().isEmpty());
-	 *       assertEquals(initialConceptMappingCount + 1, getReferenceRangesByConceptId(cs,
-	 *       conceptNumeric.getConceptId())); } // /** // * @see
+	 *       mockRequest.setParameter("referenceRanges[0].criteria", "$fn.getAge() > 3"); ModelAndView
+	 *       mav = conceptFormController.handleRequest(mockRequest, response); assertNotNull(mav);
+	 *       assertTrue(mav.getModel().isEmpty()); assertEquals(initialConceptMappingCount + 1,
+	 *       getReferenceRangesByConceptId(cs, conceptNumeric.getConceptId())); } // /** // * @see
 	 *       ConceptFormController#onSubmit(HttpServletRequest, HttpServletResponse, Object, // *
 	 *       BindException) // /
 	 * @Test public void onSubmit_shouldAddANewReferenceRangeWhenCreatingAConceptNumeric() throws
 	 *       Exception { ConceptService cs = Context.getConceptService(); final String conceptName =
 	 *       "new concept"; // make sure the concept doesn't already exist Concept newConcept =
 	 *       cs.getConceptByName(conceptName); assertNull(newConcept); ConceptFormController
-	 *       conceptFormController = (ConceptFormController)
-	 *       applicationContext.getBean("conceptForm"); MockHttpServletRequest mockRequest = new
-	 *       MockHttpServletRequest(); MockHttpServletResponse response = new
-	 *       MockHttpServletResponse(); mockRequest.setMethod("POST");
+	 *       conceptFormController = (ConceptFormController) applicationContext.getBean("conceptForm");
+	 *       MockHttpServletRequest mockRequest = new MockHttpServletRequest(); MockHttpServletResponse
+	 *       response = new MockHttpServletResponse(); mockRequest.setMethod("POST");
 	 *       mockRequest.setParameter("action", "");
 	 *       mockRequest.setParameter("namesByLocale[en_GB].name", conceptName);
-	 *       mockRequest.setParameter("descriptionsByLocale[en_GB].description",
-	 *       "some description"); mockRequest.setParameter("concept.datatype", "1");
+	 *       mockRequest.setParameter("descriptionsByLocale[en_GB].description", "some description");
+	 *       mockRequest.setParameter("concept.datatype", "1");
 	 *       mockRequest.setParameter("referenceRanges[0].hiAbasolute", "120");
 	 *       mockRequest.setParameter("referenceRanges[0].lowAbsolute", "100");
-	 *       mockRequest.setParameter("referenceRanges[0].criteria", "$fn.getAge() > 3");
-	 *       ModelAndView mav = conceptFormController.handleRequest(mockRequest, response);
-	 *       assertNotNull(mav); assertTrue(mav.getModel().isEmpty()); Concept createdConcept =
-	 *       cs.getConceptByName(conceptName); assertNotNull(createdConcept);
-	 *       assertTrue(createdConcept instanceof ConceptNumeric); Class<?> referenceRangeClass =
+	 *       mockRequest.setParameter("referenceRanges[0].criteria", "$fn.getAge() > 3"); ModelAndView
+	 *       mav = conceptFormController.handleRequest(mockRequest, response); assertNotNull(mav);
+	 *       assertTrue(mav.getModel().isEmpty()); Concept createdConcept =
+	 *       cs.getConceptByName(conceptName); assertNotNull(createdConcept); assertTrue(createdConcept
+	 *       instanceof ConceptNumeric); Class<?> referenceRangeClass =
 	 *       Class.forName("org.openmrs.ConceptReferenceRange"); Method getReferenceRangesMethod =
 	 *       ConceptNumeric.class.getMethod("getReferenceRanges", referenceRangeClass); Set
 	 *       listOfReferenceRanges = (Set) getReferenceRangesMethod.invoke(createdConcept, null);
 	 *       Assertions.assertEquals(1, listOfReferenceRanges.size()); } // /** // * @see
 	 *       ConceptFormController#onSubmit(HttpServletRequest, HttpServletResponse, Object, // *
 	 *       BindException) // /
-	 * @Test public void onSubmit_shouldIgnoreNewConceptReferenceRowIfTheUserDidNotEnterAnyData()
-	 *       throws Exception { ConceptService cs = Context.getConceptService(); int conceptId =
-	 *       4090; ConceptNumeric conceptNumeric = cs.getConceptNumeric(conceptId);
+	 * @Test public void onSubmit_shouldIgnoreNewConceptReferenceRowIfTheUserDidNotEnterAnyData() throws
+	 *       Exception { ConceptService cs = Context.getConceptService(); int conceptId = 4090;
+	 *       ConceptNumeric conceptNumeric = cs.getConceptNumeric(conceptId);
 	 *       assertNotNull(conceptNumeric); int initialConceptMappingCount =
 	 *       getReferenceRangesFromConceptNumeric(conceptNumeric).size(); ConceptFormController
-	 *       conceptFormController = (ConceptFormController)
-	 *       applicationContext.getBean("conceptForm"); MockHttpServletRequest mockRequest = new
-	 *       MockHttpServletRequest(); MockHttpServletResponse response = new
-	 *       MockHttpServletResponse(); mockRequest.setMethod("POST");
+	 *       conceptFormController = (ConceptFormController) applicationContext.getBean("conceptForm");
+	 *       MockHttpServletRequest mockRequest = new MockHttpServletRequest(); MockHttpServletResponse
+	 *       response = new MockHttpServletResponse(); mockRequest.setMethod("POST");
 	 *       mockRequest.setParameter("action", ""); mockRequest.setParameter("conceptId",
 	 *       conceptNumeric.getConceptId().toString());
 	 *       mockRequest.setParameter("referenceRanges[0].hiAbasolute", "120");
 	 *       mockRequest.setParameter("referenceRanges[0].lowAbsolute", "100");
-	 *       mockRequest.setParameter("referenceRanges[0].criteria", "$fn.getAge() > 3");
-	 *       ModelAndView mav = conceptFormController.handleRequest(mockRequest, response);
-	 *       assertNotNull(mav); assertTrue(mav.getModel().isEmpty());
-	 *       assertEquals(initialConceptMappingCount, getReferenceRangesByConceptId(cs,
-	 *       conceptId).size()); } // /** // * @see
+	 *       mockRequest.setParameter("referenceRanges[0].criteria", "$fn.getAge() > 3"); ModelAndView
+	 *       mav = conceptFormController.handleRequest(mockRequest, response); assertNotNull(mav);
+	 *       assertTrue(mav.getModel().isEmpty()); assertEquals(initialConceptMappingCount,
+	 *       getReferenceRangesByConceptId(cs, conceptId).size()); } // /** // * @see
 	 *       ConceptFormController#onSubmit(HttpServletRequest, HttpServletResponse, Object, // *
 	 *       BindException) // /
 	 * @Test public void onSubmit_shouldRemoveAReferenceRangeFromAnExistingConceptNumeric() throws
-	 *       Exception { ConceptService cs = Context.getConceptService(); int conceptId = 4090; //
-	 *       make sure the concept already exists and has some concept mappings ConceptNumeric
-	 *       conceptNumeric = cs.getConceptNumeric(conceptId); assertNotNull(conceptNumeric); int
-	 *       initialConceptMappingCount =
-	 *       getReferenceRangesFromConceptNumeric(conceptNumeric).size();
-	 *       assertTrue(initialConceptMappingCount > 0); ConceptFormController conceptFormController
-	 *       =  conceptFormProvider.getObject();
-	 *       MockHttpServletRequest mockRequest = new MockHttpServletRequest();
-	 *       MockHttpServletResponse response = new MockHttpServletResponse();
+	 *       Exception { ConceptService cs = Context.getConceptService(); int conceptId = 4090; // make
+	 *       sure the concept already exists and has some concept mappings ConceptNumeric conceptNumeric
+	 *       = cs.getConceptNumeric(conceptId); assertNotNull(conceptNumeric); int
+	 *       initialConceptMappingCount = getReferenceRangesFromConceptNumeric(conceptNumeric).size();
+	 *       assertTrue(initialConceptMappingCount > 0); ConceptFormController conceptFormController =
+	 *       conceptFormProvider.getObject(); MockHttpServletRequest mockRequest = new
+	 *       MockHttpServletRequest(); MockHttpServletResponse response = new MockHttpServletResponse();
 	 *       mockRequest.setMethod("POST"); mockRequest.setParameter("action", "");
 	 *       mockRequest.setParameter("conceptId", conceptNumeric.getConceptId().toString());
 	 *       mockRequest.setParameter("referenceRanges[0].id", "0"); ModelAndView mav =
@@ -1422,8 +1414,8 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 	 *       getReferenceRangesByConceptId(cs, conceptId).size()); } // /** // * @see
 	 *       ConceptFormValidator#validateConceptReferenceRange(Concept, BindException) // /
 	 * @Test public void
-	 *       validateReferenceRangeAbsolutes_shouldAddErrorIfAbsolutesAreOutsideConceptAbsoluteBound
-	 *       () { ConceptNumeric conceptNumeric = new ConceptNumeric();
+	 *       validateReferenceRangeAbsolutes_shouldAddErrorIfAbsolutesAreOutsideConceptAbsoluteBound ()
+	 *       { ConceptNumeric conceptNumeric = new ConceptNumeric();
 	 *       conceptNumeric.setHiAbsolute(100.0); conceptNumeric.setLowAbsolute(80.0);
 	 *       ConceptReferenceRange referenceRange = new ConceptReferenceRange();
 	 *       referenceRange.setHiAbsolute(1100.0); referenceRange.setLowAbsolute(1.0);
@@ -1433,23 +1425,23 @@ public class ConceptFormControllerTest extends BaseModuleWebContextSensitiveTest
 	 *       Assertions.assertEquals(1, errors.getErrorCount());
 	 *       assertTrue(errors.hasFieldErrors("referenceRanges[0].hiAbsolute"));
 	 *       assertTrue(errors.hasFieldErrors("referenceRanges[0].lowAbsolute")); } private void
-	 *       updateConceptReferenceRange( ConceptReferenceRange webReferenceRange, ConceptNumeric
-	 *       cn) { try { Class<?> referenceRangeClass =
-	 *       Class.forName("org.openmrs.ConceptReferenceRange"); Object referenceRange = new
-	 *       ConceptFormMapper().mapToConceptReferenceRange(webReferenceRange, cn,
-	 *       referenceRangeClass); Method addReferenceRangeMethod =
-	 *       ConceptNumeric.class.getMethod("addReferenceRange", referenceRangeClass);
-	 *       addReferenceRangeMethod.invoke(cn, referenceRange); } catch (InvocationTargetException
-	 *       | NoSuchMethodException | IllegalAccessException | ClassNotFoundException exception) {
-	 *       logger.error("Failed to add reference range: Exception: " + exception.getMessage(),
-	 *       exception); } } private static Set getReferenceRangesByConceptId(ConceptService cs, int
-	 *       conceptId) throws NoSuchMethodException, IllegalAccessException,
-	 *       InvocationTargetException { Method getConceptReferenceRangesByConceptIdMethod =
-	 *       ConceptService.class.getMethod( "getConceptReferenceRangesByConceptId", Integer.class);
-	 *       return (Set) getConceptReferenceRangesByConceptIdMethod.invoke(cs, conceptId); }
-	 *       private static Set getReferenceRangesFromConceptNumeric(ConceptNumeric conceptNumeric)
-	 *       throws NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-	 *       Method getReferenceRangesMethod = ConceptNumeric.class.getMethod("getReferenceRanges");
-	 *       return (Set) getReferenceRangesMethod.invoke(conceptNumeric); }
+	 *       updateConceptReferenceRange( ConceptReferenceRange webReferenceRange, ConceptNumeric cn) {
+	 *       try { Class<?> referenceRangeClass = Class.forName("org.openmrs.ConceptReferenceRange");
+	 *       Object referenceRange = new
+	 *       ConceptFormMapper().mapToConceptReferenceRange(webReferenceRange, cn, referenceRangeClass);
+	 *       Method addReferenceRangeMethod = ConceptNumeric.class.getMethod("addReferenceRange",
+	 *       referenceRangeClass); addReferenceRangeMethod.invoke(cn, referenceRange); } catch
+	 *       (InvocationTargetException | NoSuchMethodException | IllegalAccessException |
+	 *       ClassNotFoundException exception) { logger.error("Failed to add reference range: Exception:
+	 *       " + exception.getMessage(), exception); } } private static Set
+	 *       getReferenceRangesByConceptId(ConceptService cs, int conceptId) throws
+	 *       NoSuchMethodException, IllegalAccessException, InvocationTargetException { Method
+	 *       getConceptReferenceRangesByConceptIdMethod = ConceptService.class.getMethod(
+	 *       "getConceptReferenceRangesByConceptId", Integer.class); return (Set)
+	 *       getConceptReferenceRangesByConceptIdMethod.invoke(cs, conceptId); } private static Set
+	 *       getReferenceRangesFromConceptNumeric(ConceptNumeric conceptNumeric) throws
+	 *       NoSuchMethodException, IllegalAccessException, InvocationTargetException { Method
+	 *       getReferenceRangesMethod = ConceptNumeric.class.getMethod("getReferenceRanges"); return
+	 *       (Set) getReferenceRangesMethod.invoke(conceptNumeric); }
 	 */
 }

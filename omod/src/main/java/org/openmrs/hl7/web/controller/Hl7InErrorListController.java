@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -55,8 +55,7 @@ public class Hl7InErrorListController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/admin/hl7/resubmitHL7InError.json")
-	public @ResponseBody
-	Map<String, Object> resubmitHL7InError(@RequestParam("hl7InErrorId") int id) throws Exception {
+	public @ResponseBody Map<String, Object> resubmitHL7InError(@RequestParam("hl7InErrorId") int id) throws Exception {
 		HL7Service hL7Service = Context.getHL7Service();
 		MessageSourceService mss = Context.getMessageSourceService();
 		StringBuffer success = new StringBuffer();
@@ -76,8 +75,7 @@ public class Hl7InErrorListController {
 			
 			//Display a message for the operation
 			success.append(mss.getMessage("Hl7inError.errorList.restored", args, Context.getLocale()) + ", ");
-		}
-		catch (APIException e) {
+		} catch (APIException e) {
 			log.warn("Error Processing erred message", e);
 			error.append(mss.getMessage("Hl7inError.errorList.error", args, Context.getLocale()) + ", ");
 		}
@@ -106,8 +104,7 @@ public class Hl7InErrorListController {
 	 * @throws IOException
 	 */
 	@RequestMapping("/admin/hl7/hl7InErrorList.json")
-	public @ResponseBody
-	Map<String, Object> getHL7InErrorBatchAsJson(@RequestParam("iDisplayStart") int iDisplayStart,
+	public @ResponseBody Map<String, Object> getHL7InErrorBatchAsJson(@RequestParam("iDisplayStart") int iDisplayStart,
 	        @RequestParam("iDisplayLength") int iDisplayLength, @RequestParam("sSearch") String sSearch,
 	        @RequestParam("sEcho") int sEcho) throws IOException {
 		

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -68,8 +68,8 @@ public class MergePatientsFormController extends SimpleFormController {
 	}
 	
 	/**
-	 * The onSubmit function receives the form/command object that was modified by the input form
-	 * and saves it to the db
+	 * The onSubmit function receives the form/command object that was modified by the input form and
+	 * saves it to the db
 	 * 
 	 * @see org.springframework.web.servlet.mvc.SimpleFormController#onSubmit(javax.servlet.http.HttpServletRequest,
 	 *      javax.servlet.http.HttpServletResponse, java.lang.Object,
@@ -100,8 +100,7 @@ public class MergePatientsFormController extends SimpleFormController {
 			
 			try {
 				ps.mergePatients(preferred, notPreferred);
-			}
-			catch (APIException e) {
+			} catch (APIException e) {
 				log.error("Unable to merge patients", e);
 				String message = e.getMessage();
 				if (message == null || "".equals(message)) {
@@ -134,8 +133,8 @@ public class MergePatientsFormController extends SimpleFormController {
 	}
 	
 	/**
-	 * This is called prior to displaying a form for the first time. It tells Spring the
-	 * form/command object to load into the request
+	 * This is called prior to displaying a form for the first time. It tells Spring the form/command
+	 * object to load into the request
 	 * 
 	 * @see org.springframework.web.servlet.mvc.AbstractFormController#formBackingObject(javax.servlet.http.HttpServletRequest)
 	 */
@@ -180,8 +179,8 @@ public class MergePatientsFormController extends SimpleFormController {
 			if (patientIds != null) {
 				for (String patient : patientIds) {
 					patientList.add(Context.getPatientService().getPatient(Integer.valueOf(patient)));
-					encounterList.add(es.getEncountersByPatient(Context.getPatientService().getPatient(
-					    Integer.valueOf(patient))));
+					encounterList.add(
+					    es.getEncountersByPatient(Context.getPatientService().getPatient(Integer.valueOf(patient))));
 				}
 			}
 			if (patientIds != null && patientIds.length > 1 && !patientIds[0].equals(patientIds[1])) {
@@ -208,7 +207,8 @@ public class MergePatientsFormController extends SimpleFormController {
 		OrderService os = Context.getOrderService();
 		patientList.forEach(patient -> {
 			os.getAllOrdersByPatient(patient).forEach(order -> {
-				if (!order.isActive()) return;
+				if (!order.isActive())
+					return;
 				Set<Patient> patients = activeOrderAndPatientsMap.getOrDefault(order.getOrderType(), new HashSet<>());
 				patients.add(patient);
 				activeOrderAndPatientsMap.putIfAbsent(order.getOrderType(), patients);
@@ -217,22 +217,21 @@ public class MergePatientsFormController extends SimpleFormController {
 		return activeOrderAndPatientsMap;
 	}
 	
-	private String buildErrorMessage(Map<OrderType, Set<Patient>> activeOrderAndPatientsMap){
+	private String buildErrorMessage(Map<OrderType, Set<Patient>> activeOrderAndPatientsMap) {
 		String ACTIVE_DRUG_ORDER_ERR = "Active [ORDER_TYPE] orders exist for patientsPATIENT_IDS.<br />";
 		String ACTIVE_DRUG_ORDER_WARN = "More than one patient having active order of same type is Not allowed";
-		String[] errorMessages = new String[]{""};
+		String[] errorMessages = new String[] { "" };
 		activeOrderAndPatientsMap.forEach((OrderType orderType, Set<Patient> patients) -> {
-			if (patients.size() < 2) return;
-			String patientIds = patients.stream()
-				.map((Patient patient) -> patient.getPatientIdentifier().getIdentifier())
-				.reduce("", (id1, id2) -> id1 + ", " + id2);
-
-			errorMessages[0] += ACTIVE_DRUG_ORDER_ERR
-				.replace("ORDER_TYPE",orderType.toString())
-				.replace("PATIENT_IDS",patientIds);
+			if (patients.size() < 2)
+				return;
+			String patientIds = patients.stream().map((Patient patient) -> patient.getPatientIdentifier().getIdentifier())
+			        .reduce("", (id1, id2) -> id1 + ", " + id2);
+			
+			errorMessages[0] += ACTIVE_DRUG_ORDER_ERR.replace("ORDER_TYPE", orderType.toString()).replace("PATIENT_IDS",
+			    patientIds);
 		});
-
-		if(!"".equals(errorMessages[0])){
+		
+		if (!"".equals(errorMessages[0])) {
 			return errorMessages[0] + ACTIVE_DRUG_ORDER_WARN;
 		}
 		return "";

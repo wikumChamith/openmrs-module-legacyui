@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -80,8 +80,7 @@ public class PatientWidgetTag extends TagSupport {
 					w.print(", " + patient.getAge() + " year(s) old");
 				}
 			}
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			log.error("Error while starting patientWidget tag", ex);
 		}
 		return SKIP_BODY;

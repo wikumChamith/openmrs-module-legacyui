@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -34,8 +34,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class LocationQueryController {
 	
 	@RequestMapping("/q/locationHierarchy")
-	public @ResponseBody
-	List<Map<String, Object>> getHierarchyAsJson(@RequestParam("selectLeafOnly") boolean selectLeafOnly,
+	public @ResponseBody List<Map<String, Object>> getHierarchyAsJson(@RequestParam("selectLeafOnly") boolean selectLeafOnly,
 	        @RequestParam(value = "selectableTags", required = false) List<String> selectableTags,
 	        @RequestParam(value = "startFromTag", required = false) String startFromTag,
 	        @RequestParam(value = "includeNullOption", required = false) Boolean includeNullOption) throws IOException {

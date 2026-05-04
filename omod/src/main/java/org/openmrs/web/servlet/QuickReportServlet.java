@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -66,8 +66,8 @@ public class QuickReportServlet extends HttpServlet {
 		
 		if (!Context.hasPrivilege(PrivilegeConstants.GET_PATIENTS)) {
 			session.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "Privilege required: " + PrivilegeConstants.GET_PATIENTS);
-			session.setAttribute(WebConstants.OPENMRS_LOGIN_REDIRECT_HTTPSESSION_ATTR, request.getRequestURI() + "?"
-			        + request.getQueryString());
+			session.setAttribute(WebConstants.OPENMRS_LOGIN_REDIRECT_HTTPSESSION_ATTR,
+			    request.getRequestURI() + "?" + request.getQueryString());
 			response.sendRedirect(request.getContextPath() + "/login.htm");
 			return;
 		}
@@ -76,8 +76,7 @@ public class QuickReportServlet extends HttpServlet {
 		
 		try {
 			Velocity.init();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.error("Error initializing Velocity engine", e);
 		}
 		VelocityContext velocityContext = new VelocityContext();
@@ -96,8 +95,7 @@ public class QuickReportServlet extends HttpServlet {
 		
 		try {
 			Velocity.evaluate(velocityContext, report, this.getClass().getName(), getTemplate(reportType));
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.error("Error evaluating report type " + reportType, e);
 		}
 		
@@ -124,8 +122,7 @@ public class QuickReportServlet extends HttpServlet {
 		if (startDate != null && startDate.length() != 0) {
 			try {
 				cal.setTime(dateFormat.parse(startDate));
-			}
-			catch (ParseException e) {
+			} catch (ParseException e) {
 				throw new ServletException("Error parsing 'Start Date'", e);
 			}
 		} else {
@@ -145,8 +142,7 @@ public class QuickReportServlet extends HttpServlet {
 			start = cal.getTime();
 			try {
 				cal.setTime(dateFormat.parse(endDate));
-			}
-			catch (ParseException e) {
+			} catch (ParseException e) {
 				throw new ServletException("Error parsing 'End Date'", e);
 			}
 			end = cal.getTime();
@@ -206,8 +202,7 @@ public class QuickReportServlet extends HttpServlet {
 		if (startDate != null && startDate.length() != 0) {
 			try {
 				cal.setTime(dateFormat.parse(startDate));
-			}
-			catch (ParseException e) {
+			} catch (ParseException e) {
 				throw new ServletException("Error parsing 'Start Date'", e);
 			}
 		} else {
@@ -227,8 +222,7 @@ public class QuickReportServlet extends HttpServlet {
 			start = cal.getTime();
 			try {
 				cal.setTime(dateFormat.parse(endDate));
-			}
-			catch (ParseException e) {
+			} catch (ParseException e) {
 				throw new ServletException("Error parsing 'End Date'", e);
 			}
 			end = cal.getTime();
@@ -272,8 +266,7 @@ public class QuickReportServlet extends HttpServlet {
 		if (startDate != null && startDate.length() != 0) {
 			try {
 				cal.setTime(dateFormat.parse(startDate));
-			}
-			catch (ParseException e) {
+			} catch (ParseException e) {
 				throw new ServletException("Error parsing 'Start Date'", e);
 			}
 		} else {
@@ -293,8 +286,7 @@ public class QuickReportServlet extends HttpServlet {
 			start = cal.getTime();
 			try {
 				cal.setTime(dateFormat.parse(endDate));
-			}
-			catch (ParseException e) {
+			} catch (ParseException e) {
 				throw new ServletException("Error parsing 'End Date'", e);
 			}
 			end = cal.getTime();

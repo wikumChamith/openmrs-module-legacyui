@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -44,8 +44,8 @@ public class ProviderAttributeTypeFormController extends SimpleFormController {
 	protected final Log log = LogFactory.getLog(getClass());
 	
 	/**
-	 * The onSubmit function receives the form/command object that was modified by the input form
-	 * and saves it to the db
+	 * The onSubmit function receives the form/command object that was modified by the input form and
+	 * saves it to the db
 	 * 
 	 * @see org.springframework.web.servlet.mvc.SimpleFormController#onSubmit(javax.servlet.http.HttpServletRequest,
 	 *      javax.servlet.http.HttpServletResponse, java.lang.Object,
@@ -89,13 +89,11 @@ public class ProviderAttributeTypeFormController extends SimpleFormController {
 					providerService.purgeProviderAttributeType(providerAttributeType);
 					httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "ProviderAttributeType.purgedSuccessfully");
 					view = getSuccessView();
-				}
-				catch (DataIntegrityViolationException e) {
+				} catch (DataIntegrityViolationException e) {
 					httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "error.object.inuse.cannot.purge");
 					view = "providerAttributeType.form?providerAttributeTypeId="
 					        + providerAttributeType.getProviderAttributeTypeId();
-				}
-				catch (APIException e) {
+				} catch (APIException e) {
 					httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "error.general: " + e.getLocalizedMessage());
 					view = "providerAttributeType.form?providerAttributeTypeId="
 					        + providerAttributeType.getProviderAttributeTypeId();
@@ -105,8 +103,7 @@ public class ProviderAttributeTypeFormController extends SimpleFormController {
 					providerService.unretireProviderAttributeType(providerAttributeType);
 					httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "ProviderAttributeType.unretiredSuccessfully");
 					view = getSuccessView();
-				}
-				catch (APIException e) {
+				} catch (APIException e) {
 					httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "error.general: " + e.getLocalizedMessage());
 					view = "providerAttributeType.form?providerAttributeTypeId="
 					        + providerAttributeType.getProviderAttributeTypeId();
@@ -118,8 +115,8 @@ public class ProviderAttributeTypeFormController extends SimpleFormController {
 	}
 	
 	/**
-	 * This is called prior to displaying a form for the first time. It tells Spring the
-	 * form/command object to load into the request
+	 * This is called prior to displaying a form for the first time. It tells Spring the form/command
+	 * object to load into the request
 	 * 
 	 * @see org.springframework.web.servlet.mvc.AbstractFormController#formBackingObject(javax.servlet.http.HttpServletRequest)
 	 */

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -30,8 +30,8 @@ public class UserProperties {
 	}
 	
 	/**
-	 * Sets the user property which determines if a new user should change his password upon logging
-	 * in the first time.
+	 * Sets the user property which determines if a new user should change his password upon logging in
+	 * the first time.
 	 * 
 	 * @param change decides if the user should be forced to change the password
 	 * @should add forcePassword property in user properties map when value is set to true
@@ -80,8 +80,8 @@ public class UserProperties {
 	 * Method to read the value of forcePassword property
 	 * 
 	 * @return true or false based on the value of forcePassword property
-	 * @should 
-	 *         "return true or false depending on the presence or absence of forcePassword key in the user properties"
+	 * @should "return true or false depending on the presence or absence of forcePassword key in the
+	 *         user properties"
 	 */
 	public Boolean isSupposedToChangePassword() {
 		return Boolean.valueOf(getProperties().get(OpenmrsConstants.USER_PROPERTY_CHANGE_PASSWORD));

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -33,8 +33,8 @@ public class DWRHL7Service {
 	/**
 	 * Handles the ajax call for starting the migration of hl7 in archives to the file system
 	 * 
-	 * @return an object array with a boolean value at index 0 indicating if the migration was
-	 *         started or not, at the second index is an optional descriptive message.
+	 * @return an object array with a boolean value at index 0 indicating if the migration was started
+	 *         or not, at the second index is an optional descriptive message.
 	 */
 	public Object[] startHl7ArchiveMigration(Integer daysToKeep) {
 		if (Hl7InArchivesMigrateThread.isActive()) {
@@ -50,8 +50,7 @@ public class DWRHL7Service {
 			hl7MigrationThread.setName("HL7 Archive Migration Thread");
 			hl7MigrationThread.start();
 			return new Object[] { true };
-		}
-		catch (APIAuthenticationException e) {
+		} catch (APIAuthenticationException e) {
 			return new Object[] { false,
 			        Context.getMessageSourceService().getMessage("Hl7InArchive.migrate.authentication.fail") };
 		}

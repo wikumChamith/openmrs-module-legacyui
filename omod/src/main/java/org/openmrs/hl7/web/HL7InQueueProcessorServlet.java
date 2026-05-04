@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -46,8 +46,7 @@ public class HL7InQueueProcessorServlet extends HttpServlet {
 		try {
 			getHL7InQueueProcessor().processHL7InQueue();
 			out.print("HL7 inbound queue processor has started");
-		}
-		catch (HL7Exception e) {
+		} catch (HL7Exception e) {
 			out.print("Unable to start HL7 inbound queue processor. Perhaps it is already going?");
 		}
 		

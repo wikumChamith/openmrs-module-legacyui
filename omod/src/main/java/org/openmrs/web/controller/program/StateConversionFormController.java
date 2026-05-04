@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -53,8 +53,8 @@ public class StateConversionFormController extends SimpleFormController {
 	}
 	
 	/**
-	 * This is called prior to displaying a form for the first time. It tells Spring the
-	 * form/command object to load into the request
+	 * This is called prior to displaying a form for the first time. It tells Spring the form/command
+	 * object to load into the request
 	 * 
 	 * @see org.springframework.web.servlet.mvc.AbstractFormController#formBackingObject(javax.servlet.http.HttpServletRequest)
 	 */
@@ -71,8 +71,7 @@ public class StateConversionFormController extends SimpleFormController {
 				try {
 					conversion = ps.getConceptStateConversion(Integer.valueOf(conversionId));
 					log.debug("Csc is now " + conversion);
-				}
-				catch (NumberFormatException nfe) {
+				} catch (NumberFormatException nfe) {
 					log.error("conversionId passed is not a valid number");
 				}
 			} else {
@@ -92,8 +91,8 @@ public class StateConversionFormController extends SimpleFormController {
 	}
 	
 	/**
-	 * The onSubmit function receives the form/command object that was modified by the input form
-	 * and saves it to the db
+	 * The onSubmit function receives the form/command object that was modified by the input form and
+	 * saves it to the db
 	 * 
 	 * @see org.springframework.web.servlet.mvc.SimpleFormController#onSubmit(javax.servlet.http.HttpServletRequest,
 	 *      javax.servlet.http.HttpServletResponse, java.lang.Object,
@@ -113,8 +112,7 @@ public class StateConversionFormController extends SimpleFormController {
 				
 				Context.getProgramWorkflowService().saveConceptStateConversion(c);
 				
-			}
-			catch (APIException ae) {
+			} catch (APIException ae) {
 				
 				httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "ConceptStateConversion.error.incompleteform");
 				isError = true;

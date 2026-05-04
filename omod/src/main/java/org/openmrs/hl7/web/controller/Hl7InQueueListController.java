@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -70,8 +70,7 @@ public class Hl7InQueueListController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/admin/hl7/toggleHL7InQueue.json")
-	public @ResponseBody
-	Map<String, Object> toggleHL7InQueue(@RequestParam("hl7InQueueId") int id) throws Exception {
+	public @ResponseBody Map<String, Object> toggleHL7InQueue(@RequestParam("hl7InQueueId") int id) throws Exception {
 		HL7Service hL7Service = Context.getHL7Service();
 		MessageSourceService mss = Context.getMessageSourceService();
 		StringBuffer success = new StringBuffer();
@@ -96,8 +95,7 @@ public class Hl7InQueueListController {
 			} else {
 				success.append(mss.getMessage("Hl7inQueue.queueList.held", args, Context.getLocale()) + ", ");
 			}
-		}
-		catch (APIException e) {
+		} catch (APIException e) {
 			log.warn("Error updating a queue entry", e);
 			error.append(mss.getMessage("Hl7inQueue.queueList.error", args, Context.getLocale()) + ", ");
 		}
@@ -126,8 +124,7 @@ public class Hl7InQueueListController {
 	 * @throws IOException
 	 */
 	@RequestMapping("/admin/hl7/hl7InQueueList.json")
-	public @ResponseBody
-	Map<String, Object> getHL7InQueueBatchAsJson(@RequestParam("iDisplayStart") int iDisplayStart,
+	public @ResponseBody Map<String, Object> getHL7InQueueBatchAsJson(@RequestParam("iDisplayStart") int iDisplayStart,
 	        @RequestParam("iDisplayLength") int iDisplayLength, @RequestParam("sSearch") String sSearch,
 	        @RequestParam("sEcho") int sEcho, @RequestParam("messageState") int messageState) throws IOException {
 		

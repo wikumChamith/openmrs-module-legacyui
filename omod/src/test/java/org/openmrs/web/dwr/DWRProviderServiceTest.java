@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -52,8 +52,7 @@ public class DWRProviderServiceTest extends BaseModuleWebContextSensitiveTest {
 	
 	/**
 	 * @see DWRProviderService#findProvider(String,boolean,Integer,Integer)
-	 * @verifies return the list of providers including retired providers for the matching search
-	 *           name
+	 * @verifies return the list of providers including retired providers for the matching search name
 	 */
 	@Test
 	public void findProvider_shouldReturnTheListOfProvidersIncludingRetiredProvidersForTheMatchingSearchName()
@@ -96,8 +95,7 @@ public class DWRProviderServiceTest extends BaseModuleWebContextSensitiveTest {
 	
 	/**
 	 * @see DWRProviderService#findProviderCountAndProvider(String,boolean,Integer,Integer)
-	 * @verifies return the count of all providers matching the searched name along with provider
-	 *           list
+	 * @verifies return the count of all providers matching the searched name along with provider list
 	 */
 	@Test
 	@Disabled("This test fails because we have the order by for person names mentioned in the person.hbm.xml for the names set. "

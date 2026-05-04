@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -77,8 +77,7 @@ public class LocationAttributeTypeFormController {
 				service.purgeLocationAttributeType(attributeType);
 				request.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "LocationAttributeType.purgedSuccessfully",
 				    WebRequest.SCOPE_SESSION);
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				request.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "error.object.inuse.cannot.purge",
 				    WebRequest.SCOPE_SESSION);
 			}

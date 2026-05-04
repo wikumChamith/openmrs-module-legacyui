@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -16,9 +16,7 @@ import org.apache.commons.text.StringEscapeUtils;
 /**
  * Functions used within taglibs in a webapp jsp page. <br>
  * <br>
- * Example:
- * 
- * <pre>
+ * Example: <pre>
  * &lt;c:forEach items="${openmrs:sort(someListObject)}" var="o" end="0"&gt;
  *   ....
  *   ....

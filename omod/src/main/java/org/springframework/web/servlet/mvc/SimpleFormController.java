@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -7,8 +7,6 @@
  * Copyright (C) OpenMRS Inc. OpenMRS is a registered trademark and the OpenMRS
  * graphic logo is a trademark of OpenMRS Inc.
  */
-/** NOTE: this class, which has been removed in Spring 4, has been copied over from Spring 3.2.7 to support old style SimpleFormControllers. */
-
 /*
  * Copyright 2002-2012 the original author or authors.
  *
@@ -80,8 +78,8 @@ import org.springframework.web.servlet.ModelAndView;
  * validation errors to show the form view again.
  * </p>
  * <p>
- * <b><a name="config">Exposed configuration properties</a> (<a
- * href="AbstractFormController.html#config">and those defined by superclass</a>):</b><br>
+ * <b><a name="config">Exposed configuration properties</a>
+ * (<a href="AbstractFormController.html#config">and those defined by superclass</a>):</b><br>
  * <table border="1">
  * <tr>
  * <td><b>name</b></td>
@@ -119,10 +117,9 @@ public class SimpleFormController extends AbstractFormController {
 	/**
 	 * Create a new SimpleFormController.
 	 * <p>
-	 * Subclasses should set the following properties, either in the constructor or via a
-	 * BeanFactory: commandName, commandClass, sessionForm, formView, successView. Note that
-	 * commandClass doesn't need to be set when overriding {@code formBackingObject}, as this
-	 * determines the class anyway.
+	 * Subclasses should set the following properties, either in the constructor or via a BeanFactory:
+	 * commandName, commandClass, sessionForm, formView, successView. Note that commandClass doesn't
+	 * need to be set when overriding {@code formBackingObject}, as this determines the class anyway.
 	 * 
 	 * @see #setCommandClass
 	 * @see #setCommandName
@@ -177,9 +174,9 @@ public class SimpleFormController extends AbstractFormController {
 	 * Can be overridden in subclasses to show a custom view, writing directly to the response or
 	 * preparing the response before rendering a view.
 	 * <p>
-	 * If calling showForm with a custom control model in subclasses, it's preferable to override
-	 * the analogous showForm version with a controlModel argument (which will handle both standard
-	 * form showing and custom form showing then).
+	 * If calling showForm with a custom control model in subclasses, it's preferable to override the
+	 * analogous showForm version with a controlModel argument (which will handle both standard form
+	 * showing and custom form showing then).
 	 * 
 	 * @see #setFormView
 	 * @see #showForm(HttpServletRequest, HttpServletResponse, BindException, Map)
@@ -204,8 +201,8 @@ public class SimpleFormController extends AbstractFormController {
 	 * 
 	 * @param request current HTTP request
 	 * @param errors validation errors holder
-	 * @param controlModel model map containing controller-specific control data (e.g. current page
-	 *            in wizard-style controllers or special error message)
+	 * @param controlModel model map containing controller-specific control data (e.g. current page in
+	 *            wizard-style controllers or special error message)
 	 * @return the prepared form view
 	 * @throws Exception in case of invalid state or arguments
 	 * @see #setFormView
@@ -220,8 +217,8 @@ public class SimpleFormController extends AbstractFormController {
 	 * Create a reference data map for the given request and command, consisting of bean name/bean
 	 * instance pairs as expected by ModelAndView.
 	 * <p>
-	 * The default implementation delegates to {@link #referenceData(HttpServletRequest)}.
-	 * Subclasses can override this to set reference data used in the view.
+	 * The default implementation delegates to {@link #referenceData(HttpServletRequest)}. Subclasses
+	 * can override this to set reference data used in the view.
 	 * 
 	 * @param request current HTTP request
 	 * @param command form object with request parameters bound onto it
@@ -239,8 +236,8 @@ public class SimpleFormController extends AbstractFormController {
 	 * Create a reference data map for the given request. Called by the
 	 * {@link #referenceData(HttpServletRequest, Object, Errors)} variant with all parameters.
 	 * <p>
-	 * The default implementation returns {@code null}. Subclasses can override this to set
-	 * reference data used in the view.
+	 * The default implementation returns {@code null}. Subclasses can override this to set reference
+	 * data used in the view.
 	 * 
 	 * @param request current HTTP request
 	 * @return a Map with reference data entries, or {@code null} if none
@@ -254,10 +251,9 @@ public class SimpleFormController extends AbstractFormController {
 	
 	/**
 	 * This implementation calls
-	 * {@link #showForm(HttpServletRequest, HttpServletResponse, BindException)} in case of errors,
-	 * and delegates to the full
-	 * {@link #onSubmit(HttpServletRequest, HttpServletResponse, Object, BindException)}'s variant
-	 * else.
+	 * {@link #showForm(HttpServletRequest, HttpServletResponse, BindException)} in case of errors, and
+	 * delegates to the full
+	 * {@link #onSubmit(HttpServletRequest, HttpServletResponse, Object, BindException)}'s variant else.
 	 * <p>
 	 * This can only be overridden to check for an action that should be executed without respect to
 	 * binding errors, like a cancel action. To just handle successful submissions without binding
@@ -289,9 +285,9 @@ public class SimpleFormController extends AbstractFormController {
 	}
 	
 	/**
-	 * This implementation delegates to {@link #isFormChangeRequest(HttpServletRequest, Object)}: A
-	 * form change request changes the appearance of the form and should not get validated but just
-	 * show the new form.
+	 * This implementation delegates to {@link #isFormChangeRequest(HttpServletRequest, Object)}: A form
+	 * change request changes the appearance of the form and should not get validated but just show the
+	 * new form.
 	 * 
 	 * @see #isFormChangeRequest
 	 */
@@ -301,12 +297,11 @@ public class SimpleFormController extends AbstractFormController {
 	}
 	
 	/**
-	 * Determine whether the given request is a form change request. A form change request changes
-	 * the appearance of the form and should always show the new form, without validation.
+	 * Determine whether the given request is a form change request. A form change request changes the
+	 * appearance of the form and should always show the new form, without validation.
 	 * <p>
-	 * Gets called by {@link #suppressValidation} and {@link #processFormSubmission}. Consequently,
-	 * this single method determines to suppress validation <i>and</i> to show the form view in any
-	 * case.
+	 * Gets called by {@link #suppressValidation} and {@link #processFormSubmission}. Consequently, this
+	 * single method determines to suppress validation <i>and</i> to show the form view in any case.
 	 * <p>
 	 * The default implementation delegates to
 	 * {@link #isFormChangeRequest(javax.servlet.http.HttpServletRequest)}.
@@ -338,9 +333,9 @@ public class SimpleFormController extends AbstractFormController {
 	
 	/**
 	 * Called during form submission if
-	 * {@link #isFormChangeRequest(javax.servlet.http.HttpServletRequest)} returns {@code true}.
-	 * Allows subclasses to implement custom logic to modify the command object to directly modify
-	 * data in the form.
+	 * {@link #isFormChangeRequest(javax.servlet.http.HttpServletRequest)} returns {@code true}. Allows
+	 * subclasses to implement custom logic to modify the command object to directly modify data in the
+	 * form.
 	 * <p>
 	 * The default implementation delegates to
 	 * {@link #onFormChange(HttpServletRequest, HttpServletResponse, Object, BindException)}.
@@ -382,13 +377,13 @@ public class SimpleFormController extends AbstractFormController {
 	 * performing a submit action and rendering the specified success view, consider implementing
 	 * {@link #doSubmitAction} rather than an {@code onSubmit} variant.
 	 * <p>
-	 * Subclasses can override this to provide custom submission handling like storing the object to
-	 * the database. Implementations can also perform custom validation and call showForm to return
-	 * to the form. Do <i>not</i> implement multiple onSubmit methods: In that case, just this
-	 * method will be called by the controller.
+	 * Subclasses can override this to provide custom submission handling like storing the object to the
+	 * database. Implementations can also perform custom validation and call showForm to return to the
+	 * form. Do <i>not</i> implement multiple onSubmit methods: In that case, just this method will be
+	 * called by the controller.
 	 * <p>
-	 * Call {@code errors.getModel()} to populate the ModelAndView model with the command and the
-	 * Errors instance, under the specified command name, as expected by the "spring:bind" tag.
+	 * Call {@code errors.getModel()} to populate the ModelAndView model with the command and the Errors
+	 * instance, under the specified command name, as expected by the "spring:bind" tag.
 	 * 
 	 * @param request current servlet request
 	 * @param response current servlet response
@@ -410,18 +405,18 @@ public class SimpleFormController extends AbstractFormController {
 	
 	/**
 	 * Simpler {@code onSubmit} variant. Called by the default implementation of the
-	 * {@link #onSubmit(HttpServletRequest, HttpServletResponse, Object, BindException)} variant
-	 * with all parameters.
+	 * {@link #onSubmit(HttpServletRequest, HttpServletResponse, Object, BindException)} variant with
+	 * all parameters.
 	 * <p>
-	 * The default implementation calls {@link #onSubmit(Object)}, using the returned ModelAndView
-	 * if actually implemented in a subclass. Else, the default behavior will apply: rendering the
-	 * success view with the command and Errors instance as model.
+	 * The default implementation calls {@link #onSubmit(Object)}, using the returned ModelAndView if
+	 * actually implemented in a subclass. Else, the default behavior will apply: rendering the success
+	 * view with the command and Errors instance as model.
 	 * <p>
-	 * Subclasses can override this to provide custom submission handling that does not need request
-	 * and response.
+	 * Subclasses can override this to provide custom submission handling that does not need request and
+	 * response.
 	 * <p>
-	 * Call {@code errors.getModel()} to populate the ModelAndView model with the command and the
-	 * Errors instance, under the specified command name, as expected by the "spring:bind" tag.
+	 * Call {@code errors.getModel()} to populate the ModelAndView model with the command and the Errors
+	 * instance, under the specified command name, as expected by the "spring:bind" tag.
 	 * 
 	 * @param command form object with request parameters bound onto it
 	 * @param errors Errors instance without errors
@@ -458,8 +453,7 @@ public class SimpleFormController extends AbstractFormController {
 	 * Subclasses can override this to provide custom submission handling that just depends on the
 	 * command object. It's preferable to use either {@link #onSubmit(Object, BindException)} or
 	 * {@link #doSubmitAction(Object)}, though: Use the former when you want to build your own
-	 * ModelAndView; use the latter when you want to perform an action and forward to the
-	 * successView.
+	 * ModelAndView; use the latter when you want to perform an action and forward to the successView.
 	 * 
 	 * @param command form object with request parameters bound onto it
 	 * @return the prepared model and view, or {@code null} for default (that is, rendering the

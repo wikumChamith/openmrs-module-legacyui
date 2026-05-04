@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -58,8 +58,8 @@ public class LocationFormControllerTest extends BaseModuleWebContextSensitiveTes
 		ModelAndView modelAndView = controller.handleRequest(request, response);
 		
 		// make sure an error is returned because of the empty retire reason
-		BeanPropertyBindingResult bindingResult = (BeanPropertyBindingResult) modelAndView.getModel().get(
-		    "org.springframework.validation.BindingResult.location");
+		BeanPropertyBindingResult bindingResult = (BeanPropertyBindingResult) modelAndView.getModel()
+		        .get("org.springframework.validation.BindingResult.location");
 		Assertions.assertTrue(bindingResult.hasFieldErrors("retireReason"));
 	}
 	

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -104,8 +104,7 @@ public class ConceptMapTypeFormController {
 				request.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "ConceptMapType.saved", WebRequest.SCOPE_SESSION);
 				
 				return "redirect:" + CONCEPT_MAP_TYPE_LIST_URL + ".list";
-			}
-			catch (APIException e) {
+			} catch (APIException e) {
 				log.error("Error while saving concept map type(s)", e);
 				request.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "ConceptMapType.save.error", WebRequest.SCOPE_SESSION);
 			}
@@ -141,8 +140,7 @@ public class ConceptMapTypeFormController {
 			    Context.getMessageSourceService().getMessage("ConceptMapType.retired"), WebRequest.SCOPE_SESSION);
 			
 			return "redirect:" + CONCEPT_MAP_TYPE_LIST_URL + ".list";
-		}
-		catch (APIException e) {
+		} catch (APIException e) {
 			log.error("Error occurred while attempting to retire concept map type", e);
 			request.setAttribute(WebConstants.OPENMRS_ERROR_ATTR,
 			    Context.getMessageSourceService().getMessage("ConceptMapType.retire.error"), WebRequest.SCOPE_SESSION);
@@ -172,8 +170,7 @@ public class ConceptMapTypeFormController {
 			    Context.getMessageSourceService().getMessage("ConceptMapType.unretired"), WebRequest.SCOPE_SESSION);
 			
 			return "redirect:" + CONCEPT_MAP_TYPE_LIST_URL + ".list";
-		}
-		catch (APIException e) {
+		} catch (APIException e) {
 			log.error("Error occurred while attempting to unretire concept map type", e);
 			request.setAttribute(WebConstants.OPENMRS_ERROR_ATTR,
 			    Context.getMessageSourceService().getMessage("ConceptMapType.unretire.error"), WebRequest.SCOPE_SESSION);
@@ -201,8 +198,7 @@ public class ConceptMapTypeFormController {
 			request.setAttribute(WebConstants.OPENMRS_MSG_ATTR,
 			    Context.getMessageSourceService().getMessage("ConceptMapType.purged"), WebRequest.SCOPE_SESSION);
 			return "redirect:" + CONCEPT_MAP_TYPE_LIST_URL + ".list";
-		}
-		catch (APIException e) {
+		} catch (APIException e) {
 			log.warn("Error occurred while attempting to purge concept map type", e);
 			request.setAttribute(WebConstants.OPENMRS_ERROR_ATTR,
 			    Context.getMessageSourceService().getMessage("ConceptMapType.purge.error"), WebRequest.SCOPE_SESSION);

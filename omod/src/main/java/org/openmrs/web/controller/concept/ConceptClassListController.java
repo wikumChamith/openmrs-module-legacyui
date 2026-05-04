@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -51,8 +51,8 @@ public class ConceptClassListController extends SimpleFormController {
 	}
 	
 	/**
-	 * The onSubmit function receives the form/command object that was modified by the input form
-	 * and saves it to the db
+	 * The onSubmit function receives the form/command object that was modified by the input form and
+	 * saves it to the db
 	 * 
 	 * @see org.springframework.web.servlet.mvc.SimpleFormController#onSubmit(javax.servlet.http.HttpServletRequest,
 	 *      javax.servlet.http.HttpServletResponse, java.lang.Object,
@@ -83,11 +83,9 @@ public class ConceptClassListController extends SimpleFormController {
 							success.append("<br/>");
 						}
 						success.append(cc).append(" ").append(deleted);
-					}
-					catch (DataIntegrityViolationException e) {
+					} catch (DataIntegrityViolationException e) {
 						error = handleConceptClassIntegrityException(e, error, notDeleted);
-					}
-					catch (APIException e) {
+					} catch (APIException e) {
 						error = handleConceptClassIntegrityException(e, error, notDeleted);
 					}
 				}
@@ -108,8 +106,8 @@ public class ConceptClassListController extends SimpleFormController {
 	}
 	
 	/**
-	 * Logs a concept class delete data integrity violation exception and returns a user friedly
-	 * message of the problem that occured.
+	 * Logs a concept class delete data integrity violation exception and returns a user friedly message
+	 * of the problem that occured.
 	 * 
 	 * @param e the exception.
 	 * @param error the error message.
@@ -126,8 +124,8 @@ public class ConceptClassListController extends SimpleFormController {
 	}
 	
 	/**
-	 * This is called prior to displaying a form for the first time. It tells Spring the
-	 * form/command object to load into the request
+	 * This is called prior to displaying a form for the first time. It tells Spring the form/command
+	 * object to load into the request
 	 * 
 	 * @see org.springframework.web.servlet.mvc.AbstractFormController#formBackingObject(javax.servlet.http.HttpServletRequest)
 	 */

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -73,12 +73,10 @@ public class ExtensionPopupMenuTag extends TagSupport {
 		StringBuilder sb = new StringBuilder();
 		sb.append("<span style=\"position: relative\">");
 		if (below) {
-			sb.append("<div id=\""
-			        + popupDivId
+			sb.append("<div id=\"" + popupDivId
 			        + "\" style=\"width: 35em; border: 1px solid black; background-color: #f0f0a0; position: absolute; top: 0px; padding-right: 1.2em; z-index: 1; display: none\">");
 		} else {
-			sb.append("<div id=\""
-			        + popupDivId
+			sb.append("<div id=\"" + popupDivId
 			        + "\" style=\"width: 35em; border: 1px solid black; background-color: #f0f0a0; position: absolute; bottom: 0px; padding-right: 1.2em; z-index: 1; display: none\">");
 		}
 		
@@ -99,8 +97,8 @@ public class ExtensionPopupMenuTag extends TagSupport {
 					StringBuilder hiddenVars = new StringBuilder();
 					Map<String, String> javascriptSubstitutions = new HashMap<String, String>();
 					for (Map.Entry<String, String> entry : link.getQueryParameters().entrySet()) {
-						hiddenVars.append("<input type=\"hidden\" name=\"" + entry.getKey() + "\" value=\""
-						        + entry.getValue() + "\"/>\n");
+						hiddenVars.append(
+						    "<input type=\"hidden\" name=\"" + entry.getKey() + "\" value=\"" + entry.getValue() + "\"/>\n");
 					}
 					for (Map.Entry<String, String> entry : parameters.entrySet()) {
 						hiddenVars.append("<input type=\"hidden\" name=\"" + entry.getKey() + "\" ");
@@ -124,9 +122,9 @@ public class ExtensionPopupMenuTag extends TagSupport {
 					for (Map.Entry<String, String> entry : javascriptSubstitutions.entrySet()) {
 						String id = entry.getKey();
 						String function = entry.getValue();
-						onClick.append(" _popup_tmp = " + function
-						        + "; if (_popup_tmp == null) return; document.getElementById('" + id
-						        + "').value = _popup_tmp; ");
+						onClick.append(
+						    " _popup_tmp = " + function + "; if (_popup_tmp == null) return; document.getElementById('" + id
+						            + "').value = _popup_tmp; ");
 					}
 					onClick.append("document.getElementById('" + formId + "').submit();");
 					
@@ -136,8 +134,8 @@ public class ExtensionPopupMenuTag extends TagSupport {
 					sb.append("\n<a href=\"#\" onClick=\"javascript:" + onClick + "\">"
 					        + context.getMessage(link.getLabel(), link.getLabel()) + "</a>");
 					if (link.getDescription() != null) {
-						sb.append("<br/><small>" + context.getMessage(link.getDescription(), link.getDescription())
-						        + "</small>");
+						sb.append(
+						    "<br/><small>" + context.getMessage(link.getDescription(), link.getDescription()) + "</small>");
 					}
 					sb.append("</form>");
 					sb.append("</li>");
@@ -158,8 +156,7 @@ public class ExtensionPopupMenuTag extends TagSupport {
 			if (anyExtensionsFound || showLabelIfNoExtensions) {
 				pageContext.getOut().print(sb);
 			}
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			throw new JspException(ex);
 		}
 		

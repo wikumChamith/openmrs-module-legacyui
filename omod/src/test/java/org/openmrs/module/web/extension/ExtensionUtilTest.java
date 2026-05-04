@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -31,33 +31,36 @@ import org.openmrs.module.web.extension.provider.Link;
 
 @ExtendWith(MockitoExtension.class)
 public class ExtensionUtilTest {
-
+	
 	/**
 	 * @see ExtensionUtil#getFormsModulesCanAddEncounterToVisit()
 	 * @verifies return empty set if there is no AddEncounterToVisitExtension
 	 */
 	@Test
-	public void getModulesAddEncounterToVisitLinks_shouldReturnEmptySetIfThereIsNoAddEncounterToVisitExtension() throws Exception {
+	public void getModulesAddEncounterToVisitLinks_shouldReturnEmptySetIfThereIsNoAddEncounterToVisitExtension()
+	        throws Exception {
 		//given
 		try (MockedStatic<ModuleFactory> mockedModuleFactory = mockStatic(ModuleFactory.class)) {
-			mockedModuleFactory.when(() -> ModuleFactory.getExtensions("org.openmrs.module.web.extension.AddEncounterToVisitExtension"))
-					.thenReturn(null);
-
+			mockedModuleFactory
+			        .when(() -> ModuleFactory.getExtensions("org.openmrs.module.web.extension.AddEncounterToVisitExtension"))
+			        .thenReturn(null);
+			
 			//when
 			Set<Link> links = ExtensionUtil.getAllAddEncounterToVisitLinks();
-
+			
 			//then
 			assertNotNull(links);
 			assertEquals(0, links.size());
 		}
 	}
-
+	
 	/**
 	 * @see ExtensionUtil#getFormsModulesCanAddEncounterToVisit()
 	 * @verifies return forms if there are AddEncounterToVisitExtensions
 	 */
 	@Test
-	public void getFormsModulesCanAddEncounterToVisit_shouldReturnFormsIfThereAreAddEncounterToVisitExtensions() throws Exception {
+	public void getFormsModulesCanAddEncounterToVisit_shouldReturnFormsIfThereAreAddEncounterToVisitExtensions()
+	        throws Exception {
 		//given
 		AddEncounterToVisitExtension ext1 = mock(AddEncounterToVisitExtension.class);
 		Set<Link> links1 = new HashSet<Link>();
@@ -68,25 +71,26 @@ public class ExtensionUtilTest {
 		link2.setLabel("b");
 		links1.add(link2);
 		when(ext1.getAddEncounterToVisitLinks()).thenReturn(links1);
-
+		
 		AddEncounterToVisitExtension ext2 = mock(AddEncounterToVisitExtension.class);
 		Set<Link> links2 = new HashSet<Link>();
 		Link link3 = new Link();
 		link3.setLabel("aa");
 		links2.add(link3);
 		when(ext2.getAddEncounterToVisitLinks()).thenReturn(links2);
-
+		
 		List<Extension> extensions = new ArrayList<>();
 		extensions.add(ext1);
 		extensions.add(ext2);
-
+		
 		try (MockedStatic<ModuleFactory> mockedModuleFactory = mockStatic(ModuleFactory.class)) {
-			mockedModuleFactory.when(() -> ModuleFactory.getExtensions("org.openmrs.module.web.extension.AddEncounterToVisitExtension"))
-					.thenReturn(extensions);
-
+			mockedModuleFactory
+			        .when(() -> ModuleFactory.getExtensions("org.openmrs.module.web.extension.AddEncounterToVisitExtension"))
+			        .thenReturn(extensions);
+			
 			//when
 			Set<Link> allAddEncounterToVisitLinks = ExtensionUtil.getAllAddEncounterToVisitLinks();
-
+			
 			//then
 			assertTrue(allAddEncounterToVisitLinks.contains(link1));
 			assertTrue(allAddEncounterToVisitLinks.contains(link2));

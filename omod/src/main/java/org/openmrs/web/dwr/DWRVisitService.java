@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -64,8 +64,7 @@ public class DWRVisitService {
 					objectList.add(new VisitListItem(v));
 				}
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.error("Error while searching for visits", e);
 			objectList.add(mss.getMessage("Visit.search.error"));
 		}
@@ -113,8 +112,7 @@ public class DWRVisitService {
 					objectList.add(new EncounterListItem(e));
 				}
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.warn("Error while finding encounters for the visit with id:" + visitId, e);
 			objectList.add(Context.getMessageSourceService().getMessage("Visit.find.encounters.error"));
 		}

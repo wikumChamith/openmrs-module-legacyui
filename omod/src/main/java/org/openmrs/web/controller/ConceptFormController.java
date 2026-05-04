@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -104,8 +104,8 @@ public class ConceptFormController extends SimpleFormController {
 	private static final Log log = LogFactory.getLog(ConceptFormController.class);
 	
 	/**
-	 * Allows for other Objects to be used as values in input tags. Normally, only strings and lists
-	 * are expected
+	 * Allows for other Objects to be used as values in input tags. Normally, only strings and lists are
+	 * expected
 	 * 
 	 * @see org.springframework.web.servlet.mvc.BaseCommandController#initBinder(javax.servlet.http.HttpServletRequest,
 	 *      org.springframework.web.bind.ServletRequestDataBinder)
@@ -123,10 +123,10 @@ public class ConceptFormController extends SimpleFormController {
 		    new CustomDateEditor(SimpleDateFormat.getDateInstance(SimpleDateFormat.SHORT, Context.getLocale()), true));
 		binder.registerCustomEditor(org.openmrs.ConceptClass.class, new ConceptClassEditor());
 		binder.registerCustomEditor(org.openmrs.ConceptDatatype.class, new ConceptDatatypeEditor());
-		binder.registerCustomEditor(java.util.Collection.class, "concept.conceptSets", new ConceptSetsEditor(commandObject
-		        .getConcept().getConceptSets()));
-		binder.registerCustomEditor(java.util.Collection.class, "concept.answers", new ConceptAnswersEditor(commandObject
-		        .getConcept().getAnswers(true)));
+		binder.registerCustomEditor(java.util.Collection.class, "concept.conceptSets",
+		    new ConceptSetsEditor(commandObject.getConcept().getConceptSets()));
+		binder.registerCustomEditor(java.util.Collection.class, "concept.answers",
+		    new ConceptAnswersEditor(commandObject.getConcept().getAnswers(true)));
 		binder.registerCustomEditor(org.openmrs.ConceptSource.class, new ConceptSourceEditor());
 		binder.registerCustomEditor(ConceptMapType.class, new ConceptMapTypeEditor());
 		binder.registerCustomEditor(ConceptReferenceTerm.class, new ConceptReferenceTermEditor());
@@ -168,8 +168,8 @@ public class ConceptFormController extends SimpleFormController {
 	}
 	
 	/**
-	 * The onSubmit function receives the form/command object that was modified by the input form
-	 * and saves it to the db
+	 * The onSubmit function receives the form/command object that was modified by the input form and
+	 * saves it to the db
 	 * 
 	 * @see org.springframework.web.servlet.mvc.SimpleFormController#onSubmit(javax.servlet.http.HttpServletRequest,
 	 *      javax.servlet.http.HttpServletResponse, java.lang.Object,
@@ -208,8 +208,7 @@ public class ConceptFormController extends SimpleFormController {
 					cs.retireConcept(concept, reason);
 					httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "Concept.concept.retired.successFully");
 					return new ModelAndView(new RedirectView(getSuccessView() + "?conceptId=" + concept.getConceptId()));
-				}
-				catch (APIException e) {
+				} catch (APIException e) {
 					log.error("Unable to Retire concept because an error occurred: " + concept, e);
 					httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "general.cannot.retire");
 				}
@@ -223,16 +222,13 @@ public class ConceptFormController extends SimpleFormController {
 					cs.saveConcept(concept);
 					httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "Concept.concept.unRetired.successFully");
 					return new ModelAndView(new RedirectView(getSuccessView() + "?conceptId=" + concept.getConceptId()));
-				}
-				catch (ConceptsLockedException cle) {
+				} catch (ConceptsLockedException cle) {
 					log.error("Tried to unretire concept while concepts were locked", cle);
 					httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "Concept.concepts.locked.unRetire");
-				}
-				catch (DuplicateConceptNameException e) {
+				} catch (DuplicateConceptNameException e) {
 					log.error("Tried to unretire concept with a duplicate name", e);
 					httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "general.cannot.unretire");
-				}
-				catch (APIException e) {
+				} catch (APIException e) {
 					log.error("Error while trying to unretire concept", e);
 					httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "general.cannot.unretire");
 				}
@@ -245,16 +241,13 @@ public class ConceptFormController extends SimpleFormController {
 					cs.purgeConcept(concept);
 					httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "Concept.deleted");
 					return new ModelAndView(new RedirectView("index.htm"));
-				}
-				catch (ConceptsLockedException cle) {
+				} catch (ConceptsLockedException cle) {
 					log.error("Tried to delete concept while concepts were locked", cle);
 					httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "Concept.concepts.locked");
-				}
-				catch (DataIntegrityViolationException e) {
+				} catch (DataIntegrityViolationException e) {
 					log.error("Unable to delete a concept because it is in use: " + concept, e);
 					httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "Concept.cannot.delete");
-				}
-				catch (Exception e) {
+				} catch (Exception e) {
 					log.error("Unable to delete concept because an error occurred: " + concept, e);
 					httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "Concept.cannot.delete");
 				}
@@ -262,7 +255,7 @@ public class ConceptFormController extends SimpleFormController {
 				return new ModelAndView(new RedirectView(getSuccessView() + "?conceptId=" + concept.getConceptId()));
 			} else {
 				Concept concept = conceptBackingObject.getConceptFromFormData();
-                List<ConceptAttributeType> conceptAttributeTypes = cs.getAllConceptAttributeTypes();
+				List<ConceptAttributeType> conceptAttributeTypes = cs.getAllConceptAttributeTypes();
 				//if the user is editing a concept, initialise the associated creator property
 				//this is aimed at avoiding a lazy initialisation exception when rendering
 				//the jsp after validation has failed
@@ -289,25 +282,23 @@ public class ConceptFormController extends SimpleFormController {
 						cs.saveConcept(concept);
 						httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "Concept.saved");
 						if (action.equals(msa.getMessage("Concept.save"))) {
-							return new ModelAndView(new RedirectView("concept.htm" + "?conceptId=" + concept.getConceptId()));
+							return new ModelAndView(
+							        new RedirectView("concept.htm" + "?conceptId=" + concept.getConceptId()));
 						}
 						return new ModelAndView(new RedirectView(getSuccessView() + "?conceptId=" + concept.getConceptId()));
 					}
 					httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "Concept.cannot.save");
-				}
-				catch (ConceptsLockedException cle) {
+				} catch (ConceptsLockedException cle) {
 					errors.popNestedPath();
 					log.error("Tried to save concept while concepts were locked", cle);
 					httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "Concept.concepts.locked");
 					errors.reject("concept", "Concept.concepts.locked");
-				}
-				catch (DuplicateConceptNameException e) {
+				} catch (DuplicateConceptNameException e) {
 					errors.popNestedPath();
 					log.error("Tried to save concept with a duplicate name", e);
 					httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "Concept.cannot.save");
 					errors.rejectValue("concept", "Concept.name.duplicate");
-				}
-				catch (APIException e) {
+				} catch (APIException e) {
 					errors.popNestedPath();
 					log.error("Error while trying to save concept", e);
 					httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "Concept.cannot.save");
@@ -340,8 +331,8 @@ public class ConceptFormController extends SimpleFormController {
 	}
 	
 	/**
-	 * This is called prior to displaying a form for the first time. It tells Spring the
-	 * form/command object to load into the request
+	 * This is called prior to displaying a form for the first time. It tells Spring the form/command
+	 * object to load into the request
 	 * 
 	 * @see org.springframework.web.servlet.mvc.AbstractFormController#formBackingObject(javax.servlet.http.HttpServletRequest)
 	 */
@@ -359,8 +350,7 @@ public class ConceptFormController extends SimpleFormController {
 			} else {
 				return new ConceptFormBackingObject(concept);
 			}
-		}
-		catch (NumberFormatException ex) {
+		} catch (NumberFormatException ex) {
 			return new ConceptFormBackingObject(new Concept());
 		}
 	}
@@ -399,15 +389,14 @@ public class ConceptFormController extends SimpleFormController {
 		if (Context.hasPrivilege(PrivilegeConstants.GET_OBS)) {
 			try {
 				Concept concept = cs.getConcept(Integer.valueOf(conceptId));
-                if (concept != null) {
-                    if (concept.getDatatype().isBoolean()) {
-                        map.put("isBoolean", true);
-                    }
-
-                    dataTypeReadOnly = cs.hasAnyObservation(concept);
-                }
-			}
-			catch (NumberFormatException ex) {
+				if (concept != null) {
+					if (concept.getDatatype().isBoolean()) {
+						map.put("isBoolean", true);
+					}
+					
+					dataTypeReadOnly = cs.hasAnyObservation(concept);
+				}
+			} catch (NumberFormatException ex) {
 				// nothing to do
 			}
 		}
@@ -536,16 +525,17 @@ public class ConceptFormController extends SimpleFormController {
 				this.allowDecimal = cn.getAllowDecimal();
 				this.displayPrecision = cn.getDisplayPrecision();
 				this.units = cn.getUnits();
-
+				
 				this.referenceRanges = ListUtils.lazyList(
-						new ArrayList<>(new ConceptFormMapper().mapToWebReferenceRanges(cn)),
-						FactoryUtils.instantiateFactory(ConceptReferenceRange.class));
+				    new ArrayList<>(new ConceptFormMapper().mapToWebReferenceRanges(cn)),
+				    FactoryUtils.instantiateFactory(ConceptReferenceRange.class));
 			} else if (concept instanceof ConceptComplex) {
 				ConceptComplex complex = (ConceptComplex) concept;
 				this.handlerKey = complex.getHandler();
 			}
 			
-			if (concept.getConceptClass() != null && OpenmrsUtil.nullSafeEquals(concept.getConceptClass().getName(), "Drug")) {
+			if (concept.getConceptClass() != null
+			        && OpenmrsUtil.nullSafeEquals(concept.getConceptClass().getName(), "Drug")) {
 				this.conceptDrugList.addAll(Context.getConceptService().getDrugsByConcept(concept));
 			}
 			
@@ -553,8 +543,8 @@ public class ConceptFormController extends SimpleFormController {
 		}
 		
 		/**
-		 * This method takes all the form data from the input boxes and puts it onto the concept
-		 * object so that it can be saved to the database
+		 * This method takes all the form data from the input boxes and puts it onto the concept object so
+		 * that it can be saved to the database
 		 * 
 		 * @return the concept to be saved to the database
 		 * @should set concept on concept answers
@@ -595,7 +585,8 @@ public class ConceptFormController extends SimpleFormController {
 							synonym.setVoidReason(null);
 						} else {
 							// always set the default void/retire reason
-							synonym.setVoidReason(Context.getMessageSourceService().getMessage("general.default.voidReason"));
+							synonym.setVoidReason(
+							    Context.getMessageSourceService().getMessage("general.default.voidReason"));
 						}
 					}
 				}
@@ -611,8 +602,8 @@ public class ConceptFormController extends SimpleFormController {
 						if (!indexTerm.isVoided()) {
 							indexTerm.setVoidReason(null);
 						} else if (indexTerm.isVoided() && !StringUtils.hasText(indexTerm.getVoidReason())) {
-							indexTerm.setVoidReason(Context.getMessageSourceService().getMessage(
-							    "Concept.name.default.voidReason"));
+							indexTerm.setVoidReason(
+							    Context.getMessageSourceService().getMessage("Concept.name.default.voidReason"));
 						}
 					}
 				}
@@ -743,8 +734,7 @@ public class ConceptFormController extends SimpleFormController {
 			try {
 				Object platformReferenceRange = new ConceptFormMapper().mapToConceptReferenceRange(referenceRange, cn);
 				setMethodValue(cn, "removeReferenceRange", platformReferenceRange);
-			}
-			catch (Exception exception) {
+			} catch (Exception exception) {
 				// Note that openMRS-core version 2.7.0 or higher is required for this functionality to work.
 			}
 		}
@@ -761,8 +751,7 @@ public class ConceptFormController extends SimpleFormController {
 			try {
 				Object platformReferenceRange = new ConceptFormMapper().mapToConceptReferenceRange(referenceRange, cn);
 				setMethodValue(cn, "addReferenceRange", platformReferenceRange);
-			}
-			catch (Exception exception) {
+			} catch (Exception exception) {
 				// Note that openMRS-core version 2.7.0 or higher is required for this functionality to work.
 			}
 		}
@@ -777,23 +766,24 @@ public class ConceptFormController extends SimpleFormController {
 		public void updateReferenceRange(ConceptNumeric cn, ConceptReferenceRange referenceRange) {
 			try {
 				Set<?> existingReferenceRanges = getExistingReferenceRanges(cn);
-
+				
 				for (Object existingRange : existingReferenceRanges) {
 					Method getIdMethod = existingRange.getClass().getMethod("getId");
 					Object idValue = getIdMethod.invoke(existingRange);
-
-					if (Objects.equals(idValue, referenceRange.getId()) && hasReferenceRangeChanged(existingRange, referenceRange)) {
+					
+					if (Objects.equals(idValue, referenceRange.getId())
+					        && hasReferenceRangeChanged(existingRange, referenceRange)) {
 						updateReferenceRangeFields(existingRange, referenceRange);
 						break;
 					}
 				}
-			} catch (InvocationTargetException | NoSuchMethodException | IllegalAccessException |
-					 ClassNotFoundException exception) {
+			} catch (InvocationTargetException | NoSuchMethodException | IllegalAccessException
+			        | ClassNotFoundException exception) {
 				// Note that openMRS-core version 2.7.0 or higher is required for this functionality to work.
 			} catch (Exception exception) {
 				// Note that openMRS-core version 2.7.0 or higher is required for this functionality to work.
-            }
-        }
+			}
+		}
 		
 		/**
 		 * This method gets the existing reference ranges
@@ -831,7 +821,8 @@ public class ConceptFormController extends SimpleFormController {
 		 * @throws Exception exception
 		 * @since 1.17.0
 		 */
-		private void updateReferenceRangeFields(Object existingRange, ConceptReferenceRange referenceRange) throws Exception {
+		private void updateReferenceRangeFields(Object existingRange, ConceptReferenceRange referenceRange)
+		        throws Exception {
 			updateField(existingRange, "setHiAbsolute", referenceRange.getHiAbsolute());
 			updateField(existingRange, "setHiCritical", referenceRange.getHiCritical());
 			updateField(existingRange, "setHiNormal", referenceRange.getHiNormal());
@@ -1148,8 +1139,7 @@ public class ConceptFormController extends SimpleFormController {
 		}
 		
 		/**
-		 * Get the list of extensions/metadata and the specific instances of them that use this
-		 * concept.
+		 * Get the list of extensions/metadata and the specific instances of them that use this concept.
 		 * 
 		 * @return list of {@link ConceptUsageExtension}
 		 */
@@ -1182,12 +1172,13 @@ public class ConceptFormController extends SimpleFormController {
 			
 			// ProgramWorkflows
 			List<Link> programWorkflows = new ArrayList<Link>();
-			for (ProgramWorkflow programWorkflow : Context.getProgramWorkflowService().getProgramWorkflowsByConcept(concept)) {
+			for (ProgramWorkflow programWorkflow : Context.getProgramWorkflowService()
+			        .getProgramWorkflowsByConcept(concept)) {
 				programWorkflows.add(new Link(programWorkflow.getProgram().getName(),
 				        "/admin/programs/workflow.form?programWorkflowId=" + programWorkflow.getId()));
 			}
-			togo.add(new ConceptUsageExtension("dictionary.programworkflows", programWorkflows,
-			        PrivilegeConstants.GET_PROGRAMS));
+			togo.add(
+			    new ConceptUsageExtension("dictionary.programworkflows", programWorkflows, PrivilegeConstants.GET_PROGRAMS));
 			
 			// ProgramWorkflowStates
 			List<Link> programWorkflowStates = new ArrayList<Link>();
@@ -1202,8 +1193,8 @@ public class ConceptFormController extends SimpleFormController {
 			List<Link> personAttributeTypes = new ArrayList<Link>();
 			for (PersonAttributeType pat : Context.getPersonService().getPersonAttributeTypes(null, Concept.class.getName(),
 			    concept.getId(), null)) {
-				personAttributeTypes.add(new Link(pat.getName(),
-				        "/admin/person/personAttributeType.form?personAttributeTypeId=" + pat.getId()));
+				personAttributeTypes.add(
+				    new Link(pat.getName(), "/admin/person/personAttributeType.form?personAttributeTypeId=" + pat.getId()));
 			}
 			togo.add(new ConceptUsageExtension("dictionary.personattributetypes", personAttributeTypes,
 			        PrivilegeConstants.GET_PERSON_ATTRIBUTE_TYPES));
@@ -1241,8 +1232,8 @@ public class ConceptFormController extends SimpleFormController {
 		}
 		
 		/**
-		 * Get the answers for this concept with decoded names. The keys to this map are the
-		 * conceptIds or the conceptIds^drugId if applicable
+		 * Get the answers for this concept with decoded names. The keys to this map are the conceptIds or
+		 * the conceptIds^drugId if applicable
 		 * 
 		 * @return a map with localized concept answers
 		 */

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -176,8 +176,8 @@ public class ForgotPasswordFormControllerTest extends BaseModuleWebContextSensit
 	}
 	
 	/**
-	 * If a user enters 5 requests with username+secret answer, the 6th should fail even if that one
-	 * has a valid answer in it
+	 * If a user enters 5 requests with username+secret answer, the 6th should fail even if that one has
+	 * a valid answer in it
 	 * 
 	 * @throws Exception
 	 */

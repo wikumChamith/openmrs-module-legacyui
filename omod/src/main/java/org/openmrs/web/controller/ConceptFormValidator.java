@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -99,7 +99,7 @@ public class ConceptFormValidator implements Validator {
 				if (StringUtils.isNotEmpty(backingObject.getNamesByLocale().get(locale).getName())) {
 					foundAtLeastOneFullySpecifiedName = true;
 					
-				}// if this is a new name and user has changed it into an empty string, reject it
+				} // if this is a new name and user has changed it into an empty string, reject it
 				else if (backingObject.getNamesByLocale().get(locale).getConceptNameId() != null) {
 					errors.rejectValue("namesByLocale[" + locale + "].name", "Concept.fullySpecified.textRequired");
 					localesWithErrors.add(locale.getDisplayName());

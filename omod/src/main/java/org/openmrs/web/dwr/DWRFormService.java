@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -61,8 +61,8 @@ public class DWRFormService {
 	}
 	
 	/**
-	 * Gets a list of FormListItems that correspond to forms. If includueUnpublished is true, all
-	 * forms are returned. If false, only published forms are returned.
+	 * Gets a list of FormListItems that correspond to forms. If includueUnpublished is true, all forms
+	 * are returned. If false, only published forms are returned.
 	 * 
 	 * @param includeUnpublished true/false to include unpublished forms
 	 * @return list of {@link FormListItem}s
@@ -70,8 +70,8 @@ public class DWRFormService {
 	public List<FormListItem> getForms(boolean includeUnpublished) {
 		List<FormListItem> formListItems = new Vector<FormListItem>();
 		
-		List<Form> forms = includeUnpublished ? Context.getFormService().getAllForms(false) : Context.getFormService()
-		        .getPublishedForms();
+		List<Form> forms = includeUnpublished ? Context.getFormService().getAllForms(false)
+		        : Context.getFormService().getPublishedForms();
 		
 		for (Form form : forms) {
 			formListItems.add(new FormListItem(form));
@@ -133,8 +133,7 @@ public class DWRFormService {
 		try {
 			Integer i = Integer.valueOf(txt);
 			concept = Context.getConceptService().getConcept(i);
-		}
-		catch (NumberFormatException e) {
+		} catch (NumberFormatException e) {
 			log.error("Error during getting concept", e);
 		}
 		
@@ -342,8 +341,8 @@ public class DWRFormService {
 	}
 	
 	/**
-	 * Sorts loosely on: FieldListItems first, then concepts FieldListItems with higher number of
-	 * forms first, then lower Concepts with shorter names before longer names
+	 * Sorts loosely on: FieldListItems first, then concepts FieldListItems with higher number of forms
+	 * first, then lower Concepts with shorter names before longer names
 	 * 
 	 * @param <Obj>
 	 */

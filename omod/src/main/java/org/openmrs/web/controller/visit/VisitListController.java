@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -55,8 +55,7 @@ public class VisitListController {
 	 * @return {@link DatatableResponse}
 	 */
 	@RequestMapping(VISITS_PATH)
-	public @ResponseBody
-	DatatableResponse getVisits(@ModelAttribute Patient patient, HttpServletRequest request) {
+	public @ResponseBody DatatableResponse getVisits(@ModelAttribute Patient patient, HttpServletRequest request) {
 		DatatableRequest datatable = DatatableRequest.parseRequest(request);
 		
 		DatatableResponse response = new DatatableResponse(datatable);
@@ -127,8 +126,8 @@ public class VisitListController {
 				row.put("encounterType", encounter.getEncounterType().getName());
 				row.put("encounterProviders", getProviders(encounter));
 				row.put("encounterLocation", (encounter.getLocation() != null) ? encounter.getLocation().getName() : "");
-				row.put("encounterEnterer", (encounter.getCreator() != null) ? encounter.getCreator().getPersonName()
-				        .getFullName() : "");
+				row.put("encounterEnterer",
+				    (encounter.getCreator() != null) ? encounter.getCreator().getPersonName().getFullName() : "");
 				row.put("formViewURL", getViewFormURL(request, formToViewUrlMap, formToEditUrlMap, encounter));
 			}
 			

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -107,7 +107,8 @@ public class ShowGraphServletTest extends BaseModuleWebContextSensitiveTest {
 		Long time = new Date().getTime() - 100000;
 		Calendar timeCal = Calendar.getInstance();
 		timeCal.setTimeInMillis(time);
-		timeCal.set(timeCal.get(Calendar.YEAR), timeCal.get(Calendar.MONTH), timeCal.get(Calendar.DAY_OF_MONTH) + 1, 0, 0, 0);
+		timeCal.set(timeCal.get(Calendar.YEAR), timeCal.get(Calendar.MONTH), timeCal.get(Calendar.DAY_OF_MONTH) + 1, 0, 0,
+		    0);
 		
 		Date toDate = new ShowGraphServlet().getToDate(Long.toString(time));
 		

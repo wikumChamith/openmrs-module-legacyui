@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -43,8 +43,8 @@ public class EncounterDisplayController implements Controller {
 	protected final Log log = LogFactory.getLog(getClass());
 	
 	/**
-	 * The page that obs are put on if they are not given a page number in their associated
-	 * FormField object
+	 * The page that obs are put on if they are not given a page number in their associated FormField
+	 * object
 	 */
 	public static final Integer DEFAULT_PAGE_NUMBER = 999;
 	
@@ -180,9 +180,9 @@ public class EncounterDisplayController implements Controller {
 	}
 	
 	/**
-	 * This will look through all form fields and find the one that has a concept that matches the
-	 * given concept If one is found, that formfield is removed from the given list
-	 * <code>formFields</code> If there are none found, null is returned.
+	 * This will look through all form fields and find the one that has a concept that matches the given
+	 * concept If one is found, that formfield is removed from the given list <code>formFields</code> If
+	 * there are none found, null is returned.
 	 * 
 	 * @param formFields list of FormFields to rifle through
 	 * @param conceptToSearchFor concept to look for in <code>formFields</code>
@@ -220,16 +220,15 @@ public class EncounterDisplayController implements Controller {
 	public class FieldHolder implements Comparable<FieldHolder> {
 		
 		/**
-		 * The formfield that represents the labeling of this row This is also used in the sorting.
-		 * See
+		 * The formfield that represents the labeling of this row This is also used in the sorting. See
 		 * {@link #compareTo(org.openmrs.web.controller.encounter.EncounterDisplayController.FieldHolder)}
 		 * See {@link #getLabel()} for the labeling
 		 */
 		private FormField formField = null;
 		
 		/**
-		 * these are the rows in the obsGroup table If this is not an obs grouper, this will contain
-		 * only one obs
+		 * these are the rows in the obsGroup table If this is not an obs grouper, this will contain only
+		 * one obs
 		 */
 		private List<Obs> obs;
 		
@@ -239,11 +238,10 @@ public class EncounterDisplayController implements Controller {
 		private Set<Concept> groupMemberConcepts;
 		
 		/**
-		 * A row must be created with both a FormField to act as its label and an obs that is the
-		 * first of possibly several rows to display
+		 * A row must be created with both a FormField to act as its label and an obs that is the first of
+		 * possibly several rows to display
 		 * 
-		 * @throws Exception if the obsToAdd is an invalid type (meaning its contained in another
-		 *             obs group)
+		 * @throws Exception if the obsToAdd is an invalid type (meaning its contained in another obs group)
 		 */
 		public FieldHolder(FormField formField, Obs obsToAdd) throws Exception {
 			obs = new LinkedList<Obs>();
@@ -267,8 +265,7 @@ public class EncounterDisplayController implements Controller {
 		}
 		
 		/**
-		 * public getter for the columns (that are unique concepts across all obs in this
-		 * FieldHolder)
+		 * public getter for the columns (that are unique concepts across all obs in this FieldHolder)
 		 * 
 		 * @return unique concepts across these obs
 		 */
@@ -277,9 +274,9 @@ public class EncounterDisplayController implements Controller {
 		}
 		
 		/**
-		 * public getter for the obs that are the different rows for this FieldHolder. If this isn't
-		 * a grouping type of row, the set could still have multiple obs in it because there are
-		 * multiple questions (obs) in this encounter that are asking the same thing (same concept)
+		 * public getter for the obs that are the different rows for this FieldHolder. If this isn't a
+		 * grouping type of row, the set could still have multiple obs in it because there are multiple
+		 * questions (obs) in this encounter that are asking the same thing (same concept)
 		 * 
 		 * @return List of obs for this row
 		 */
@@ -288,8 +285,8 @@ public class EncounterDisplayController implements Controller {
 		}
 		
 		/**
-		 * Convenience method to know whether this row is an obs grouping and should be displayed
-		 * with a table or if its a single one-and-done obs and should just be shown as one value
+		 * Convenience method to know whether this row is an obs grouping and should be displayed with a
+		 * table or if its a single one-and-done obs and should just be shown as one value
 		 * 
 		 * @return true/false whether this holder is for an obs grouping
 		 */
@@ -302,9 +299,8 @@ public class EncounterDisplayController implements Controller {
 		}
 		
 		/**
-		 * List of columns for each obs grouper in this fieldholder. Not every grouper will have
-		 * every column (concept), so some cells will be null. The columns are determined by
-		 * getObsGroupConcepts()
+		 * List of columns for each obs grouper in this fieldholder. Not every grouper will have every
+		 * column (concept), so some cells will be null. The columns are determined by getObsGroupConcepts()
 		 * 
 		 * @return a matrix of columns
 		 */
@@ -338,8 +334,8 @@ public class EncounterDisplayController implements Controller {
 		}
 		
 		/**
-		 * Add another obs grouper to this row This method shouldn't be called with obs that are
-		 * within another grouped obs. This should only be called with the parent obs grouper.
+		 * Add another obs grouper to this row This method shouldn't be called with obs that are within
+		 * another grouped obs. This should only be called with the parent obs grouper.
 		 * 
 		 * @param obsToAdd Obs that should be an obs grouper
 		 */
@@ -370,19 +366,19 @@ public class EncounterDisplayController implements Controller {
 		 * @see org.openmrs.FormField#compareTo(org.openmrs.FormField)
 		 */
 		public int compareTo(FieldHolder other) {
-			int temp = OpenmrsUtil
-			        .compareWithNullAsGreatest(formField.getPageNumber(), other.getFormField().getPageNumber());
+			int temp = OpenmrsUtil.compareWithNullAsGreatest(formField.getPageNumber(),
+			    other.getFormField().getPageNumber());
 			if (temp == 0) {
-				temp = OpenmrsUtil.compareWithNullAsGreatest(formField.getFieldNumber(), other.getFormField()
-				        .getFieldNumber());
+				temp = OpenmrsUtil.compareWithNullAsGreatest(formField.getFieldNumber(),
+				    other.getFormField().getFieldNumber());
 			}
 			if (temp == 0) {
 				temp = OpenmrsUtil.compareWithNullAsGreatest(formField.getFieldPart(), other.getFormField().getFieldPart());
 			}
 			if (temp == 0 && formField.getPageNumber() == null && formField.getFieldNumber() == null
 			        && formField.getFieldPart() == null) {
-				temp = OpenmrsUtil
-				        .compareWithNullAsGreatest(formField.getSortWeight(), other.getFormField().getSortWeight());
+				temp = OpenmrsUtil.compareWithNullAsGreatest(formField.getSortWeight(),
+				    other.getFormField().getSortWeight());
 			}
 			return temp;
 		}
@@ -410,8 +406,8 @@ public class EncounterDisplayController implements Controller {
 		}
 		
 		/**
-		 * Convenience method to get the label that this field should have. This is produced from
-		 * the formfield associated with this row
+		 * Convenience method to get the label that this field should have. This is produced from the
+		 * formfield associated with this row
 		 * 
 		 * @return String representing the label to be displayed for this row
 		 */
@@ -433,9 +429,9 @@ public class EncounterDisplayController implements Controller {
 		}
 		
 		/**
-		 * Convenience method to get the page number for this row. This just checks the associated
-		 * form field for its assigned page number. If the formfield doesn't have a page, this row
-		 * is thrown on the DEFAULT_PAGE_NUMBERth page.
+		 * Convenience method to get the page number for this row. This just checks the associated form
+		 * field for its assigned page number. If the formfield doesn't have a page, this row is thrown on
+		 * the DEFAULT_PAGE_NUMBERth page.
 		 * 
 		 * @return page number for this row
 		 */

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -29,8 +29,8 @@ public class DateTimePatternTag extends TagSupport {
 	private final Log log = LogFactory.getLog(getClass());
 	
 	/**
-	 * This is to tell the user whether the string to be returned is the localized pattern or not,
-	 * in use as the jquery datetimepicker widget format
+	 * This is to tell the user whether the string to be returned is the localized pattern or not, in
+	 * use as the jquery datetimepicker widget format
 	 */
 	private String localize = null;
 	
@@ -52,8 +52,7 @@ public class DateTimePatternTag extends TagSupport {
 			}
 			
 			pageContext.getOut().write(pattern);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			log.error("error getting datetime pattern", e);
 		}
 		

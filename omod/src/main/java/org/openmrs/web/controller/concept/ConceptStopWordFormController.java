@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -68,8 +68,7 @@ public class ConceptStopWordFormController {
 		try {
 			Context.getConceptService().saveConceptStopWord(conceptStopWord);
 			httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "ConceptStopWord.saved");
-		}
-		catch (ConceptStopWordException e) {
+		} catch (ConceptStopWordException e) {
 			log.error("Error on adding concept stop word", e);
 			httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, e.getMessage());
 			return showForm();

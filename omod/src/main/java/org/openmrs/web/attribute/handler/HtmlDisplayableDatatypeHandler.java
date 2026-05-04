@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -18,10 +18,10 @@ import org.openmrs.customdatatype.CustomDatatypeHandler;
 public interface HtmlDisplayableDatatypeHandler<T> extends CustomDatatypeHandler<CustomDatatype<T>, T> {
 	
 	/**
-	 * Renders an HTML-formatted summary view of the custom value, that does not take a lot of
-	 * space. (This is subjective, but generally means &lt; 100 characters in length, or an image of
-	 * &lt; 200 pixels in each dimension.) This method should return quickly, e.g. in case we're
-	 * rendering thousands of custom values in a table.
+	 * Renders an HTML-formatted summary view of the custom value, that does not take a lot of space.
+	 * (This is subjective, but generally means &lt; 100 characters in length, or an image of &lt; 200
+	 * pixels in each dimension.) This method should return quickly, e.g. in case we're rendering
+	 * thousands of custom values in a table.
 	 * 
 	 * @param datatype
 	 * @param valueReference

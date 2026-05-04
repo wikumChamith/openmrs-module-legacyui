@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -288,8 +288,8 @@ public class PrivilegeTagTest extends BaseModuleWebContextSensitiveTest {
 	}
 	
 	/**
-	 * @verifies include body for user without any of the privileges if hasAll is true and inverse
-	 *           is true
+	 * @verifies include body for user without any of the privileges if hasAll is true and inverse is
+	 *           true
 	 * @see PrivilegeTag#doStartTag()
 	 */
 	@Test

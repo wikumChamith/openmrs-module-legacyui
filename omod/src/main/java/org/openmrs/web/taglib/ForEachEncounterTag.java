@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -69,8 +69,8 @@ public class ForEachEncounterTag extends BodyTagSupport {
 			sortBy = "encounterDatetime";
 		}
 		
-		Comparator comp = new BeanComparator(sortBy, (descending ? new ReverseComparator(new ComparableComparator())
-		        : new ComparableComparator()));
+		Comparator comp = new BeanComparator(sortBy,
+		        (descending ? new ReverseComparator(new ComparableComparator()) : new ComparableComparator()));
 		Collections.sort((List) encounters, comp);
 		
 		// Next, retrieve all encounters matching the passed encounter type id, if provided.
@@ -122,8 +122,7 @@ public class ForEachEncounterTag extends BodyTagSupport {
 				bodyContent.writeOut(bodyContent.getEnclosingWriter());
 			}
 			num = null;
-		}
-		catch (java.io.IOException e) {
+		} catch (java.io.IOException e) {
 			throw new JspTagException("IO Error: " + e.getMessage());
 		}
 		return EVAL_PAGE;

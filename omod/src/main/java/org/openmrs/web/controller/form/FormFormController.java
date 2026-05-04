@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -60,8 +60,8 @@ public class FormFormController extends SimpleFormController {
 	}
 	
 	/**
-	 * The onSubmit function receives the form/command object that was modified by the input form
-	 * and saves it to the db
+	 * The onSubmit function receives the form/command object that was modified by the input form and
+	 * saves it to the db
 	 * 
 	 * @see org.springframework.web.servlet.mvc.SimpleFormController#onSubmit(javax.servlet.http.HttpServletRequest,
 	 *      javax.servlet.http.HttpServletResponse, java.lang.Object,
@@ -87,8 +87,7 @@ public class FormFormController extends SimpleFormController {
 							// save form
 							form = Context.getFormService().saveForm(form);
 							httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "Form.saved");
-						}
-						catch (Exception e) {
+						} catch (Exception e) {
 							log.error("Error while saving form " + form.getFormId(), e);
 							errors.reject(e.getMessage());
 							httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "Form.not.saved");
@@ -98,12 +97,10 @@ public class FormFormController extends SimpleFormController {
 						try {
 							Context.getFormService().purgeForm(form);
 							httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "Form.deleted");
-						}
-						catch (DataIntegrityViolationException e) {
+						} catch (DataIntegrityViolationException e) {
 							httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "Form.cannot.delete");
 							return new ModelAndView(new RedirectView("formEdit.form?formId=" + form.getFormId()));
-						}
-						catch (Exception e) {
+						} catch (Exception e) {
 							log.error("Error while deleting form " + form.getFormId(), e);
 							errors.reject(e.getMessage());
 							httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "Form.cannot.delete");
@@ -128,8 +125,7 @@ public class FormFormController extends SimpleFormController {
 						try {
 							Context.getFormService().duplicateForm(form);
 							httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "Form.duplicated");
-						}
-						catch (Exception e) {
+						} catch (Exception e) {
 							log.error("Error while duplicating form " + form.getFormId(), e);
 							errors.reject(e.getMessage());
 							httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "Form.cannot.duplicate");
@@ -139,8 +135,7 @@ public class FormFormController extends SimpleFormController {
 					
 					view = getSuccessView();
 				}
-			}
-			catch (FormsLockedException e) {
+			} catch (FormsLockedException e) {
 				log.error("forms.locked", e);
 				httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "forms.locked");
 				if (form.getFormId() != null) {
@@ -153,8 +148,8 @@ public class FormFormController extends SimpleFormController {
 	}
 	
 	/**
-	 * This is called prior to displaying a form for the first time. It tells Spring the
-	 * form/command object to load into the request
+	 * This is called prior to displaying a form for the first time. It tells Spring the form/command
+	 * object to load into the request
 	 * 
 	 * @see org.springframework.web.servlet.mvc.AbstractFormController#formBackingObject(javax.servlet.http.HttpServletRequest)
 	 */
@@ -200,8 +195,7 @@ public class FormFormController extends SimpleFormController {
 			if (formId != null) {
 				try {
 					form = fs.getForm(Integer.valueOf(formId));
-				}
-				catch (NumberFormatException e) {
+				} catch (NumberFormatException e) {
 					
 				} //If formId has no readable value defaults to the case where form==null
 			}

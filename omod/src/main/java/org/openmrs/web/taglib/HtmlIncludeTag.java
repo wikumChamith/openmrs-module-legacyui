@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -52,8 +52,8 @@ public class HtmlIncludeTag extends TagSupport {
 	private String file;
 	
 	/**
-	 * If true, will append &amp;locale=en_US to the url for browser caching purposes Should be used
-	 * on files that contain spring message calls and should not be cached across locales
+	 * If true, will append &amp;locale=en_US to the url for browser caching purposes Should be used on
+	 * files that contain spring message calls and should not be cached across locales
 	 * 
 	 * @since 1.8
 	 */
@@ -111,8 +111,7 @@ public class HtmlIncludeTag extends TagSupport {
 					if (file.startsWith(prefix + "/")) {
 						prefix = "";
 					}
-				}
-				catch (ClassCastException cce) {
+				} catch (ClassCastException cce) {
 					log.debug("Could not cast request to HttpServletRequest in HtmlIncludeTag");
 				}
 				
@@ -139,8 +138,7 @@ public class HtmlIncludeTag extends TagSupport {
 				
 				try {
 					pageContext.getOut().print(output.toString());
-				}
-				catch (IOException e) {
+				} catch (IOException e) {
 					log.debug("Could not produce output in HtmlIncludeTag.java");
 				}
 			} else {
@@ -183,8 +181,8 @@ public class HtmlIncludeTag extends TagSupport {
 			
 			// retrieve the htmlinclude map from the page request
 			//HashMap<String,String> hmIncludeMap = (HashMap<String, String>) initialRequest.getAttribute(HtmlIncludeTag.OPENMRS_HTML_INCLUDE_KEY);
-			Map<String, String> hmIncludeMap = (Map<String, String>) pageContext.getAttribute(
-			    HtmlIncludeTag.OPENMRS_HTML_INCLUDE_MAP_KEY, PageContext.SESSION_SCOPE);
+			Map<String, String> hmIncludeMap = (Map<String, String>) pageContext
+			        .getAttribute(HtmlIncludeTag.OPENMRS_HTML_INCLUDE_MAP_KEY, PageContext.SESSION_SCOPE);
 			
 			// reset the hmIncludeMap if not found or if not on the initial request anymore
 			if (hmIncludeMap == null || !initialRequestId.equals(lastRequestId)) {

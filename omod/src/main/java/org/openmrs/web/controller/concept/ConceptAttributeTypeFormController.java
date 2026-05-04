@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -50,7 +50,8 @@ public class ConceptAttributeTypeFormController {
 	}
 	
 	@ModelAttribute("attributeType")
-	public ConceptAttributeType formBackingObject(@RequestParam(value = "id", required = false) ConceptAttributeType attrType) {
+	public ConceptAttributeType formBackingObject(
+	        @RequestParam(value = "id", required = false) ConceptAttributeType attrType) {
 		if (attrType == null) {
 			attrType = new ConceptAttributeType();
 		}
@@ -115,8 +116,7 @@ public class ConceptAttributeTypeFormController {
 			conceptService.purgeConceptAttributeType(conceptAttributeType);
 			request.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "ConceptAttributeType.purgedSuccessfully",
 			    WebRequest.SCOPE_SESSION);
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			request.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "error.object.inuse.cannot.purge",
 			    WebRequest.SCOPE_SESSION);
 		}

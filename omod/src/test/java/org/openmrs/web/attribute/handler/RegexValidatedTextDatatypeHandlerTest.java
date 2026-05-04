@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -53,8 +53,8 @@ public class RegexValidatedTextDatatypeHandlerTest {
 	/**
 	 * @see org.openmrs.web.attribute.handler.FieldGenDatatypeHandler#getValue(CustomDatatype,
 	 *      HttpServletRequest, String)
-	 * @verifies throw invalid custom value exception if attribute value from request for given
-	 *           field name is invalid according to datatype
+	 * @verifies throw invalid custom value exception if attribute value from request for given field
+	 *           name is invalid according to datatype
 	 */
 	@Test
 	public void getValue_shouldThrowInvalidCustomValueExceptionIfAttributeValueFromRequestForGivenFieldNameIsInvalidAccordingToDatatype() {
@@ -68,7 +68,7 @@ public class RegexValidatedTextDatatypeHandlerTest {
 		datatype.setConfiguration("^[012]$");
 		
 		InvalidCustomValueException ex = org.junit.jupiter.api.Assertions.assertThrows(InvalidCustomValueException.class,
-			() -> handler.getValue(datatype, request, fieldName));
+		    () -> handler.getValue(datatype, request, fieldName));
 		assertThat(ex.getMessage(), containsString("Invalid value: " + invalidFieldValue));
 	}
 	

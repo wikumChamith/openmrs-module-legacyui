@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -48,8 +48,7 @@ public class ConceptRedirectServlet extends HttpServlet {
 				// view the concept if the path info was an integer 
 				response.sendRedirect(contextPath + "/dictionary/concept.htm?conceptId=" + i);
 				return;
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				// search for the concept if the path info was not an integer
 				response.sendRedirect(contextPath + "/dictionary/index.htm?phrase=" + path);
 				return;

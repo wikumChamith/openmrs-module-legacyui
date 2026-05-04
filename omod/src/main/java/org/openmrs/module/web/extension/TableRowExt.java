@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -20,9 +20,9 @@ public abstract class TableRowExt extends Extension {
 	}
 	
 	/**
-	 * The map returns a listing of the rows to add to a table. The map key will be attempted to be
-	 * used as a Spring message. The map value will be the html to insert into the table cell In
-	 * order to sort the links, you should use a <code>LinkedHashMap</code>.
+	 * The map returns a listing of the rows to add to a table. The map key will be attempted to be used
+	 * as a Spring message. The map value will be the html to insert into the table cell In order to
+	 * sort the links, you should use a <code>LinkedHashMap</code>.
 	 * 
 	 * @return Map&lt;String, String&gt; of &lt;label for cell, cell content&gt;
 	 */

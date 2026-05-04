@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -108,8 +108,8 @@ public class DWRPatientServiceTest extends BaseModuleWebContextSensitiveTest {
 		Assertions.assertEquals(0, ps.getCountOfPatients(identifier).intValue());
 		
 		Patient patient = ps.getPatient(2);
-		PatientIdentifier pId = new PatientIdentifier(identifier, ps.getPatientIdentifierType(5), Context
-		        .getLocationService().getLocation(1));
+		PatientIdentifier pId = new PatientIdentifier(identifier, ps.getPatientIdentifierType(5),
+		        Context.getLocationService().getLocation(1));
 		patient.addIdentifier(pId);
 		ps.savePatient(patient);
 		updateSearchIndex();

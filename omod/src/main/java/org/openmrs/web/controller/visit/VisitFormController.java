@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -187,8 +187,7 @@ public class VisitFormController {
 				}
 				
 				return "redirect:" + "/patientDashboard.form?patientId=" + visit.getPatient().getPatientId();
-			}
-			catch (APIException e) {
+			} catch (APIException e) {
 				log.warn("Error while saving visit(s)", e);
 				request.getSession().setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "Visit.save.error");
 			}
@@ -217,11 +216,9 @@ public class VisitFormController {
 				Context.getVisitService().endVisit(visit, Context.getDateTimeFormat().parse(stopDate));
 				request.getSession().setAttribute(WebConstants.OPENMRS_MSG_ATTR, "Visit.saved");
 				return "redirect:" + "/patientDashboard.form?patientId=" + visit.getPatient().getPatientId();
-			}
-			catch (ParseException pe) {
+			} catch (ParseException pe) {
 				request.getSession().setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "error.date");
-			}
-			catch (APIException e) {
+			} catch (APIException e) {
 				request.getSession().setAttribute(WebConstants.OPENMRS_ERROR_ATTR, e.getMessage());
 			}
 		}
@@ -251,12 +248,11 @@ public class VisitFormController {
 			if (log.isDebugEnabled()) {
 				log.debug("Voided visit with id: " + visit.getId());
 			}
-			request.setAttribute(WebConstants.OPENMRS_MSG_ATTR,
-			    Context.getMessageSourceService().getMessage("Visit.voided"), WebRequest.SCOPE_SESSION);
+			request.setAttribute(WebConstants.OPENMRS_MSG_ATTR, Context.getMessageSourceService().getMessage("Visit.voided"),
+			    WebRequest.SCOPE_SESSION);
 			return "redirect:" + VISIT_FORM_URL + ".form?visitId=" + visit.getVisitId() + "&patientId="
 			        + visit.getPatient().getPatientId();
-		}
-		catch (APIException e) {
+		} catch (APIException e) {
 			log.warn("Error occurred while attempting to void visit", e);
 			request.setAttribute(WebConstants.OPENMRS_ERROR_ATTR,
 			    Context.getMessageSourceService().getMessage("Visit.void.error"), WebRequest.SCOPE_SESSION);
@@ -287,8 +283,7 @@ public class VisitFormController {
 			    Context.getMessageSourceService().getMessage("Visit.unvoided"), WebRequest.SCOPE_SESSION);
 			return "redirect:" + VISIT_FORM_URL + ".form?visitId=" + visit.getVisitId() + "&patientId="
 			        + visit.getPatient().getPatientId();
-		}
-		catch (APIException e) {
+		} catch (APIException e) {
 			log.warn("Error occurred while attempting to unvoid visit", e);
 			request.setAttribute(WebConstants.OPENMRS_ERROR_ATTR,
 			    Context.getMessageSourceService().getMessage("Visit.unvoid.error"), WebRequest.SCOPE_SESSION);
@@ -316,11 +311,10 @@ public class VisitFormController {
 			if (log.isDebugEnabled()) {
 				log.debug("Purged visit with id: " + visit.getId());
 			}
-			request.setAttribute(WebConstants.OPENMRS_MSG_ATTR,
-			    Context.getMessageSourceService().getMessage("Visit.purged"), WebRequest.SCOPE_SESSION);
+			request.setAttribute(WebConstants.OPENMRS_MSG_ATTR, Context.getMessageSourceService().getMessage("Visit.purged"),
+			    WebRequest.SCOPE_SESSION);
 			return "redirect:/patientDashboard.form?patientId=" + patientId;
-		}
-		catch (APIException e) {
+		} catch (APIException e) {
 			log.warn("Error occurred while attempting to purge visit", e);
 			request.setAttribute(WebConstants.OPENMRS_ERROR_ATTR,
 			    Context.getMessageSourceService().getMessage("Visit.purge.error"), WebRequest.SCOPE_SESSION);

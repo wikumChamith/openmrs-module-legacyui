@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -39,8 +39,8 @@ public class AuditFieldController extends SimpleFormController {
 	}
 	
 	/**
-	 * The onSubmit function receives the form/command object that was modified by the input form
-	 * and saves it to the db
+	 * The onSubmit function receives the form/command object that was modified by the input form and
+	 * saves it to the db
 	 * 
 	 * @see org.springframework.web.servlet.mvc.SimpleFormController#onSubmit(javax.servlet.http.HttpServletRequest,
 	 *      javax.servlet.http.HttpServletResponse, java.lang.Object,
@@ -61,8 +61,7 @@ public class AuditFieldController extends SimpleFormController {
 				int i = Context.getFormService().mergeDuplicateFields();
 				httpSession.setAttribute(WebConstants.OPENMRS_MSG_ARGS, i);
 				httpSession.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "Form.auditSuccess");
-			}
-			catch (APIException e) {
+			} catch (APIException e) {
 				log.warn("Error in mergeDuplicateFields", e);
 				
 				httpSession.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, "Form.auditError");

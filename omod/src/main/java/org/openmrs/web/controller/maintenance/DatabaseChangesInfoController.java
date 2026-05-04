@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -26,8 +26,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class DatabaseChangesInfoController {
 	
 	/**
-	 * Called for GET requests only on the databaseChangesInfo page. POST page requests are invalid
-	 * and ignored.
+	 * Called for GET requests only on the databaseChangesInfo page. POST page requests are invalid and
+	 * ignored.
 	 * 
 	 * @param model the key value pair that will be accessible from the jsp page
 	 * @throws Exception if there is trouble getting the database changes from liquibase
@@ -35,8 +35,8 @@ public class DatabaseChangesInfoController {
 	@RequestMapping(method = RequestMethod.GET, value = "admin/maintenance/databaseChangesInfo.list")
 	public String showPage(ModelMap model) throws Exception {
 		model.addAttribute("databaseChanges", DatabaseUpdater.getDatabaseChanges());
-		model.addAttribute("updateLogFile", OpenmrsUtil.getApplicationDataDirectory()
-		        + DatabaseUpdater.DATABASE_UPDATES_LOG_FILE);
+		model.addAttribute("updateLogFile",
+		    OpenmrsUtil.getApplicationDataDirectory() + DatabaseUpdater.DATABASE_UPDATES_LOG_FILE);
 		
 		// where Spring can find the jsp. /WEB-INF/view is prepended, and ".jsp"
 		// is appended

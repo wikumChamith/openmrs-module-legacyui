@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -49,8 +49,7 @@ public class UserWidgetTag extends TagSupport {
 			if ("full".equals(size)) {
 				w.print(" <i>(" + user.getUsername() + ")</i>");
 			}
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			log.error("Error while starting userWidget tag", ex);
 		}
 		return SKIP_BODY;

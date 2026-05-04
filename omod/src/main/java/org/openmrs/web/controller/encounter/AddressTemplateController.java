@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -61,14 +61,13 @@ public class AddressTemplateController {
 					for (String fieldName : requiredElements) {
 						try {
 							PropertyUtils.getProperty(new PersonAddress(), fieldName);
-						}
-						catch (Exception e) {
+						} catch (Exception e) {
 							//wrong field declared in template
-							request.setAttribute(
-							    WebConstants.OPENMRS_ERROR_ATTR,
+							request.setAttribute(WebConstants.OPENMRS_ERROR_ATTR,
 							    Context.getMessageSourceService().getMessage(
 							        "AddressTemplate.error.fieldNotDeclaredInTemplate", new Object[] { fieldName },
-							        Context.getLocale()), WebRequest.SCOPE_SESSION);
+							        Context.getLocale()),
+							    WebRequest.SCOPE_SESSION);
 							return "redirect:addressTemplate.form";
 						}
 					}
@@ -77,25 +76,24 @@ public class AddressTemplateController {
 				Context.getLocationService().saveAddressTemplate(xml);
 				request.setAttribute(WebConstants.OPENMRS_MSG_ATTR,
 				    Context.getMessageSourceService().getMessage("AddressTemplate.saved"), WebRequest.SCOPE_SESSION);
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				String errmsg1 = e.getCause().toString();
 				
 				if (errmsg1.contains("must be terminated by the matching")) {
 					String errmsg2 = e.getCause().getCause().toString();
 					
-					request.setAttribute(
-					    WebConstants.OPENMRS_ERROR_ATTR,
+					request.setAttribute(WebConstants.OPENMRS_ERROR_ATTR,
 					    Context.getMessageSourceService().getMessage("AddressTemplate.error.elementInvalid",
 					        new Object[] { errmsg1.split("\"")[1], errmsg2.split(";")[1].split(":")[1] },
-					        Context.getLocale()), WebRequest.SCOPE_SESSION);
+					        Context.getLocale()),
+					    WebRequest.SCOPE_SESSION);
 				} else if (errmsg1.split("\n")[0].endsWith("null")) {
 					for (String part : errmsg1.split("\n")) {
 						if (part.startsWith("path")) {
-							request.setAttribute(
-							    WebConstants.OPENMRS_ERROR_ATTR,
+							request.setAttribute(WebConstants.OPENMRS_ERROR_ATTR,
 							    Context.getMessageSourceService().getMessage("AddressTemplate.error.nameOrValueInvalid",
-							        new Object[] { part.split(":")[1] }, Context.getLocale()), WebRequest.SCOPE_SESSION);
+							        new Object[] { part.split(":")[1] }, Context.getLocale()),
+							    WebRequest.SCOPE_SESSION);
 							break;
 						}
 					}
@@ -103,8 +101,7 @@ public class AddressTemplateController {
 				        || errmsg1.contains("must be terminated by the matching")) {
 					for (String part : errmsg1.split("\n")) {
 						if (part.startsWith("path")) {
-							request.setAttribute(
-							    WebConstants.OPENMRS_ERROR_ATTR,
+							request.setAttribute(WebConstants.OPENMRS_ERROR_ATTR,
 							    Context.getMessageSourceService().getMessage("AddressTemplate.error.wrongFieldName",
 							        new Object[] { part.split("/")[part.split("/").length - 1] }, Context.getLocale()),
 							    WebRequest.SCOPE_SESSION);

@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -20,13 +20,13 @@ import org.openmrs.web.WebConstants;
 public class WebHandlerUtils {
 	
 	/**
-	 * Return the link to the complex obs servlet that will write out the contents of the complex
-	 * obs to the response
+	 * Return the link to the complex obs servlet that will write out the contents of the complex obs to
+	 * the response
 	 * 
 	 * @param obs
 	 * @param view
-	 * @return String url that will render the complex observation object (in this case, this
-	 *         rendering is done by the ComplexObsServlet)
+	 * @return String url that will render the complex observation object (in this case, this rendering
+	 *         is done by the ComplexObsServlet)
 	 */
 	public static String getHyperlink(Obs obs, String view) {
 		return "/" + WebConstants.WEBAPP_NAME + "/moduleServlet/legacyui/complexObsServlet?obsId=" + obs.getObsId()

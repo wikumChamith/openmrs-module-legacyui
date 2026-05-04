@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -42,8 +42,7 @@ public class ConceptStopWordListController {
 	 * @return ConceptStopWordList view
 	 * @should delete the given ConceptStopWord in the request parameter
 	 * @should add the success delete message in session attribute
-	 * @should add the already deleted error message in session attribute if delete the same word
-	 *         twice
+	 * @should add the already deleted error message in session attribute if delete the same word twice
 	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public String handleSubmission(HttpSession session,
@@ -55,8 +54,7 @@ public class ConceptStopWordListController {
 				try {
 					conceptService.deleteConceptStopWord(Integer.valueOf(conceptStopWordToBeDeleted));
 					session.setAttribute(WebConstants.OPENMRS_MSG_ATTR, "general.deleted");
-				}
-				catch (ConceptStopWordException e) {
+				} catch (ConceptStopWordException e) {
 					session.setAttribute(WebConstants.OPENMRS_ERROR_ATTR, e.getMessage());
 				}
 			}

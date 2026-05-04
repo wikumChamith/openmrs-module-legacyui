@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -60,15 +60,14 @@ public class ConceptStopWordListControllerTest extends BaseModuleWebContextSensi
 		
 		controller.showForm(mockRequest.getSession());
 		
-		List<ConceptStopWord> conceptStopWordList = (List<ConceptStopWord>) mockRequest.getSession().getAttribute(
-		    "conceptStopWordList");
+		List<ConceptStopWord> conceptStopWordList = (List<ConceptStopWord>) mockRequest.getSession()
+		        .getAttribute("conceptStopWordList");
 		Assertions.assertNotNull(conceptStopWordList);
 		Assertions.assertEquals(4, conceptStopWordList.size());
 	}
 	
 	/**
 	 * @see {@link ConceptStopWordListController#handleSubmission(javax.servlet.http.HttpSession, String[])
-
 	 */
 	@SuppressWarnings("unchecked")
 	@Test
@@ -88,7 +87,6 @@ public class ConceptStopWordListControllerTest extends BaseModuleWebContextSensi
 	
 	/**
 	 * @see {@link ConceptStopWordListController#handleSubmission(javax.servlet.http.HttpSession, String[])
-
 	 */
 	@Test
 	@Verifies(value = "should add the success delete message in session attribute", method = "handleSubmission(HttpSession, String[])")
@@ -110,7 +108,6 @@ public class ConceptStopWordListControllerTest extends BaseModuleWebContextSensi
 	
 	/**
 	 * @see {@link ConceptStopWordListController#handleSubmission(javax.servlet.http.HttpSession, String[])
-
 	 */
 	@Test
 	@Verifies(value = "should add the already deleted error message in session attribute if delete the same word twice", method = "handleSubmission(HttpSession, String[])")

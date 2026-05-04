@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -50,8 +50,7 @@ public class DWRMessageService {
 				
 				return true;
 				
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				log.error("Error sending feedback", e);
 			}
 		}
@@ -75,8 +74,7 @@ public class DWRMessageService {
 				MessageService messageService = Context.getMessageService();
 				messageService.sendMessage(recipients, sender, subject, content);
 				objectList.add("Message has been sent successfully.");
-			}
-			catch (Exception e) {
+			} catch (Exception e) {
 				log.error(e);
 				objectList.add("Error while attempting to send message: " + e.getMessage());
 			}

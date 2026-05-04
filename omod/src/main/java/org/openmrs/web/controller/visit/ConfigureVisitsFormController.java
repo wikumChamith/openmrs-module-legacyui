@@ -1,4 +1,4 @@
-/**
+/*
  * This Source Code Form is subject to the terms of the Mozilla Public License,
  * v. 2.0. If a copy of the MPL was not distributed with this file, You can
  * obtain one at http://mozilla.org/MPL/2.0/. OpenMRS is also distributed under
@@ -80,8 +80,8 @@ public class ConfigureVisitsFormController {
 		String visitEncounterHandler = administrationService.getGlobalProperty(OpenmrsConstants.GP_VISIT_ASSIGNMENT_HANDLER);
 		String enableVisits = administrationService.getGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_ENABLE_VISITS,
 		    Boolean.FALSE.toString());
-		TaskDefinition closeVisitsTask = Context.getSchedulerService().getTaskByName(
-		    OpenmrsConstants.AUTO_CLOSE_VISITS_TASK_NAME);
+		TaskDefinition closeVisitsTask = Context.getSchedulerService()
+		        .getTaskByName(OpenmrsConstants.AUTO_CLOSE_VISITS_TASK_NAME);
 		
 		ConfigureVisitsForm form = new ConfigureVisitsForm();
 		form.setEnableVisits(Boolean.valueOf(enableVisits));
@@ -133,8 +133,8 @@ public class ConfigureVisitsFormController {
 			GlobalProperty gpVisitEncounterHandler = new GlobalProperty(OpenmrsConstants.GP_VISIT_ASSIGNMENT_HANDLER, type);
 			administrationService.saveGlobalProperty(gpVisitEncounterHandler);
 		} else {
-			form.setVisitEncounterHandler(administrationService
-			        .getGlobalProperty(OpenmrsConstants.GP_VISIT_ASSIGNMENT_HANDLER));
+			form.setVisitEncounterHandler(
+			    administrationService.getGlobalProperty(OpenmrsConstants.GP_VISIT_ASSIGNMENT_HANDLER));
 		}
 		
 		StringBuilder visitTypeNames = new StringBuilder();
@@ -156,8 +156,8 @@ public class ConfigureVisitsFormController {
 		gpVisitTypesToClose.setPropertyValue(visitTypeNames.toString());
 		administrationService.saveGlobalProperty(gpVisitTypesToClose);
 		
-		TaskDefinition closeVisitsTask = Context.getSchedulerService().getTaskByName(
-		    OpenmrsConstants.AUTO_CLOSE_VISITS_TASK_NAME);
+		TaskDefinition closeVisitsTask = Context.getSchedulerService()
+		        .getTaskByName(OpenmrsConstants.AUTO_CLOSE_VISITS_TASK_NAME);
 		if (closeVisitsTask != null) {
 			try {
 				if (form.getCloseVisitsTaskStarted() && !closeVisitsTask.getStarted()) {
@@ -165,8 +165,7 @@ public class ConfigureVisitsFormController {
 				} else if (!form.getCloseVisitsTaskStarted() && closeVisitsTask.getStarted()) {
 					Context.getSchedulerService().shutdownTask(closeVisitsTask);
 				}
-			}
-			catch (SchedulerException e) {
+			} catch (SchedulerException e) {
 				errors.rejectValue("closeVisitsTaskStarted",
 				    (form.getCloseVisitsTaskStarted()) ? "Visit.configure.closeVisitsTask.failedToStart"
 				            : "Visit.configure.closeVisitsTask.failedToStop");
