@@ -17,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.Method;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openmrs.api.context.Context;
@@ -37,9 +38,24 @@ public class AuthorizationHandlerInterceptorTest extends BaseModuleWebContextSen
 
 	private AuthorizationHandlerInterceptor interceptor;
 
+	/**
+	 * Loads the limited users and the "HL7 Reader" role and commits them. Core resolves role
+	 * privileges in a daemon thread that opens its own session, so rows left uncommitted in the test
+	 * transaction are not visible to it and the hl7reader checks would be denied.
+	 */
 	@BeforeEach
-	public void setUp() {
+	public void setUp() throws Exception {
 		interceptor = new AuthorizationHandlerInterceptor();
+		executeDataSet(LIMITED_USER_DATASET);
+		getConnection().commit();
+	}
+	
+	/**
+	 * Removes the committed test data so it does not leak into other test classes.
+	 */
+	@AfterEach
+	public void tearDown() {
+		deleteAllData();
 	}
 
 	@Test
@@ -73,7 +89,6 @@ public class AuthorizationHandlerInterceptorTest extends BaseModuleWebContextSen
 
 	@Test
 	public void preHandle_shouldRedirectAuthenticatedCallerLackingPrivilege() throws Exception {
-		executeDataSet(LIMITED_USER_DATASET);
 		Context.logout();
 		Context.authenticate("limiteduser", "test");
 
@@ -109,7 +124,6 @@ public class AuthorizationHandlerInterceptorTest extends BaseModuleWebContextSen
 
 	@Test
 	public void preHandle_authOnlyAnnotation_shouldRequireAuthenticationButNoPrivilege() throws Exception {
-		executeDataSet(LIMITED_USER_DATASET);
 		Context.logout();
 		Context.authenticate("limiteduser", "test"); // any authenticated user
 
@@ -123,7 +137,6 @@ public class AuthorizationHandlerInterceptorTest extends BaseModuleWebContextSen
 
 	@Test
 	public void preHandle_requireAllSemantics_shouldRejectIfAnyMissing() throws Exception {
-		executeDataSet(LIMITED_USER_DATASET);
 		Context.logout();
 		Context.authenticate("admin", "test"); // admin has all privileges, this passes
 
@@ -145,7 +158,6 @@ public class AuthorizationHandlerInterceptorTest extends BaseModuleWebContextSen
 
 	@Test
 	public void preHandle_handlerMethod_shouldPreferMethodAnnotationOverClass() throws Exception {
-		executeDataSet(LIMITED_USER_DATASET);
 		Context.logout();
 		Context.authenticate("hl7reader", "test"); // has only Get HL7 Source
 
