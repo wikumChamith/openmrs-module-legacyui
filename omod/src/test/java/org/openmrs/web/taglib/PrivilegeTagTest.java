@@ -34,6 +34,8 @@ public class PrivilegeTagTest extends BaseModuleWebContextSensitiveTest {
 	public void setUpUsersAndRoles() throws SQLException {
 		initializeInMemoryDatabase();
 		executeDataSet("org/openmrs/web/taglib/include/PrivilegeTagTest.xml");
+		// RolePrivilegeCache loads roles on a daemon thread with its own session, which can't reliably
+		// see this test's uncommitted rows, so commit them (tearDownUsersAndRoles deletes them again).
 		getConnection().commit();
 	}
 	
