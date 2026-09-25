@@ -40,8 +40,9 @@ public class AuthorizationHandlerInterceptorTest extends BaseModuleWebContextSen
 
 	/**
 	 * Loads the limited users and the "HL7 Reader" role and commits them. Core resolves role
-	 * privileges in a daemon thread that opens its own session, so rows left uncommitted in the test
-	 * transaction are not visible to it and the hl7reader checks would be denied.
+	 * privileges in a daemon thread that opens its own session, which can't reliably see rows left
+	 * uncommitted in the test transaction. Without the commit the hl7reader checks can pass on their
+	 * own and still fail in the full build, depending on test order.
 	 */
 	@BeforeEach
 	public void setUp() throws Exception {

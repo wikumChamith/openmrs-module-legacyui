@@ -31,8 +31,9 @@ public class RequireTagTest extends BaseModuleWebContextSensitiveTest {
 	
 	/**
 	 * Loads the roles, privileges and users the tests need and commits them. Core resolves role
-	 * privileges in a daemon thread that opens its own session, so rows left uncommitted in the test
-	 * transaction are not visible to it and every privilege check would fail.
+	 * privileges in a daemon thread that opens its own session, which can't reliably see rows left
+	 * uncommitted in the test transaction. Without the commit this class can pass on its own and
+	 * still fail in the full build, depending on test order.
 	 */
 	@BeforeEach
 	public void setUpUsersAndRoles() throws Exception {
